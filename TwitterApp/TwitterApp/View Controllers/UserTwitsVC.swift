@@ -28,10 +28,11 @@ class UserTwitsVC: UIViewController {
         super.viewDidLoad()
         configureVC()
 //        layoutUI()
-        getUserInfo()
+//        getUserInfo()
         configureCollectionView()
         configureDataSource()
         updateData()
+        
     }
     
     //MARK: - @Objective functions
