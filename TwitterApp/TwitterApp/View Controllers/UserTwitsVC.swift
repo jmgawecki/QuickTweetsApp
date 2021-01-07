@@ -16,7 +16,7 @@ class UserTwitsVC: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, String>!
     
-    var array = ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user9", "user10", "users11"]
+    var array = ["twit1", "twit2", "twit3", "twit4", "twit5", "twit6", "twit7", "twit8", "twit9", "twit10", "twit11"]
     var username: String!
     var headerView = UIView()
     var user: User!
@@ -72,6 +72,7 @@ class UserTwitsVC: UIViewController {
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, String>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, array) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwitTwitsCell.reuseId, for: indexPath) as! TwitTwitsCell
+            cell.set(with: array)
             return cell
         })
         
@@ -84,7 +85,7 @@ class UserTwitsVC: UIViewController {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         view.addSubview(collectionView)
 //        collectionView.translatesAutoresizingMaskIntoConstraints = false dont do it when you dont do constraints programatically!
-        collectionView.backgroundColor = .systemBlue
+        collectionView.backgroundColor = .systemBackground
         
         collectionView.register(TwitTwitsCell.self, forCellWithReuseIdentifier: TwitTwitsCell.reuseId)
         
@@ -112,7 +113,7 @@ class UserTwitsVC: UIViewController {
     }
 
     private func addHeader(to section: NSCollectionLayoutSection) {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.5))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
         let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UserInfoCollectionHeaderView.reuseId, alignment: .top)
         section.boundarySupplementaryItems = [headerElement]
     }

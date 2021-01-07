@@ -24,8 +24,8 @@ class TwitUserResultLabel: UILabel {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        layer.borderWidth = 2
-        font = UIFont.systemFont(ofSize: 20, weight: .regular)
-        textAlignment = .center
+        
+        font            = UIFont.systemFont(ofSize: 20, weight: .regular)
+        textAlignment   = .left
     }
 }

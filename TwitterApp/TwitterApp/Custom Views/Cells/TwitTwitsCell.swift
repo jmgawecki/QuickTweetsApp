@@ -16,14 +16,18 @@ class TwitTwitsCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        layoutUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
+    func set(with message: String) {
+        usernameLabel.text = message
+    }
+    
+    private func layoutUI() {
         addSubview(avatarImage)
         addSubview(usernameLabel)
         avatarImage.image = UIImage(named: "TwitterLogo")
@@ -37,7 +41,7 @@ class TwitTwitsCell: UICollectionViewCell {
             usernameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             usernameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             usernameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            usernameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 0),
+            usernameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 15),
         ])
     }
 }
