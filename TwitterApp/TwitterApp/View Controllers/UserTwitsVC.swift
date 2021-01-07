@@ -14,25 +14,21 @@ class UserTwitsVC: UIViewController {
     }
     
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, String>!
+    var dataSource:     UICollectionViewDiffableDataSource<Section, String>!
+    
+    var username:   String!
+    var user:       User!
     
     var array = ["twit1", "twit2", "twit3", "twit4", "twit5", "twit6", "twit7", "twit8", "twit9", "twit10", "twit11"]
-    var username: String!
-    var headerView = UIView()
-    var user: User!
-    
     
     //MARK: - Overrides
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
-//        layoutUI()
-//        getUserInfo()
         configureCollectionView()
         configureDataSource()
         updateData()
-        
     }
     
     //MARK: - @Objective functions
