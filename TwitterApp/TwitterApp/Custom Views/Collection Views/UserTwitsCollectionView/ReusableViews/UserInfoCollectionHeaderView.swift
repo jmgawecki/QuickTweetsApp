@@ -80,8 +80,8 @@ class UserInfoCollectionHeaderView: UICollectionReusableView {
         NSLayoutConstraint.activate([
             avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: paddingLeftRight),
             avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: paddingUpDown),
-            avatarImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.45),
-            avatarImageView.widthAnchor.constraint(equalTo: avatarImageView.heightAnchor),
+            avatarImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.45),
+            avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
             
             usernameLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: paddingUpDown),
             usernameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: paddingLeftRight),

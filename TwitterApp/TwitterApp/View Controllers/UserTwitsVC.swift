@@ -81,10 +81,10 @@ class UserTwitsVC: UIViewController {
         }
     }
     private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createOneColumnCollectionViewFlowLayout(in: view))
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         view.addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .systemBackground
+//        collectionView.translatesAutoresizingMaskIntoConstraints = false dont do it when you dont do constraints programatically!
+        collectionView.backgroundColor = .systemBlue
         
         collectionView.register(TwitTwitsCell.self, forCellWithReuseIdentifier: TwitTwitsCell.reuseId)
         
@@ -92,28 +92,33 @@ class UserTwitsVC: UIViewController {
         
     }
     
-//    private func layoutUI() {
-//        view.addSubview(headerView)
-//        headerView.translatesAutoresizingMaskIntoConstraints = false
-//        headerView.layer.borderWidth = 2
-//
-//
-//        NSLayoutConstraint.activate([
-//            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-//            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-//            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-//            headerView.heightAnchor.constraint(equalToConstant: 200),
-//        ])
-//        add(childVC: TwitUserInfoHeaderVC(), to: headerView)
-//    }
+    private func createNSCollectionLayout() -> NSCollectionLayoutSection {
+        let itemSize        = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                     heightDimension: .fractionalHeight(1.0))
+        
+        let item            = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets  = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        
+        let groupSize       = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                     heightDimension: .estimated(100))
+        
+        let group           = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let section         = NSCollectionLayoutSection(group: group)
+        
+        addHeader(to: section)
+        
+        return section
+    }
 
-
+    private func addHeader(to section: NSCollectionLayoutSection) {
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.5))
+        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UserInfoCollectionHeaderView.reuseId, alignment: .top)
+        section.boundarySupplementaryItems = [headerElement]
+    }
     
-//    private func add(childVC: UIViewController, to containerView: UIView) {
-//        addChild(childVC)
-//        containerView.addSubview(childVC.view)
-//        childVC.view.frame = containerView.bounds
-//        childVC.didMove(toParent: self)
-//    }
-//
+    private func createLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout(section: createNSCollectionLayout())
+        return layout
+    }
 }
