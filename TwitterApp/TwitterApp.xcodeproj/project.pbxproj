@@ -36,6 +36,8 @@
 		EFC7FB5D25A3A19E00E08A8E /* TwitTwitsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC7FB5C25A3A19E00E08A8E /* TwitTwitsCell.swift */; };
 		EFC7FBBD25A4AD2000E08A8E /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC7FBAA25A4ACF100E08A8E /* SwifteriOS.framework */; };
 		EFC7FBBE25A4AD2000E08A8E /* SwifteriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFC7FBAA25A4ACF100E08A8E /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EFD473E525A8C16E00AC9AD9 /* FavoritesUsersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD473E425A8C16E00AC9AD9 /* FavoritesUsersVC.swift */; };
+		EFD473F125A8C69700AC9AD9 /* TwitUserFavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD473F025A8C69700AC9AD9 /* TwitUserFavoritesCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +141,8 @@
 		EFC7FB5725A39F8B00E08A8E /* UserInfoCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCollectionHeaderView.swift; sourceTree = "<group>"; };
 		EFC7FB5C25A3A19E00E08A8E /* TwitTwitsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitTwitsCell.swift; sourceTree = "<group>"; };
 		EFC7FBA125A4ACF100E08A8E /* Swifter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Swifter.xcodeproj; path = "../../Swifter-master/Swifter.xcodeproj"; sourceTree = "<group>"; };
+		EFD473E425A8C16E00AC9AD9 /* FavoritesUsersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesUsersVC.swift; sourceTree = "<group>"; };
+		EFD473F025A8C69700AC9AD9 /* TwitUserFavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitUserFavoritesCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +279,7 @@
 				EF88FFC2259A337C00ADF27B /* SearchUserVC.swift */,
 				EF88FFD9259A3FF500ADF27B /* UserTwitsVC.swift */,
 				EF79C6EF259A75B4004013BF /* UsersResultsVC.swift */,
+				EFD473E425A8C16E00AC9AD9 /* FavoritesUsersVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 		EFC7FB5425A39F3800E08A8E /* Collection Views */ = {
 			isa = PBXGroup;
 			children = (
+				EFD473ED25A8C66100AC9AD9 /* FavoriteUsersCollectionView */,
 				EFC7FB5525A39F3F00E08A8E /* UserTwitsCollectionView */,
 			);
 			path = "Collection Views";
@@ -393,6 +399,30 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EFD473ED25A8C66100AC9AD9 /* FavoriteUsersCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				EFD473EF25A8C67600AC9AD9 /* Cells */,
+				EFD473EE25A8C67100AC9AD9 /* ReusableViews */,
+			);
+			path = FavoriteUsersCollectionView;
+			sourceTree = "<group>";
+		};
+		EFD473EE25A8C67100AC9AD9 /* ReusableViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ReusableViews;
+			sourceTree = "<group>";
+		};
+		EFD473EF25A8C67600AC9AD9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EFD473F025A8C69700AC9AD9 /* TwitUserFavoritesCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -571,6 +601,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF39E54525A20A9D004462DC /* TwitError.swift in Sources */,
+				EFD473E525A8C16E00AC9AD9 /* FavoritesUsersVC.swift in Sources */,
 				EF88FFD2259A3C0B00ADF27B /* TwitTextField.swift in Sources */,
 				EF88FFC9259A340600ADF27B /* TwitImageView.swift in Sources */,
 				EF88FFC3259A337C00ADF27B /* SearchUserVC.swift in Sources */,
@@ -585,6 +616,7 @@
 				EF39E52E25A206CC004462DC /* NetworkManager.swift in Sources */,
 				EF88FF77259A295300ADF27B /* SceneDelegate.swift in Sources */,
 				EF79C70F259A8710004013BF /* TwitInfoHeaderTitleLabel.swift in Sources */,
+				EFD473F125A8C69700AC9AD9 /* TwitUserFavoritesCell.swift in Sources */,
 				EF79C701259A78F0004013BF /* TwitUserResultLabel.swift in Sources */,
 				EF39E53825A207BD004462DC /* User.swift in Sources */,
 				EF88FFBB259A2D4000ADF27B /* TwitButton.swift in Sources */,
