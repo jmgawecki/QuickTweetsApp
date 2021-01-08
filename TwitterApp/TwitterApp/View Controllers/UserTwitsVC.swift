@@ -78,7 +78,7 @@ class UserTwitsVC: UIViewController {
         }
     }
     private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createNSCollectionLayout())
         view.addSubview(collectionView)
 //        collectionView.translatesAutoresizingMaskIntoConstraints = false dont do it when you dont do constraints programatically!
         collectionView.backgroundColor = .systemBackground
@@ -89,7 +89,7 @@ class UserTwitsVC: UIViewController {
         
     }
     
-    private func createNSCollectionLayout() -> NSCollectionLayoutSection {
+    private func createNSCollectionLayout() -> UICollectionViewLayout {
         let itemSize        = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                      heightDimension: .fractionalHeight(1.0))
         
@@ -105,17 +105,14 @@ class UserTwitsVC: UIViewController {
         
         addHeader(to: section)
         
-        return section
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        
+        return layout
     }
 
     private func addHeader(to section: NSCollectionLayoutSection) {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
         let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UserInfoCollectionHeaderView.reuseId, alignment: .top)
         section.boundarySupplementaryItems = [headerElement]
-    }
-    
-    private func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout(section: createNSCollectionLayout())
-        return layout
     }
 }
