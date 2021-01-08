@@ -18,7 +18,9 @@ class TwitUserFavoritesCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureCell()
+        layoutUI()
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -31,15 +33,22 @@ class TwitUserFavoritesCell: UICollectionViewCell {
         postBodyLabel.text = message
     }
     
+    
     private func configureCell() {
+        contentView.layer.borderWidth   = 2
+        contentView.layer.borderColor   = UIColor.cyan.cgColor
+        contentView.layer.cornerRadius  = 30
+    }
+    
+    
+    private func layoutUI() {
         addSubview(postBodyLabel)
-        postBodyLabel.layer.borderWidth = 2
         
         NSLayoutConstraint.activate([
-            postBodyLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            postBodyLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            postBodyLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            postBodyLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            postBodyLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            postBodyLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            postBodyLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            postBodyLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
         ])
     }
 }

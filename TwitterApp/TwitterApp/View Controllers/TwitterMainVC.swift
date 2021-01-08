@@ -22,7 +22,8 @@ class TwitterMainVC: UIViewController {
         configureVC()
         layoutUI()
         configureSearchButton()
-        print(URLs.baseUrlWithToken + URLs.endUrlReturnUserInfo)
+        configureToFavoritesUsersButton()
+//        print(URLs.baseUrlWithToken + URLs.endUrlReturnUserInfo)
     }
     
     
@@ -31,6 +32,11 @@ class TwitterMainVC: UIViewController {
     @objc private func searchButtonTapped() {
         let destVC = SearchUserVC()
         destVC.title = "User search"
+        navigationController?.pushViewController(destVC, animated: true)
+    }
+    
+    @objc private func toFavoritesUsersTapped() {
+        let destVC = FavoritesUsersVC()
         navigationController?.pushViewController(destVC, animated: true)
     }
     
@@ -43,6 +49,10 @@ class TwitterMainVC: UIViewController {
     
     private func configureSearchButton() {
         searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+    }
+    
+    private func configureToFavoritesUsersButton() {
+        toFavoriteUsersButton.addTarget(self, action: #selector(toFavoritesUsersTapped), for: .touchUpInside)
     }
     
     
