@@ -13,7 +13,7 @@ class UserInfoCollectionHeaderView: UICollectionReusableView {
         
     var avatarImageView     = TwitImageView(frame: .zero)
     var forenameLabel       = TwitInfoHeaderTitleLabel()
-    var usernameLabel             = TwitInfoHeaderBodyLabel()
+    var usernameLabel       = TwitInfoHeaderBodyLabel()
     
     var locationLabel       = TwitInfoHeaderBodyLabel()
     var locationImage       = UIImageView()
