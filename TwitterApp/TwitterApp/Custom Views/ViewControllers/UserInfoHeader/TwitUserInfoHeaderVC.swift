@@ -26,7 +26,7 @@ class TwitUserInfoHeaderVC: UIViewController {
     var followersLabel      = TwitInfoHeaderBodyLabel(frame: .zero)
     
     var bodyLabels: [TwitInfoHeaderBodyLabel]   = []
-    var images: [UIImageView]                   = []
+    var images:     [UIImageView]               = []
    
     
     //MARK: - Overrides
@@ -50,8 +50,8 @@ class TwitUserInfoHeaderVC: UIViewController {
     //MARK: - Private Functions
     
     private func configureVC() {
-        view.backgroundColor = .systemBackground
-        title = "User's Twits"
+        view.backgroundColor    = .systemBackground
+        title                   = "User's Twits"
         navigationController?.navigationBar.prefersLargeTitles = false
     }
 
@@ -65,9 +65,9 @@ class TwitUserInfoHeaderVC: UIViewController {
         images      = [locationImage, birthDateImage]
         
         view.addSubview(usernameLabel)
-        usernameLabel.layer.borderWidth = 2
         view.addSubview(avatarImageView)
-        avatarImageView.layer.borderWidth = 2
+        usernameLabel.layer.borderWidth     = 2
+        avatarImageView.layer.borderWidth   = 2
         
         for label in bodyLabels {
             view.addSubview(label)
@@ -79,8 +79,8 @@ class TwitUserInfoHeaderVC: UIViewController {
             image.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        let paddingUpDown: CGFloat = 5
-        let paddingLeftRight: CGFloat = 5
+        let paddingUpDown:      CGFloat = 5
+        let paddingLeftRight:   CGFloat = 5
         
         NSLayoutConstraint.activate([
             avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: paddingLeftRight),

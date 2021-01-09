@@ -16,8 +16,8 @@ class UserTwitsVC: UIViewController {
     var collectionView: UICollectionView!
     var dataSource:     UICollectionViewDiffableDataSource<Section, String>!
     
-    var username:   String!
-    var user:       User!
+    var username:       String!
+    var user:           User!
     
     var array = ["twit1", "twit2", "twit3", "twit4", "twit5", "twit6", "twit7", "twit8", "twit9", "twit10", "twit11"]
     
@@ -31,15 +31,11 @@ class UserTwitsVC: UIViewController {
         updateData()
     }
     
-    //MARK: - @Objective functions
-    
-    
-    
     //MARK: - Private Functions
 
     private func configureVC() {
-        view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor                                    = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles  = true
     }
     
     private func getUserInfo() {
@@ -80,7 +76,7 @@ class UserTwitsVC: UIViewController {
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createNSCollectionLayout())
         view.addSubview(collectionView)
-//        collectionView.translatesAutoresizingMaskIntoConstraints = false dont do it when you dont do constraints programatically!
+
         collectionView.backgroundColor = .systemBackground
         
         collectionView.register(TwitTwitsCell.self, forCellWithReuseIdentifier: TwitTwitsCell.reuseId)
@@ -99,7 +95,8 @@ class UserTwitsVC: UIViewController {
         let groupSize       = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                      heightDimension: .estimated(100))
         
-        let group           = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let group           = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                                 subitems: [item])
         
         let section         = NSCollectionLayoutSection(group: group)
         
@@ -111,8 +108,12 @@ class UserTwitsVC: UIViewController {
     }
 
     private func addHeader(to section: NSCollectionLayoutSection) {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
-        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UserInfoCollectionHeaderView.reuseId, alignment: .top)
+        let headerSize      = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                     heightDimension: .estimated(200))
+        
+        let headerElement   = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                          elementKind: UserInfoCollectionHeaderView.reuseId,
+                                                                          alignment: .top)
         section.boundarySupplementaryItems = [headerElement]
     }
 }

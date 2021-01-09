@@ -24,8 +24,8 @@ class TwitInfoHeaderTitleLabel: UILabel {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        font = UIFont.systemFont(ofSize: 20, weight: .regular)
-        textAlignment = .left
+        font            = UIFont.systemFont(ofSize: 20, weight: .regular)
+        textAlignment   = .left
     }
 
 }

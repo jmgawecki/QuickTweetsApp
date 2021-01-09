@@ -27,7 +27,7 @@ class TwitImageView: UIImageView {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        layer.cornerRadius = 16
-        clipsToBounds = true
+        layer.cornerRadius      = 16
+        clipsToBounds           = true
     }
 }

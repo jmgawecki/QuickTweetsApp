@@ -9,9 +9,9 @@ import UIKit
 
 class TwitUserFavoritesCell: UICollectionViewCell {
     
-    static let reuseId = "UserFavoritesCell"
+    static let reuseId                  = "UserFavoritesCell"
     
-    let postBodyLabel = TwitInfoHeaderBodyLabel()
+    let postBodyLabel                   = TwitInfoHeaderBodyLabel()
     
     //MARK: - Overrides
     
@@ -30,14 +30,15 @@ class TwitUserFavoritesCell: UICollectionViewCell {
     //MARK: - Configurations
     
     func set(with message: String) {
-        postBodyLabel.text = message
+        postBodyLabel.text              = message
     }
     
     
     private func configureCell() {
-        contentView.layer.borderWidth   = 2
-        contentView.layer.borderColor   = UIColor.cyan.cgColor
-        contentView.layer.cornerRadius  = 30
+        layer.borderWidth   = 2
+        layer.borderColor   = UIColor.systemBlue.cgColor
+        layer.cornerRadius  = 30
+        backgroundColor = .systemBlue
     }
     
     

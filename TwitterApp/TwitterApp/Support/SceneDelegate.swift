@@ -14,16 +14,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene = windowScene
-        window?.rootViewController = configureTwitterMainNAvigationController()
+        guard let windowScene       = (scene as? UIWindowScene) else { return }
+        window                      = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene         = windowScene
+        window?.rootViewController  = configureTwitterMainNAvigationController()
         window?.makeKeyAndVisible()
     }
     
     func configureTwitterMainNAvigationController() -> UINavigationController {
-        let twitterMain = TwitterMainVC()
-        twitterMain.title = "Twitter App"
+        let twitterMain             = TwitterMainVC()
+        twitterMain.title           = "Twitter App"
         return UINavigationController(rootViewController: twitterMain)
     }
 

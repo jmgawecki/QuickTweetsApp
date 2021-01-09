@@ -50,8 +50,8 @@ class UsersResultsVC: UIViewController {
     func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createOneColumnCollectionViewFlowLayout(in: view))
         view.addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.backgroundColor = .systemBackground
+        collectionView.delegate         = self
+        collectionView.backgroundColor  = .systemBackground
         collectionView.register(TwitUsersResultCell.self, forCellWithReuseIdentifier: TwitUsersResultCell.reuseId)
     }
     
@@ -73,9 +73,8 @@ class UsersResultsVC: UIViewController {
 
 extension UsersResultsVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let destVC = UserTwitsVC()
-        destVC.title = "User's twits"
-        print("tralalal")
+        let destVC      = UserTwitsVC()
+        destVC.title    = "User's twits"
         navigationController?.pushViewController(destVC, animated: true)
     }
 }

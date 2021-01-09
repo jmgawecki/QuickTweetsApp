@@ -28,12 +28,12 @@ class TwitTextField: UITextField {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        layer.cornerRadius = 15
-        layer.borderWidth = 2
-        placeholder = "Enter username.."
-        font = UIFont.systemFont(ofSize: 25, weight: .regular)
+        layer.cornerRadius      = 15
+        layer.borderWidth       = 2
+        placeholder             = "Enter username.."
+        font                    = UIFont.systemFont(ofSize: 25, weight: .regular)
         
-        returnKeyType = .search
-        autocorrectionType = .no
+        returnKeyType           = .search
+        autocorrectionType      = .no
     }
 }

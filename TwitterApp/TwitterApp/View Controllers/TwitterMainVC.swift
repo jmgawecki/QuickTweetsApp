@@ -9,11 +9,11 @@ import UIKit
 
 class TwitterMainVC: UIViewController {
 
-    let searchButton          = TwitButton(backgroundColor: .systemGray, fontSize: 20, message: "Search for user")
-    let toFavoriteUsersButton = TwitButton(backgroundColor: .systemGray, fontSize: 30, message: "Favorite Users")
-    let toFavoriteTwitsButton = TwitButton(backgroundColor: .systemGray, fontSize: 30, message: "Favorite Twits")
+    let searchButton                = TwitButton(backgroundColor: .systemGray, fontSize: 20, message: "Search for user")
+    let toFavoriteUsersButton       = TwitButton(backgroundColor: .systemGray, fontSize: 30, message: "Favorite Users")
+    let toFavoriteTwitsButton       = TwitButton(backgroundColor: .systemGray, fontSize: 30, message: "Favorite Twits")
     
-    var buttonsArray: [UIButton] = []
+    var buttonsArray: [UIButton]    = []
     
     //MARK: - Overrides
     
@@ -23,27 +23,26 @@ class TwitterMainVC: UIViewController {
         layoutUI()
         configureSearchButton()
         configureToFavoritesUsersButton()
-//        print(URLs.baseUrlWithToken + URLs.endUrlReturnUserInfo)
     }
     
     
     //MARK: - @Objective functions
     
     @objc private func searchButtonTapped() {
-        let destVC = SearchUserVC()
-        destVC.title = "User search"
+        let destVC              = SearchUserVC()
+        destVC.title            = "User search"
         navigationController?.pushViewController(destVC, animated: true)
     }
     
     @objc private func toFavoritesUsersTapped() {
-        let destVC = FavoritesUsersVC()
+        let destVC              = FavoritesUsersVC()
         navigationController?.pushViewController(destVC, animated: true)
     }
     
     //MARK: - Private Functions
     
     private func configureVC() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor    = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -59,7 +58,7 @@ class TwitterMainVC: UIViewController {
     //MARK: - Layout configuration
     
     private func layoutUI() {
-        buttonsArray = [searchButton, toFavoriteUsersButton, toFavoriteTwitsButton]
+        buttonsArray                    = [searchButton, toFavoriteUsersButton, toFavoriteTwitsButton]
         for button in buttonsArray { view.addSubview(button) }
         
         let paddingLeftRight: CGFloat   = 30

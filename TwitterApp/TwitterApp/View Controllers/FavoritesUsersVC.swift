@@ -20,7 +20,7 @@ class FavoritesUsersVC: UIViewController {
     var array3 =    ["twit31", "twit32", "twit33", "twit34", "twit35", "twit36", "twit37", "twit38", "twit39", "twit310", "twit311"]
     
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, String>!
+    var dataSource:     UICollectionViewDiffableDataSource<Section, String>!
     
     
     //MARK: - Overrides
@@ -41,8 +41,8 @@ class FavoritesUsersVC: UIViewController {
     //MARK: - Private Functions
     
     private func configureVC() {
-        view.backgroundColor = .systemBackground
-        title = "Favorite Users"
+        view.backgroundColor    = .systemBackground
+        title                   = "Favorite Users"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -61,27 +61,34 @@ class FavoritesUsersVC: UIViewController {
     }
     
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, String>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, array) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwitUserFavoritesCell.reuseId, for: indexPath) as! TwitUserFavoritesCell
+        dataSource      = UICollectionViewDiffableDataSource<Section, String>(collectionView: collectionView,
+                                                                              cellProvider: { (collectionView, indexPath, array) -> UICollectionViewCell? in
+            let cell    = collectionView.dequeueReusableCell(withReuseIdentifier: TwitUserFavoritesCell.reuseId, for: indexPath) as! TwitUserFavoritesCell
             cell.set(with: array)
             return cell
         })
         
         dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath ) in
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UserInfoCollectionHeaderView.reuseId, for: indexPath) as! UserInfoCollectionHeaderView
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                                                         withReuseIdentifier: UserInfoCollectionHeaderView.reuseId,
+                                                                         for: indexPath) as! UserInfoCollectionHeaderView
             return header
         }
     }
     
     
     private func configureCollectionView() {
-        collectionView                  = UICollectionView(frame: view.bounds, collectionViewLayout: createUICollectionViewLayout())
+        collectionView                  = UICollectionView(frame: view.bounds,
+                                                           collectionViewLayout: createUICollectionViewLayout())
         view.addSubview(collectionView)
         collectionView.backgroundColor  = .systemBackground
         
-        collectionView.register(TwitUserFavoritesCell.self, forCellWithReuseIdentifier: TwitUserFavoritesCell.reuseId)
+        collectionView.register(TwitUserFavoritesCell.self,
+                                forCellWithReuseIdentifier: TwitUserFavoritesCell.reuseId)
         
-        collectionView.register(UserInfoCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UserInfoCollectionHeaderView.reuseId)
+        collectionView.register(UserInfoCollectionHeaderView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: UserInfoCollectionHeaderView.reuseId)
     }
     
     private func createUICollectionViewLayout() -> UICollectionViewLayout {
@@ -109,11 +116,11 @@ class FavoritesUsersVC: UIViewController {
     
     private func addHeader(in section: NSCollectionLayoutSection) {
         let headerSize      = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                heightDimension: .estimated(200))
+                                                     heightDimension: .estimated(200))
         
         let headerElement   = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-                                                                        elementKind: UserInfoCollectionHeaderView.reuseId,
-                                                                        alignment: .top)
+                                                                          elementKind: UserInfoCollectionHeaderView.reuseId,
+                                                                          alignment: .top)
         
         section.boundarySupplementaryItems = [headerElement]
     }

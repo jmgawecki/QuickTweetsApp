@@ -46,27 +46,27 @@ class UserInfoCollectionHeaderView: UICollectionReusableView {
     //MARK: - Configurations
     
     private func configure() {
-        backgroundColor = .systemBackground
+        backgroundColor         = .systemBackground
         translatesAutoresizingMaskIntoConstraints = false
        
     }
     
     private func configureUIElements() {
-        avatarImageView.image = UIImage(named: "TwitterLogo")
-        forenameLabel.text = "User's Forename"
-        usernameLabel.text = "User's username"
+        avatarImageView.image   = UIImage(named: "TwitterLogo")
+        forenameLabel.text      = "User's Forename"
+        usernameLabel.text      = "User's username"
         
-        locationLabel.text = "Location"
-        locationImage.image = UIImage(systemName: "location")
+        locationLabel.text      = "Location"
+        locationImage.image     = UIImage(systemName: "location")
         
-        birthDateLabel.text = "05/12/1996"
-        birthDateImage.image = UIImage(systemName:"calendar.circle.fill")
+        birthDateLabel.text     = "05/12/1996"
+        birthDateImage.image    = UIImage(systemName:"calendar.circle.fill")
         
-        followingCounter.text = "35"
-        followingLabel.text = "Following"
+        followingCounter.text   = "35"
+        followingLabel.text     = "Following"
         
-        followersCounter.text = "120"
-        followersLabel.text = "Followers"
+        followersCounter.text   = "120"
+        followersLabel.text     = "Followers"
     }
 
     

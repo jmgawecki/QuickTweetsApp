@@ -9,10 +9,10 @@ import UIKit
 
 class TwitTwitsCell: UICollectionViewCell {
     
-    static let reuseId  = "cell"
+    static let reuseId      = "cell"
     
-    let avatarImage     = TwitImageView(frame: .zero)
-    let usernameLabel   = TwitUserResultLabel()
+    let avatarImage         = TwitImageView(frame: .zero)
+    let usernameLabel       = TwitUserResultLabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,13 +24,13 @@ class TwitTwitsCell: UICollectionViewCell {
     }
     
     func set(with message: String) {
-        usernameLabel.text = message
+        usernameLabel.text  = message
     }
     
     private func layoutUI() {
         addSubview(avatarImage)
         addSubview(usernameLabel)
-        avatarImage.image = UIImage(named: "TwitterLogo")
+        avatarImage.image   = UIImage(named: "TwitterLogo")
         
         NSLayoutConstraint.activate([
             avatarImage.topAnchor.constraint(equalTo: topAnchor, constant: 0),
