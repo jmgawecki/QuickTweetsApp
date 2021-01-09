@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF294D1625AA652600850E74 /* TwitProfilePictureImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF294D1525AA652600850E74 /* TwitProfilePictureImageView.swift */; };
+		EF294D1E25AA6F6200850E74 /* TwitItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF294D1D25AA6F6200850E74 /* TwitItemInfoView.swift */; };
 		EF39E53825A207BD004462DC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39E53725A207BD004462DC /* User.swift */; };
 		EF39E54525A20A9D004462DC /* TwitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39E54425A20A9D004462DC /* TwitError.swift */; };
-		EF79C6FB259A7887004013BF /* TwitUsersResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF79C6FA259A7887004013BF /* TwitUsersResultCell.swift */; };
 		EF79C701259A78F0004013BF /* TwitUserResultLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF79C700259A78F0004013BF /* TwitUserResultLabel.swift */; };
 		EF79C70F259A8710004013BF /* TwitInfoHeaderTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF79C70E259A8710004013BF /* TwitInfoHeaderTitleLabel.swift */; };
 		EF79C71F259A8763004013BF /* TwitInfoHeaderBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF79C71E259A8763004013BF /* TwitInfoHeaderBodyLabel.swift */; };
@@ -106,9 +107,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EF294D1525AA652600850E74 /* TwitProfilePictureImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitProfilePictureImageView.swift; sourceTree = "<group>"; };
+		EF294D1D25AA6F6200850E74 /* TwitItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitItemInfoView.swift; sourceTree = "<group>"; };
 		EF39E53725A207BD004462DC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EF39E54425A20A9D004462DC /* TwitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitError.swift; sourceTree = "<group>"; };
-		EF79C6FA259A7887004013BF /* TwitUsersResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitUsersResultCell.swift; sourceTree = "<group>"; };
 		EF79C700259A78F0004013BF /* TwitUserResultLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitUserResultLabel.swift; sourceTree = "<group>"; };
 		EF79C70E259A8710004013BF /* TwitInfoHeaderTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitInfoHeaderTitleLabel.swift; sourceTree = "<group>"; };
 		EF79C71E259A8763004013BF /* TwitInfoHeaderBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitInfoHeaderBodyLabel.swift; sourceTree = "<group>"; };
@@ -169,6 +171,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF294D1C25AA6F5100850E74 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EF294D1D25AA6F6200850E74 /* TwitItemInfoView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		EF39E52C25A206B8004462DC /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				EFD473F025A8C69700AC9AD9 /* TwitUserFavoritesCell.swift */,
-				EF79C6FA259A7887004013BF /* TwitUsersResultCell.swift */,
 				EFC7FB5C25A3A19E00E08A8E /* TwitTwitsCell.swift */,
 			);
 			path = Cells;
@@ -284,6 +293,7 @@
 		EF88FFB2259A2A0700ADF27B /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				EF294D1C25AA6F5100850E74 /* Views */,
 				EFC7FB5625A39F5800E08A8E /* ReusableViews */,
 				EF79C6FF259A78D7004013BF /* Labels */,
 				EF79C6F9259A786E004013BF /* Cells */,
@@ -307,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				EF88FFC8259A340600ADF27B /* TwitImageView.swift */,
+				EF294D1525AA652600850E74 /* TwitProfilePictureImageView.swift */,
 			);
 			path = "Image Views";
 			sourceTree = "<group>";
@@ -559,9 +570,10 @@
 				EF79C71F259A8763004013BF /* TwitInfoHeaderBodyLabel.swift in Sources */,
 				EF88FFE0259A404600ADF27B /* Marks.swift in Sources */,
 				EF88FF79259A295300ADF27B /* TwitterMainVC.swift in Sources */,
-				EF79C6FB259A7887004013BF /* TwitUsersResultCell.swift in Sources */,
 				EFC7FB5825A39F8B00E08A8E /* UserInfoCollectionHeaderView.swift in Sources */,
+				EF294D1E25AA6F6200850E74 /* TwitItemInfoView.swift in Sources */,
 				EF88FF75259A295300ADF27B /* AppDelegate.swift in Sources */,
+				EF294D1625AA652600850E74 /* TwitProfilePictureImageView.swift in Sources */,
 				EF88FFE8259A42CC00ADF27B /* TwitUserInfoHeaderVC.swift in Sources */,
 				EF88FF77259A295300ADF27B /* SceneDelegate.swift in Sources */,
 				EF79C70F259A8710004013BF /* TwitInfoHeaderTitleLabel.swift in Sources */,

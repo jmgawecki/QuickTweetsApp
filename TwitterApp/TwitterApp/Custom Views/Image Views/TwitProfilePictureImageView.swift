@@ -1,18 +1,18 @@
 //
-//  TwitTextField.swift
+//  TwitProfilePictureImageView.swift
 //  TwitterApp
 //
-//  Created by Jakub Gawecki on 28/12/2020.
+//  Created by Jakub Gawecki on 09/01/2021.
 //
 
 import UIKit
 
-class TwitTextField: UITextField {
+class TwitProfilePictureImageView: UIImageView {
     
     
     
     //MARK: - Overrides
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -21,23 +21,19 @@ class TwitTextField: UITextField {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     
     //MARK: - Configurations
-
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         
-        layer.cornerRadius      = 15
         layer.borderWidth       = 2
         layer.borderColor       = ColorsTwitter.twitterDarkGray.cgColor
+        layer.cornerRadius      = 75
+        layer.masksToBounds     = true
         
-        placeholder             = "Enter username.."
-        font                    = UIFont.systemFont(ofSize: 20, weight: .regular)
-        
-        textAlignment           = .center
-        returnKeyType           = .search
-        autocorrectionType      = .no
+        clipsToBounds           = true
+        image                   = TwitterPNGs.twitterLogo
     }
 }

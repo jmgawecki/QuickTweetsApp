@@ -18,14 +18,20 @@ class TwitInfoHeaderBodyLabel: UILabel {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    convenience init(textAlignment: NSTextAlignment) {
+        self.init(frame: .zero)
+        self.textAlignment   = textAlignment
+    }
 
 
     //MARK: - Configurations
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        font            = UIFont.systemFont(ofSize: 20, weight: .regular)
-        textAlignment   = .left
+        font            = UIFont.systemFont(ofSize: 17, weight: .regular)
+        tintColor       = .secondaryLabel
+        
     }
 
 }

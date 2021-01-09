@@ -30,7 +30,7 @@ class TwitTwitsCell: UICollectionViewCell {
     private func layoutUI() {
         addSubview(avatarImage)
         addSubview(usernameLabel)
-        avatarImage.image   = UIImage(named: "TwitterLogo")
+        avatarImage.image   = TwitterPNGs.twitterLogoBlueOnWhite
         
         NSLayoutConstraint.activate([
             avatarImage.topAnchor.constraint(equalTo: topAnchor, constant: 0),

@@ -76,25 +76,25 @@ class TwitterMainVC: UIViewController {
         
         
         NSLayoutConstraint.activate([
-            twitterLogoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            twitterLogoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
             twitterLogoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            twitterLogoImageView.widthAnchor.constraint(equalToConstant: 300),
+            twitterLogoImageView.widthAnchor.constraint(equalToConstant: 220),
             twitterLogoImageView.heightAnchor.constraint(equalTo: twitterLogoImageView.widthAnchor),
             
             searchButton.topAnchor.constraint(equalTo: twitterLogoImageView.bottomAnchor, constant: 50),
             searchButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            searchButton.widthAnchor.constraint(equalToConstant: 300),
-            searchButton.heightAnchor.constraint(equalToConstant: 60),
+            searchButton.widthAnchor.constraint(equalToConstant: 280),
+            searchButton.heightAnchor.constraint(equalToConstant: 50),
             
             toFavoriteUsersButton.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: paddingUpDown),
             toFavoriteUsersButton.leadingAnchor.constraint(equalTo: searchButton.leadingAnchor, constant: 0),
-            toFavoriteUsersButton.widthAnchor.constraint(equalToConstant: 140),
-            toFavoriteUsersButton.heightAnchor.constraint(equalToConstant: 60),
+            toFavoriteUsersButton.widthAnchor.constraint(equalToConstant: 130),
+            toFavoriteUsersButton.heightAnchor.constraint(equalToConstant: 50),
             
             toFavoriteTwitsButton.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: paddingUpDown),
             toFavoriteTwitsButton.trailingAnchor.constraint(equalTo: searchButton.trailingAnchor, constant: 0),
-            toFavoriteTwitsButton.widthAnchor.constraint(equalToConstant: 140),
-            toFavoriteTwitsButton.heightAnchor.constraint(equalToConstant: 60),
+            toFavoriteTwitsButton.widthAnchor.constraint(equalToConstant: 130),
+            toFavoriteTwitsButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
 

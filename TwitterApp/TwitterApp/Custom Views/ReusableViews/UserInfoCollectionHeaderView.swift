@@ -11,21 +11,24 @@ class UserInfoCollectionHeaderView: UICollectionReusableView {
     
     static let reuseId  = "header"
         
-    var avatarImageView     = TwitImageView(frame: .zero)
+    var avatarImageView     = TwitProfilePictureImageView(frame: .zero)
     var forenameLabel       = TwitInfoHeaderTitleLabel()
-    var usernameLabel       = TwitInfoHeaderBodyLabel()
+    var usernameLabel       = TwitInfoHeaderBodyLabel(textAlignment: .center)
     
-    var locationLabel       = TwitInfoHeaderBodyLabel()
+    var locationLabel       = TwitInfoHeaderBodyLabel(textAlignment: .left)
     var locationImage       = UIImageView()
     
-    var birthDateLabel      = TwitInfoHeaderBodyLabel()
+    var birthDateLabel      = TwitInfoHeaderBodyLabel(textAlignment: .left)
     var birthDateImage      = UIImageView()
     
-    var followingCounter    = TwitInfoHeaderBodyLabel()
-    var followingLabel      = TwitInfoHeaderBodyLabel()
+    var followingCounter    = TwitInfoHeaderBodyLabel(textAlignment: .center)
+    var followingLabel      = TwitInfoHeaderBodyLabel(textAlignment: .left)
     
-    var followersCounter    = TwitInfoHeaderBodyLabel()
-    var followersLabel      = TwitInfoHeaderBodyLabel()
+    var followersCounter    = TwitInfoHeaderBodyLabel(textAlignment: .center)
+    var followersLabel      = TwitInfoHeaderBodyLabel(textAlignment: .left)
+    
+    var followersStackView  = UIStackView()
+    var locationStackView   = UIStackView()
     
     var bodyLabels: [TwitInfoHeaderBodyLabel]   = []
     var images: [UIImageView]                   = []
@@ -52,21 +55,25 @@ class UserInfoCollectionHeaderView: UICollectionReusableView {
     }
     
     private func configureUIElements() {
-        avatarImageView.image   = UIImage(named: "TwitterLogo")
-        forenameLabel.text      = "User's Forename"
-        usernameLabel.text      = "User's username"
+        avatarImageView.image       = UIImage(named: "myProfile")
+        forenameLabel.text          = "Jakub Gawecki"
+        usernameLabel.text          = "@jakubgawecki96"
         
-        locationLabel.text      = "Location"
-        locationImage.image     = UIImage(systemName: "location")
+        locationLabel.text          = "Manchester, England"
+        locationImage.image         = UIImage(systemName: "location")
+        locationImage.contentMode   = .scaleToFill
+        locationImage.tintColor     = ColorsTwitter.twitterBlue
+       
+        birthDateLabel.text         = "05/12/1996"
+        birthDateImage.image        = UIImage(systemName:"calendar.circle.fill")
+        birthDateImage.contentMode  = .scaleToFill
+        birthDateImage.tintColor    = ColorsTwitter.twitterBlue
         
-        birthDateLabel.text     = "05/12/1996"
-        birthDateImage.image    = UIImage(systemName:"calendar.circle.fill")
+        followingCounter.text       = "35"
+        followingLabel.text         = "Following"
         
-        followingCounter.text   = "35"
-        followingLabel.text     = "Following"
-        
-        followersCounter.text   = "120"
-        followersLabel.text     = "Followers"
+        followersCounter.text       = "120"
+        followersLabel.text         = "Followers"
     }
 
     
@@ -93,20 +100,33 @@ class UserInfoCollectionHeaderView: UICollectionReusableView {
         let paddingLeftRight: CGFloat = 10
         
         NSLayoutConstraint.activate([
-            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: paddingLeftRight),
-            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: paddingUpDown),
+            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            avatarImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             avatarImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.40),
             avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
+//            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: paddingLeftRight),
+//            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: paddingUpDown),
+//            avatarImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.40),
+//            avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
             
             forenameLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: paddingUpDown),
-            forenameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: paddingLeftRight),
-            forenameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -paddingLeftRight),
+            forenameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            forenameLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
             forenameLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.10),
+//            forenameLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: paddingUpDown),
+//            forenameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: paddingLeftRight),
+//            forenameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -paddingLeftRight),
+//            forenameLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.10),
 
+            
             usernameLabel.topAnchor.constraint(equalTo: forenameLabel.bottomAnchor, constant: paddingUpDown),
-            usernameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: paddingLeftRight),
-            usernameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -paddingLeftRight),
+            usernameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            usernameLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
             usernameLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.10),
+//            usernameLabel.topAnchor.constraint(equalTo: forenameLabel.bottomAnchor, constant: paddingUpDown),
+//            usernameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: paddingLeftRight),
+//            usernameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -paddingLeftRight),
+//            usernameLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.10),
 
             followingCounter.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: paddingUpDown),
             followingCounter.leadingAnchor.constraint(equalTo: leadingAnchor, constant: paddingLeftRight),
