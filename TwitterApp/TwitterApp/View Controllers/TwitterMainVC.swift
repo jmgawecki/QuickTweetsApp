@@ -8,10 +8,12 @@
 import UIKit
 
 class TwitterMainVC: UIViewController {
-
-    let searchButton                = TwitButton(backgroundColor: .systemGray, fontSize: 20, message: "Search for user")
-    let toFavoriteUsersButton       = TwitButton(backgroundColor: .systemGray, fontSize: 30, message: "Favorite Users")
-    let toFavoriteTwitsButton       = TwitButton(backgroundColor: .systemGray, fontSize: 30, message: "Favorite Twits")
+    
+    
+    let twitterLogoImageView        = TwitImageView(frame: .zero)
+    let searchButton                = TwitButton(backgroundColor: ColorsTwitter.twitterBlue, fontSize: 20, message: "Search for user")
+    let toFavoriteUsersButton       = TwitButton(backgroundColor: ColorsTwitter.twitterLighGray, fontSize: 20, message: "Users")
+    let toFavoriteTwitsButton       = TwitButton(backgroundColor: ColorsTwitter.twitterLighGray, fontSize: 20, message: "Twits")
     
     var buttonsArray: [UIButton]    = []
     
@@ -21,6 +23,7 @@ class TwitterMainVC: UIViewController {
         super.viewDidLoad()
         configureVC()
         layoutUI()
+        configureUIElements()
         configureSearchButton()
         configureToFavoritesUsersButton()
     }
@@ -57,29 +60,41 @@ class TwitterMainVC: UIViewController {
     
     //MARK: - Layout configuration
     
+    private func configureUIElements() {
+        twitterLogoImageView.image = TwitterPNGs.twitterLogo
+    }
+    
+    
     private func layoutUI() {
-        buttonsArray                    = [searchButton, toFavoriteUsersButton, toFavoriteTwitsButton]
-        for button in buttonsArray { view.addSubview(button) }
+        buttonsArray = [searchButton, toFavoriteUsersButton, toFavoriteTwitsButton]
         
-        let paddingLeftRight: CGFloat   = 30
-        let paddingUpDown: CGFloat      = 20
+        view.addSubview(twitterLogoImageView)
+        for button in buttonsArray { view.addSubview(button) }
+        twitterLogoImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let paddingUpDown: CGFloat = 20
         
         
         NSLayoutConstraint.activate([
-            searchButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: paddingUpDown),
-            searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: paddingLeftRight),
-            searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -paddingLeftRight),
-            searchButton.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.17),
+            twitterLogoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            twitterLogoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            twitterLogoImageView.widthAnchor.constraint(equalToConstant: 300),
+            twitterLogoImageView.heightAnchor.constraint(equalTo: twitterLogoImageView.widthAnchor),
+            
+            searchButton.topAnchor.constraint(equalTo: twitterLogoImageView.bottomAnchor, constant: 50),
+            searchButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            searchButton.widthAnchor.constraint(equalToConstant: 300),
+            searchButton.heightAnchor.constraint(equalToConstant: 60),
             
             toFavoriteUsersButton.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: paddingUpDown),
-            toFavoriteUsersButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: paddingLeftRight),
-            toFavoriteUsersButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -paddingLeftRight),
-            toFavoriteUsersButton.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.30),
+            toFavoriteUsersButton.leadingAnchor.constraint(equalTo: searchButton.leadingAnchor, constant: 0),
+            toFavoriteUsersButton.widthAnchor.constraint(equalToConstant: 140),
+            toFavoriteUsersButton.heightAnchor.constraint(equalToConstant: 60),
             
-            toFavoriteTwitsButton.topAnchor.constraint(equalTo: toFavoriteUsersButton.bottomAnchor, constant: paddingUpDown),
-            toFavoriteTwitsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: paddingLeftRight),
-            toFavoriteTwitsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -paddingLeftRight),
-            toFavoriteTwitsButton.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.30),
+            toFavoriteTwitsButton.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: paddingUpDown),
+            toFavoriteTwitsButton.trailingAnchor.constraint(equalTo: searchButton.trailingAnchor, constant: 0),
+            toFavoriteTwitsButton.widthAnchor.constraint(equalToConstant: 140),
+            toFavoriteTwitsButton.heightAnchor.constraint(equalToConstant: 60),
         ])
     }
 

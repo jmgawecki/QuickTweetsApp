@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwifteriOS
 
 class SearchUserVC: UIViewController {
     
@@ -25,13 +24,6 @@ class SearchUserVC: UIViewController {
         configureVC()
         layoutUI()
         configureSearchButton()
-        var swifter = Swifter(consumerKey: "6UTRQ9isdKekvcCDLLr78fc4v", consumerSecret: "HARhDi2A9ZCrRpBW6cr27PQRZ1LNHiog7HjHpc992XGb3a0BpJ")
-        swifter.authorizeSSO { (token) in
-            print("tralala")
-        } failure: { (error) in
-            print(error)
-        }
-
     }
     
     

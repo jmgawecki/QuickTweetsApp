@@ -24,9 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func configureTwitterMainNAvigationController() -> UINavigationController {
         let twitterMain             = TwitterMainVC()
         twitterMain.title           = "Twitter App"
+        UINavigationBar.appearance().tintColor = ColorsTwitter.twitterBlue
         return UINavigationController(rootViewController: twitterMain)
     }
-
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.

@@ -38,18 +38,6 @@ class UserTwitsVC: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles  = true
     }
     
-    private func getUserInfo() {
-        NetworkManager.shared.getUser(for: username) { (result) in
-            switch result {
-            case .success(let user):
-                print(user)
-                
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
     //MARK: - Layout configuration
     
     private func updateData() {
@@ -60,6 +48,7 @@ class UserTwitsVC: UIViewController {
             self.dataSource.apply(snapshot, animatingDifferences: true)
         }
     }
+    
     
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, String>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, array) -> UICollectionViewCell? in
@@ -73,6 +62,8 @@ class UserTwitsVC: UIViewController {
             return header
         }
     }
+    
+    
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: CollectionLayouts.userTwitsCollectionLayout())
         view.addSubview(collectionView)

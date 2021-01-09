@@ -27,7 +27,7 @@ class TwitButton: UIButton {
     convenience init(backgroundColor: UIColor, fontSize: CGFloat, message: String) {
         self.init(frame: .zero)
         self.backgroundColor    = backgroundColor
-        titleLabel?.font        = UIFont.systemFont(ofSize: fontSize, weight: .bold)
+        titleLabel?.font        = UIFont.systemFont(ofSize: fontSize, weight: .semibold)
         setTitle(message, for: .normal)
         
     }
