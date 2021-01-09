@@ -38,6 +38,7 @@
 		EFC7FBBE25A4AD2000E08A8E /* SwifteriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFC7FBAA25A4ACF100E08A8E /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EFD473E525A8C16E00AC9AD9 /* FavoritesUsersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD473E425A8C16E00AC9AD9 /* FavoritesUsersVC.swift */; };
 		EFD473F125A8C69700AC9AD9 /* TwitUserFavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD473F025A8C69700AC9AD9 /* TwitUserFavoritesCell.swift */; };
+		EFD4744025AA503C00AC9AD9 /* CollectionLayouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4743F25AA503C00AC9AD9 /* CollectionLayouts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +144,7 @@
 		EFC7FBA125A4ACF100E08A8E /* Swifter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Swifter.xcodeproj; path = "../../Swifter-master/Swifter.xcodeproj"; sourceTree = "<group>"; };
 		EFD473E425A8C16E00AC9AD9 /* FavoritesUsersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesUsersVC.swift; sourceTree = "<group>"; };
 		EFD473F025A8C69700AC9AD9 /* TwitUserFavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitUserFavoritesCell.swift; sourceTree = "<group>"; };
+		EFD4743F25AA503C00AC9AD9 /* CollectionLayouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLayouts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +332,7 @@
 				EF79C6F4259A77D0004013BF /* UIHelper.swift */,
 				EF39E53F25A2088A004462DC /* URLs.swift */,
 				EF39E54425A20A9D004462DC /* TwitError.swift */,
+				EFD4743F25AA503C00AC9AD9 /* CollectionLayouts.swift */,
 			);
 			path = Utilites;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				EFC7FB5D25A3A19E00E08A8E /* TwitTwitsCell.swift in Sources */,
 				EF39E54025A2088A004462DC /* URLs.swift in Sources */,
 				EF79C6F5259A77D0004013BF /* UIHelper.swift in Sources */,
+				EFD4744025AA503C00AC9AD9 /* CollectionLayouts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

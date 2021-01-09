@@ -79,7 +79,7 @@ class FavoritesUsersVC: UIViewController {
     
     private func configureCollectionView() {
         collectionView                  = UICollectionView(frame: view.bounds,
-                                                           collectionViewLayout: createUICollectionViewLayout())
+                                                           collectionViewLayout: CollectionLayouts.favoritesUsersCollectionLayout())
         view.addSubview(collectionView)
         collectionView.backgroundColor  = .systemBackground
         
@@ -90,42 +90,6 @@ class FavoritesUsersVC: UIViewController {
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: UserInfoCollectionHeaderView.reuseId)
     }
-    
-    private func createUICollectionViewLayout() -> UICollectionViewLayout {
-        let itemSize        = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                     heightDimension: .fractionalHeight(1.0))
-        
-        let item            = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets  = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
-        
-        let groupSize       = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),
-                                                     heightDimension: .estimated(300))
-        
-        let group           = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                                 subitems: [item])
-        
-        let section         = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .groupPagingCentered
-        
-        addHeader(in: section)
-        
-        let layout          = UICollectionViewCompositionalLayout(section: section)
-        
-        return layout
-    }
-    
-    private func addHeader(in section: NSCollectionLayoutSection) {
-        let headerSize      = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                     heightDimension: .estimated(200))
-        
-        let headerElement   = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-                                                                          elementKind: UserInfoCollectionHeaderView.reuseId,
-                                                                          alignment: .top)
-        
-        section.boundarySupplementaryItems = [headerElement]
-    }
-    
-    
     //MARK: - Layout configuration
 
     

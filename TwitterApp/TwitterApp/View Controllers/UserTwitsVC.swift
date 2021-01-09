@@ -74,7 +74,7 @@ class UserTwitsVC: UIViewController {
         }
     }
     private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createNSCollectionLayout())
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: CollectionLayouts.userTwitsCollectionLayout())
         view.addSubview(collectionView)
 
         collectionView.backgroundColor = .systemBackground
@@ -83,37 +83,5 @@ class UserTwitsVC: UIViewController {
         
         collectionView.register(UserInfoCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UserInfoCollectionHeaderView.reuseId)
         
-    }
-    
-    private func createNSCollectionLayout() -> UICollectionViewLayout {
-        let itemSize        = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                     heightDimension: .fractionalHeight(1.0))
-        
-        let item            = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets  = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-        
-        let groupSize       = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                     heightDimension: .estimated(100))
-        
-        let group           = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                                 subitems: [item])
-        
-        let section         = NSCollectionLayoutSection(group: group)
-        
-        addHeader(to: section)
-        
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        
-        return layout
-    }
-
-    private func addHeader(to section: NSCollectionLayoutSection) {
-        let headerSize      = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                     heightDimension: .estimated(200))
-        
-        let headerElement   = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-                                                                          elementKind: UserInfoCollectionHeaderView.reuseId,
-                                                                          alignment: .top)
-        section.boundarySupplementaryItems = [headerElement]
     }
 }
