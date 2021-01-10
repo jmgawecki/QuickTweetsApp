@@ -73,20 +73,20 @@ class SearchTweetsCell: UICollectionViewCell {
         timeDateLabel.translatesAutoresizingMaskIntoConstraints  = false
         
         NSLayoutConstraint.activate([
-            timeDateLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
-            timeDateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            timeDateLabel.heightAnchor.constraint(equalToConstant: 25),
-            timeDateLabel.widthAnchor.constraint(equalToConstant: 150),
+            timeDateLabel.centerXAnchor.constraint  (equalTo: centerXAnchor, constant: 0),
+            timeDateLabel.topAnchor.constraint      (equalTo: topAnchor, constant: 10),
+            timeDateLabel.heightAnchor.constraint   (equalToConstant: 25),
+            timeDateLabel.widthAnchor.constraint    (equalToConstant: 150),
             
-            mediaStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-            mediaStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
+            mediaStackView.bottomAnchor.constraint  (equalTo: bottomAnchor, constant: -10),
+            mediaStackView.leadingAnchor.constraint (equalTo: leadingAnchor, constant: 30),
             mediaStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
-            mediaStackView.heightAnchor.constraint(equalToConstant: 60),
+            mediaStackView.heightAnchor.constraint  (equalToConstant: 60),
             
-            tweetBodyLabel.topAnchor.constraint(equalTo: timeDateLabel.bottomAnchor, constant: 0),
+            tweetBodyLabel.topAnchor.constraint     (equalTo: timeDateLabel.bottomAnchor, constant: 0),
             tweetBodyLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            tweetBodyLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            tweetBodyLabel.bottomAnchor.constraint(equalTo: mediaStackView.topAnchor, constant: 0),
+            tweetBodyLabel.leadingAnchor.constraint (equalTo: leadingAnchor, constant: 20),
+            tweetBodyLabel.bottomAnchor.constraint  (equalTo: mediaStackView.topAnchor, constant: 0),
         ])
     }
 }

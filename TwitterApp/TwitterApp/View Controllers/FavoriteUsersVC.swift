@@ -15,7 +15,7 @@ class FavoriteUsersVC: UIViewController {
         case user3
     }
     
-    var array =     ["twit1",  "twit2",  "twit3",  "twit4",  "twit5",  "twit6",  "twit7",  "twit8",  "twit9",  "twit10",  "twit11"]
+    var tweetsUser1: [String] = [TweetsDebugs.tweet1, TweetsDebugs.tweet2, TweetsDebugs.tweet3, TweetsDebugs.tweet4, TweetsDebugs.tweet5]
     var array2 =    ["twit21", "twit22", "twit23", "twit24", "twit25", "twit26", "twit27", "twit28", "twit29", "twit210", "twit211"]
     var array3 =    ["twit31", "twit32", "twit33", "twit34", "twit35", "twit36", "twit37", "twit38", "twit39", "twit310", "twit311"]
     
@@ -51,7 +51,7 @@ class FavoriteUsersVC: UIViewController {
         
         snapshot.appendSections([Section.user1, Section.user2, Section.user3])
         
-        snapshot.appendItems(array,  toSection: Section.user1)
+        snapshot.appendItems(tweetsUser1,  toSection: Section.user1)
         snapshot.appendItems(array2, toSection: Section.user2)
         snapshot.appendItems(array3, toSection: Section.user3)
         

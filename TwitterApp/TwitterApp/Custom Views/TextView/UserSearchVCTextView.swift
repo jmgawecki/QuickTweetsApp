@@ -29,6 +29,7 @@ class UserSearchVCTextView: UITextView {
         translatesAutoresizingMaskIntoConstraints = false
         font = UIFont.preferredFont(forTextStyle: .body)
         backgroundColor = .secondarySystemBackground
+        
     }
 
 }

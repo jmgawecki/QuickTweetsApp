@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoriteTwitsVC: UIViewController {
+class FavoriteTweetsVC: UIViewController {
     
     enum Section {
         case main
@@ -16,7 +16,8 @@ class FavoriteTwitsVC: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, String>!
     
-    var tweets = ["twit1", "twit2", "twit3", "twit4", "twit5", "twit6", "twit7", "twit8", "twit9", "twit10", "twit11"]
+    var tweets: [String] = [TweetsDebugs.tweet1, TweetsDebugs.tweet2, TweetsDebugs.tweet3, TweetsDebugs.tweet4, TweetsDebugs.tweet5]
+    
     
     //MARK: - Overrides
 
@@ -44,6 +45,7 @@ class FavoriteTwitsVC: UIViewController {
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, String>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweets) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteTweetsCell.reuseId, for: indexPath) as! FavoriteTweetsCell
+            cell.set(with: tweets)
             return cell
         })
     }

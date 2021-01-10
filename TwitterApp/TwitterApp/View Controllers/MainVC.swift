@@ -44,7 +44,7 @@ class MainVC: UIViewController {
     }
     
     @objc private func toFavoriteTweetsTapped() {
-        let destVC              = FavoriteTwitsVC()
+        let destVC              = FavoriteTweetsVC()
         navigationController?.pushViewController(destVC, animated: true)
     }
     
