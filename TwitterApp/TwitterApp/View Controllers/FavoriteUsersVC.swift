@@ -1,5 +1,5 @@
 //
-//  FavoritesUsersVC.swift
+//  FavoriteUsersVC.swift
 //  TwitterApp
 //
 //  Created by Jakub Gawecki on 08/01/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoritesUsersVC: UIViewController {
+class FavoriteUsersVC: UIViewController {
     
     enum Section {
         case user1
@@ -63,15 +63,15 @@ class FavoritesUsersVC: UIViewController {
     private func configureDataSource() {
         dataSource      = UICollectionViewDiffableDataSource<Section, String>(collectionView: collectionView,
                                                                               cellProvider: { (collectionView, indexPath, array) -> UICollectionViewCell? in
-            let cell    = collectionView.dequeueReusableCell(withReuseIdentifier: TwitUserFavoritesCell.reuseId, for: indexPath) as! TwitUserFavoritesCell
+            let cell    = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteUsersCell.reuseId, for: indexPath) as! FavoriteUsersCell
             cell.set(with: array)
             return cell
         })
         
         dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath ) in
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-                                                                         withReuseIdentifier: FavoritesUsersHeaderView.reuseId,
-                                                                         for: indexPath) as! FavoritesUsersHeaderView
+                                                                         withReuseIdentifier: FavoritesCollectionHeader.reuseId,
+                                                                         for: indexPath) as! FavoritesCollectionHeader
             return header
         }
     }
@@ -83,12 +83,12 @@ class FavoritesUsersVC: UIViewController {
         view.addSubview(collectionView)
         collectionView.backgroundColor  = .systemBackground
         
-        collectionView.register(TwitUserFavoritesCell.self,
-                                forCellWithReuseIdentifier: TwitUserFavoritesCell.reuseId)
+        collectionView.register(FavoriteUsersCell.self,
+                                forCellWithReuseIdentifier: FavoriteUsersCell.reuseId)
         
-        collectionView.register(FavoritesUsersHeaderView.self,
+        collectionView.register(FavoritesCollectionHeader.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: FavoritesUsersHeaderView.reuseId)
+                                withReuseIdentifier: FavoritesCollectionHeader.reuseId)
     }
     //MARK: - Layout configuration
 

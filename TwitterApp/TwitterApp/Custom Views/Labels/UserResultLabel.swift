@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TwitUserResultLabel: UILabel {
+class UserResultLabel: UILabel {
 
     //MARK: - Overrides
     override init(frame: CGRect) {

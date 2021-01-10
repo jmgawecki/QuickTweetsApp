@@ -1,5 +1,5 @@
 //
-//  TwitUserFavoritesCell.swift
+//  FavoriteUsersCell.swift
 //  TwitterApp
 //
 //  Created by Jakub Gawecki on 08/01/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TwitUserFavoritesCell: UICollectionViewCell {
+class FavoriteUsersCell: UICollectionViewCell {
     
     static let reuseId                  = "UserFavoritesCell"
     

@@ -7,12 +7,12 @@
 
 import UIKit
 
-class TwitTwitsCell: UICollectionViewCell {
+class TwitsCell: UICollectionViewCell {
     
     static let reuseId      = "cell"
     
     let avatarImage         = TwitImageView(frame: .zero)
-    let usernameLabel       = TwitUserResultLabel()
+    let usernameLabel       = UserResultLabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

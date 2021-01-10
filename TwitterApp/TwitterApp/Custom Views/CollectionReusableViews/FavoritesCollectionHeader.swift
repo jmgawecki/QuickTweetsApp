@@ -1,5 +1,5 @@
 //
-//  FavoritesUsersHeaderView.swift
+//  FavoritesCollectionHeader.swift
 //  TwitterApp
 //
 //  Created by Jakub Gawecki on 10/01/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoritesUsersHeaderView: UICollectionReusableView {
+class FavoritesCollectionHeader: UICollectionReusableView {
     
     static let reuseId  = "FavoritesUsersHeaderView"
         

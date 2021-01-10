@@ -1,5 +1,5 @@
 //
-//  UserTwitsVC.swift
+//  TwitsVC.swift
 //  TwitterApp
 //
 //  Created by Jakub Gawecki on 28/12/2020.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserTwitsVC: UIViewController {
+class TwitsVC: UIViewController {
     
     enum Section {
         case main
@@ -17,7 +17,6 @@ class UserTwitsVC: UIViewController {
     var dataSource:     UICollectionViewDiffableDataSource<Section, String>!
     
     var username:       String!
-    var user:           User!
     
     var array = ["twit1", "twit2", "twit3", "twit4", "twit5", "twit6", "twit7", "twit8", "twit9", "twit10", "twit11"]
     
@@ -52,13 +51,13 @@ class UserTwitsVC: UIViewController {
     
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, String>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, array) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwitTwitsCell.reuseId, for: indexPath) as! TwitTwitsCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwitsCell.reuseId, for: indexPath) as! TwitsCell
             cell.set(with: array)
             return cell
         })
         
         dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UserTwitsHeaderView.reuseId, for: indexPath) as! UserTwitsHeaderView
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TwitsVCCollectionHeader.reuseId, for: indexPath) as! TwitsVCCollectionHeader
             return header
         }
     }
@@ -70,9 +69,9 @@ class UserTwitsVC: UIViewController {
 
         collectionView.backgroundColor = .systemBackground
         
-        collectionView.register(TwitTwitsCell.self, forCellWithReuseIdentifier: TwitTwitsCell.reuseId)
+        collectionView.register(TwitsCell.self, forCellWithReuseIdentifier: TwitsCell.reuseId)
         
-        collectionView.register(UserTwitsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UserTwitsHeaderView.reuseId)
+        collectionView.register(TwitsVCCollectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TwitsVCCollectionHeader.reuseId)
         
     }
 }

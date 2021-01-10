@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func configureTwitterMainNAvigationController() -> UINavigationController {
-        let twitterMain             = TwitterMainVC()
+        let twitterMain             = MainVC()
         twitterMain.title           = "Twitter App"
         UINavigationBar.appearance().tintColor = ColorsTwitter.twitterBlue
         return UINavigationController(rootViewController: twitterMain)

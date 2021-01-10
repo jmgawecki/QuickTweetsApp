@@ -27,7 +27,7 @@ struct CollectionLayouts {
                                                      heightDimension: .estimated(200))
         
         let headerElement   = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-                                                                          elementKind: UserTwitsHeaderView.reuseId,
+                                                                          elementKind: TwitsVCCollectionHeader.reuseId,
                                                                           alignment: .top)
         
         section.boundarySupplementaryItems = [headerElement]
@@ -58,7 +58,7 @@ struct CollectionLayouts {
                                                      heightDimension: .estimated(200))
         
         let headerElement   = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-                                                                          elementKind: UserTwitsHeaderView.reuseId,
+                                                                          elementKind: TwitsVCCollectionHeader.reuseId,
                                                                           alignment: .top)
         
         section.boundarySupplementaryItems = [headerElement]

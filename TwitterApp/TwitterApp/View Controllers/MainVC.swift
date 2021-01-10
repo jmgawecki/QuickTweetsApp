@@ -7,13 +7,13 @@
 
 import UIKit
 
-class TwitterMainVC: UIViewController {
+class MainVC: UIViewController {
     
     
     let twitterLogoImageView        = TwitImageView(frame: .zero)
     let searchButton                = TwitButton(backgroundColor: ColorsTwitter.twitterBlue, fontSize: 20, message: "Search for user")
-    let toFavoriteUsersButton       = TwitButton(backgroundColor: ColorsTwitter.twitterLighGray, fontSize: 20, message: "Users")
-    let toFavoriteTwitsButton       = TwitButton(backgroundColor: ColorsTwitter.twitterLighGray, fontSize: 20, message: "Twits")
+    let favoriteUsersButton       = TwitButton(backgroundColor: ColorsTwitter.twitterLighGray, fontSize: 20, message: "Users")
+    let favoriteTwitsButton       = TwitButton(backgroundColor: ColorsTwitter.twitterLighGray, fontSize: 20, message: "Twits")
     
     var buttonsArray: [UIButton]    = []
     
@@ -32,13 +32,13 @@ class TwitterMainVC: UIViewController {
     //MARK: - @Objective functions
     
     @objc private func searchButtonTapped() {
-        let destVC              = SearchUserVC()
+        let destVC              = UserSearchVC()
         destVC.title            = "User search"
         navigationController?.pushViewController(destVC, animated: true)
     }
     
     @objc private func toFavoritesUsersTapped() {
-        let destVC              = FavoritesUsersVC()
+        let destVC              = FavoriteUsersVC()
         navigationController?.pushViewController(destVC, animated: true)
     }
     
@@ -54,7 +54,7 @@ class TwitterMainVC: UIViewController {
     }
     
     private func configureToFavoritesUsersButton() {
-        toFavoriteUsersButton.addTarget(self, action: #selector(toFavoritesUsersTapped), for: .touchUpInside)
+        favoriteUsersButton.addTarget(self, action: #selector(toFavoritesUsersTapped), for: .touchUpInside)
     }
     
     
@@ -66,7 +66,7 @@ class TwitterMainVC: UIViewController {
     
     
     private func layoutUI() {
-        buttonsArray = [searchButton, toFavoriteUsersButton, toFavoriteTwitsButton]
+        buttonsArray = [searchButton, favoriteUsersButton, favoriteTwitsButton]
         
         view.addSubview(twitterLogoImageView)
         for button in buttonsArray { view.addSubview(button) }
@@ -86,15 +86,15 @@ class TwitterMainVC: UIViewController {
             searchButton.widthAnchor.constraint(equalToConstant: 280),
             searchButton.heightAnchor.constraint(equalToConstant: 50),
             
-            toFavoriteUsersButton.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: paddingUpDown),
-            toFavoriteUsersButton.leadingAnchor.constraint(equalTo: searchButton.leadingAnchor, constant: 0),
-            toFavoriteUsersButton.widthAnchor.constraint(equalToConstant: 130),
-            toFavoriteUsersButton.heightAnchor.constraint(equalToConstant: 50),
+            favoriteUsersButton.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: paddingUpDown),
+            favoriteUsersButton.leadingAnchor.constraint(equalTo: searchButton.leadingAnchor, constant: 0),
+            favoriteUsersButton.widthAnchor.constraint(equalToConstant: 130),
+            favoriteUsersButton.heightAnchor.constraint(equalToConstant: 50),
             
-            toFavoriteTwitsButton.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: paddingUpDown),
-            toFavoriteTwitsButton.trailingAnchor.constraint(equalTo: searchButton.trailingAnchor, constant: 0),
-            toFavoriteTwitsButton.widthAnchor.constraint(equalToConstant: 130),
-            toFavoriteTwitsButton.heightAnchor.constraint(equalToConstant: 50),
+            favoriteTwitsButton.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: paddingUpDown),
+            favoriteTwitsButton.trailingAnchor.constraint(equalTo: searchButton.trailingAnchor, constant: 0),
+            favoriteTwitsButton.widthAnchor.constraint(equalToConstant: 130),
+            favoriteTwitsButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
 

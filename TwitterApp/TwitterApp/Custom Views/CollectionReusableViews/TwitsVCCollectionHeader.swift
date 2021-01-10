@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserTwitsHeaderView: UICollectionReusableView {
+class TwitsVCCollectionHeader: UICollectionReusableView {
     
     static let reuseId  = "UserTwitsHeaderView"
         
@@ -16,8 +16,8 @@ class UserTwitsHeaderView: UICollectionReusableView {
     var usernameLabel       = TwitInfoHeaderBodyLabel(textAlignment: .center)
     
     var followStackView     = UIStackView()
-    var followerView        = TwitFollowerInfoView()
-    var followingView       = TwitFollowerInfoView()
+    var followerView        = TwitUserInfoView()
+    var followingView       = TwitUserInfoView()
     
     var bodyLabels: [TwitInfoHeaderBodyLabel]   = []
     var images: [UIImageView]                   = []

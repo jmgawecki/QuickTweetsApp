@@ -1,5 +1,5 @@
 //
-//  SearchUserVC.swift
+//  UserSearchVC.swift
 //  TwitterApp
 //
 //  Created by Jakub Gawecki on 28/12/2020.
@@ -7,14 +7,13 @@
 
 import UIKit
 
-class SearchUserVC: UIViewController {
+class UserSearchVC: UIViewController {
     
-    let twitterLogo     = TwitImageView(frame: .zero)
-    let searchTextField = TwitTextField(frame: .zero)
+    let twitterLogoImageView     = TwitImageView(frame: .zero)
+    let usernameSearchTextField = TwitTextField(frame: .zero)
     let searchButton    = TwitButton(backgroundColor: ColorsTwitter.twitterBlue, fontSize: 20, message: "Search for user!")
     
-    let twitterImage    = UIImage(named: "TwitterLogo")
-    var isUsernameEntered: Bool { return !searchTextField.text!.isEmpty }
+    var isUsernameEntered: Bool { return !usernameSearchTextField.text!.isEmpty }
     
     
     //MARK: - Overrides
@@ -32,9 +31,9 @@ class SearchUserVC: UIViewController {
     
     @objc func searchButtonTapped() {
         guard isUsernameEntered else { return }
-        let destVC = UserTwitsVC()
+        let destVC = TwitsVC()
         destVC.title = ""
-        destVC.username = searchTextField.text
+        destVC.username = usernameSearchTextField.text
         navigationController?.pushViewController(destVC, animated: true)
     }
     
@@ -54,27 +53,27 @@ class SearchUserVC: UIViewController {
     //MARK: - Layout configuration
     
     private func configureUIElements() {
-        twitterLogo.image = TwitterPNGs.twitterLogo
-        searchTextField.delegate = self
+        twitterLogoImageView.image = TwitterPNGs.twitterLogo
+        usernameSearchTextField.delegate = self
     }
     
     private func layoutUI() {
-        view.addSubview(twitterLogo)
-        view.addSubview(searchTextField)
+        view.addSubview(twitterLogoImageView)
+        view.addSubview(usernameSearchTextField)
         view.addSubview(searchButton)
         
         NSLayoutConstraint.activate([
-            twitterLogo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
-            twitterLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            twitterLogo.heightAnchor.constraint(equalToConstant: 220),
-            twitterLogo.widthAnchor.constraint(equalTo: twitterLogo.heightAnchor),
+            twitterLogoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
+            twitterLogoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            twitterLogoImageView.heightAnchor.constraint(equalToConstant: 220),
+            twitterLogoImageView.widthAnchor.constraint(equalTo: twitterLogoImageView.heightAnchor),
             
-            searchTextField.topAnchor.constraint(equalTo: twitterLogo.bottomAnchor, constant: 10),
-            searchTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
-            searchTextField.heightAnchor.constraint(equalToConstant: 46),
-            searchTextField.widthAnchor.constraint(equalToConstant: 240),
+            usernameSearchTextField.topAnchor.constraint(equalTo: twitterLogoImageView.bottomAnchor, constant: 10),
+            usernameSearchTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+            usernameSearchTextField.heightAnchor.constraint(equalToConstant: 46),
+            usernameSearchTextField.widthAnchor.constraint(equalToConstant: 240),
             
-            searchButton.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 20),
+            searchButton.topAnchor.constraint(equalTo: usernameSearchTextField.bottomAnchor, constant: 20),
             searchButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
             searchButton.heightAnchor.constraint(equalToConstant: 50),
             searchButton.widthAnchor.constraint(equalToConstant: 240),
@@ -82,7 +81,7 @@ class SearchUserVC: UIViewController {
     }
 }
 
-extension SearchUserVC: UITextFieldDelegate {
+extension UserSearchVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchButtonTapped()
         return true
