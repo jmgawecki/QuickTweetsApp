@@ -58,7 +58,7 @@ class UserTwitsVC: UIViewController {
         })
         
         dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UserInfoCollectionHeaderView.reuseId, for: indexPath) as! UserInfoCollectionHeaderView
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UserTwitsHeaderView.reuseId, for: indexPath) as! UserTwitsHeaderView
             return header
         }
     }
@@ -72,7 +72,7 @@ class UserTwitsVC: UIViewController {
         
         collectionView.register(TwitTwitsCell.self, forCellWithReuseIdentifier: TwitTwitsCell.reuseId)
         
-        collectionView.register(UserInfoCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UserInfoCollectionHeaderView.reuseId)
+        collectionView.register(UserTwitsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UserTwitsHeaderView.reuseId)
         
     }
 }

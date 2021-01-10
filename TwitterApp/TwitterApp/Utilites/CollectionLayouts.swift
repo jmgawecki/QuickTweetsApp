@@ -27,7 +27,7 @@ struct CollectionLayouts {
                                                      heightDimension: .estimated(200))
         
         let headerElement   = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-                                                                          elementKind: UserInfoCollectionHeaderView.reuseId,
+                                                                          elementKind: UserTwitsHeaderView.reuseId,
                                                                           alignment: .top)
         
         section.boundarySupplementaryItems = [headerElement]
@@ -42,10 +42,10 @@ struct CollectionLayouts {
                                                      heightDimension: .fractionalHeight(1.0))
         
         let item            = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets  = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
+        item.contentInsets  = NSDirectionalEdgeInsets(top: -20, leading: 10, bottom: 15, trailing: 10)
         
         let groupSize       = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),
-                                                     heightDimension: .estimated(300))
+                                                     heightDimension: .estimated(350))
         
         let group           = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                                  subitems: [item])
@@ -58,7 +58,7 @@ struct CollectionLayouts {
                                                      heightDimension: .estimated(200))
         
         let headerElement   = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-                                                                          elementKind: UserInfoCollectionHeaderView.reuseId,
+                                                                          elementKind: UserTwitsHeaderView.reuseId,
                                                                           alignment: .top)
         
         section.boundarySupplementaryItems = [headerElement]

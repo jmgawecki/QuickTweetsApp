@@ -35,10 +35,8 @@ class TwitUserFavoritesCell: UICollectionViewCell {
     
     
     private func configureCell() {
-        layer.borderWidth   = 2
-        layer.borderColor   = UIColor.systemBlue.cgColor
         layer.cornerRadius  = 30
-        backgroundColor = .systemBlue
+        backgroundColor     = ColorsTwitter.twitterExtraLightGray
     }
     
     

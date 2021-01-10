@@ -10,15 +10,16 @@ import UIKit
 class TwitFollowerInfoView: UIView {
 
     enum ItemInfoType {
-        case following, followers
+        case following, followers, birthDate, location
     }
     
-    let symbolImageView     = UIImageView()
+    let symbolImageView   = UIImageView()
     let countLabel        = TwitInfoHeaderBodyLabel(textAlignment: .center)
-    let titleLabel          = TwitInfoHeaderBodyLabel(textAlignment: .left)
+    let titleLabel        = TwitInfoHeaderBodyLabel(textAlignment: .left)
    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configure()
     }
     
     required init?(coder: NSCoder) {
@@ -30,6 +31,8 @@ class TwitFollowerInfoView: UIView {
         addSubview(countLabel)
         addSubview(titleLabel)
         symbolImageView.translatesAutoresizingMaskIntoConstraints = false
+        symbolImageView.contentMode = .scaleAspectFill
+        symbolImageView.tintColor   = ColorsTwitter.twitterBlue
         
         NSLayoutConstraint.activate([
             symbolImageView.topAnchor.constraint(equalTo: self.topAnchor),
@@ -59,6 +62,16 @@ class TwitFollowerInfoView: UIView {
         case .followers:
             symbolImageView.image   = SFSymbols.followers
             titleLabel.text         = "Followers"
+            countLabel.text         = String(count)
+            
+        case .birthDate:
+            symbolImageView.image   = SFSymbols.rabbit
+            titleLabel.text         = "Date of Birth"
+            countLabel.text         = String(count)
+            
+        case .location:
+            symbolImageView.image   = SFSymbols.location
+            titleLabel.text         = "Location"
             countLabel.text         = String(count)
         }
     }

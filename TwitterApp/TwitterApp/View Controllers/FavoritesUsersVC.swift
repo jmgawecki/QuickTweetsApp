@@ -42,7 +42,7 @@ class FavoritesUsersVC: UIViewController {
     
     private func configureVC() {
         view.backgroundColor    = .systemBackground
-        title                   = "Favorite Users"
+        title                   = ""
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -70,8 +70,8 @@ class FavoritesUsersVC: UIViewController {
         
         dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath ) in
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-                                                                         withReuseIdentifier: UserInfoCollectionHeaderView.reuseId,
-                                                                         for: indexPath) as! UserInfoCollectionHeaderView
+                                                                         withReuseIdentifier: FavoritesUsersHeaderView.reuseId,
+                                                                         for: indexPath) as! FavoritesUsersHeaderView
             return header
         }
     }
@@ -86,9 +86,9 @@ class FavoritesUsersVC: UIViewController {
         collectionView.register(TwitUserFavoritesCell.self,
                                 forCellWithReuseIdentifier: TwitUserFavoritesCell.reuseId)
         
-        collectionView.register(UserInfoCollectionHeaderView.self,
+        collectionView.register(FavoritesUsersHeaderView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: UserInfoCollectionHeaderView.reuseId)
+                                withReuseIdentifier: FavoritesUsersHeaderView.reuseId)
     }
     //MARK: - Layout configuration
 

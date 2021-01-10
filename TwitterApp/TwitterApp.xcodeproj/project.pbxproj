@@ -30,7 +30,7 @@
 		EF88FFDA259A3FF500ADF27B /* UserTwitsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88FFD9259A3FF500ADF27B /* UserTwitsVC.swift */; };
 		EF88FFE0259A404600ADF27B /* Marks.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88FFDF259A404600ADF27B /* Marks.swift */; };
 		EF88FFE8259A42CC00ADF27B /* TwitUserInfoHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88FFE7259A42CC00ADF27B /* TwitUserInfoHeaderVC.swift */; };
-		EFC7FB5825A39F8B00E08A8E /* UserInfoCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC7FB5725A39F8B00E08A8E /* UserInfoCollectionHeaderView.swift */; };
+		EFC7FB5825A39F8B00E08A8E /* UserTwitsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC7FB5725A39F8B00E08A8E /* UserTwitsHeaderView.swift */; };
 		EFC7FB5D25A3A19E00E08A8E /* TwitTwitsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC7FB5C25A3A19E00E08A8E /* TwitTwitsCell.swift */; };
 		EFC7FBBD25A4AD2000E08A8E /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC7FBAA25A4ACF100E08A8E /* SwifteriOS.framework */; };
 		EFC7FBBE25A4AD2000E08A8E /* SwifteriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFC7FBAA25A4ACF100E08A8E /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -39,6 +39,7 @@
 		EFD4744025AA503C00AC9AD9 /* CollectionLayouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4743F25AA503C00AC9AD9 /* CollectionLayouts.swift */; };
 		EFD4745325AA56D100AC9AD9 /* ColorsTwitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4745225AA56D100AC9AD9 /* ColorsTwitter.swift */; };
 		EFD4745725AA5C4900AC9AD9 /* TwitterPNGs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4745625AA5C4900AC9AD9 /* TwitterPNGs.swift */; };
+		EFFBB84F25AABB86009662E2 /* FavoritesUsersHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBB84E25AABB86009662E2 /* FavoritesUsersHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,7 +138,7 @@
 		EF88FFD9259A3FF500ADF27B /* UserTwitsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTwitsVC.swift; sourceTree = "<group>"; };
 		EF88FFDF259A404600ADF27B /* Marks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marks.swift; sourceTree = "<group>"; };
 		EF88FFE7259A42CC00ADF27B /* TwitUserInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitUserInfoHeaderVC.swift; sourceTree = "<group>"; };
-		EFC7FB5725A39F8B00E08A8E /* UserInfoCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCollectionHeaderView.swift; sourceTree = "<group>"; };
+		EFC7FB5725A39F8B00E08A8E /* UserTwitsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTwitsHeaderView.swift; sourceTree = "<group>"; };
 		EFC7FB5C25A3A19E00E08A8E /* TwitTwitsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitTwitsCell.swift; sourceTree = "<group>"; };
 		EFC7FBA125A4ACF100E08A8E /* Swifter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Swifter.xcodeproj; path = "../../Swifter-master/Swifter.xcodeproj"; sourceTree = "<group>"; };
 		EFD473E425A8C16E00AC9AD9 /* FavoritesUsersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesUsersVC.swift; sourceTree = "<group>"; };
@@ -145,6 +146,7 @@
 		EFD4743F25AA503C00AC9AD9 /* CollectionLayouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLayouts.swift; sourceTree = "<group>"; };
 		EFD4745225AA56D100AC9AD9 /* ColorsTwitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsTwitter.swift; sourceTree = "<group>"; };
 		EFD4745625AA5C4900AC9AD9 /* TwitterPNGs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterPNGs.swift; sourceTree = "<group>"; };
+		EFFBB84E25AABB86009662E2 /* FavoritesUsersHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesUsersHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,7 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				EF294D1C25AA6F5100850E74 /* Views */,
-				EFC7FB5625A39F5800E08A8E /* ReusableViews */,
+				EFC7FB5625A39F5800E08A8E /* CollectionReusableViews */,
 				EF79C6FF259A78D7004013BF /* Labels */,
 				EF79C6F9259A786E004013BF /* Cells */,
 				EF88FFE5259A42A200ADF27B /* ViewControllers */,
@@ -361,12 +363,13 @@
 			path = UserInfoHeader;
 			sourceTree = "<group>";
 		};
-		EFC7FB5625A39F5800E08A8E /* ReusableViews */ = {
+		EFC7FB5625A39F5800E08A8E /* CollectionReusableViews */ = {
 			isa = PBXGroup;
 			children = (
-				EFC7FB5725A39F8B00E08A8E /* UserInfoCollectionHeaderView.swift */,
+				EFC7FB5725A39F8B00E08A8E /* UserTwitsHeaderView.swift */,
+				EFFBB84E25AABB86009662E2 /* FavoritesUsersHeaderView.swift */,
 			);
-			path = ReusableViews;
+			path = CollectionReusableViews;
 			sourceTree = "<group>";
 		};
 		EFC7FBA225A4ACF100E08A8E /* Products */ = {
@@ -574,9 +577,10 @@
 				EF79C71F259A8763004013BF /* TwitInfoHeaderBodyLabel.swift in Sources */,
 				EF88FFE0259A404600ADF27B /* Marks.swift in Sources */,
 				EF88FF79259A295300ADF27B /* TwitterMainVC.swift in Sources */,
-				EFC7FB5825A39F8B00E08A8E /* UserInfoCollectionHeaderView.swift in Sources */,
+				EFC7FB5825A39F8B00E08A8E /* UserTwitsHeaderView.swift in Sources */,
 				EF294D1E25AA6F6200850E74 /* TwitFollowerInfoView.swift in Sources */,
 				EF88FF75259A295300ADF27B /* AppDelegate.swift in Sources */,
+				EFFBB84F25AABB86009662E2 /* FavoritesUsersHeaderView.swift in Sources */,
 				EF294D1625AA652600850E74 /* TwitProfilePictureImageView.swift in Sources */,
 				EF88FFE8259A42CC00ADF27B /* TwitUserInfoHeaderVC.swift in Sources */,
 				EF88FF77259A295300ADF27B /* SceneDelegate.swift in Sources */,
