@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TwitsVC: UIViewController {
+class SearchTweetsVC: UIViewController {
     
     enum Section {
         case main
@@ -18,7 +18,7 @@ class TwitsVC: UIViewController {
     
     var username:       String!
     
-    var array = ["twit1", "twit2", "twit3", "twit4", "twit5", "twit6", "twit7", "twit8", "twit9", "twit10", "twit11"]
+    var array: [String] = [TweetsDebugs.tweet1, TweetsDebugs.tweet2, TweetsDebugs.tweet3, TweetsDebugs.tweet4, TweetsDebugs.tweet5]
     
     //MARK: - Overrides
 
@@ -51,27 +51,27 @@ class TwitsVC: UIViewController {
     
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, String>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, array) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwitsCell.reuseId, for: indexPath) as! TwitsCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchTweetsCell.reuseId, for: indexPath) as! SearchTweetsCell
             cell.set(with: array)
             return cell
         })
         
         dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TwitsVCCollectionHeader.reuseId, for: indexPath) as! TwitsVCCollectionHeader
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchTweetsVCCollectionHeader.reuseId, for: indexPath) as! SearchTweetsVCCollectionHeader
             return header
         }
     }
     
     
     private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: CollectionLayouts.userTwitsCollectionLayout())
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: CollectionLayouts.userTweetsCollectionLayout())
         view.addSubview(collectionView)
 
         collectionView.backgroundColor = .systemBackground
         
-        collectionView.register(TwitsCell.self, forCellWithReuseIdentifier: TwitsCell.reuseId)
+        collectionView.register(SearchTweetsCell.self, forCellWithReuseIdentifier: SearchTweetsCell.reuseId)
         
-        collectionView.register(TwitsVCCollectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TwitsVCCollectionHeader.reuseId)
+        collectionView.register(SearchTweetsVCCollectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchTweetsVCCollectionHeader.reuseId)
         
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TwitUserInfoView: UIView {
+class SearchTweetUserInfoView: UIView {
 
     enum ItemInfoType {
         case following, followers, birthDate, location

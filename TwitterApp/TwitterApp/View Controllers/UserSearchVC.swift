@@ -31,7 +31,7 @@ class UserSearchVC: UIViewController {
     
     @objc func searchButtonTapped() {
         guard isUsernameEntered else { return }
-        let destVC = TwitsVC()
+        let destVC = SearchTweetsVC()
         destVC.title = ""
         destVC.username = usernameSearchTextField.text
         navigationController?.pushViewController(destVC, animated: true)

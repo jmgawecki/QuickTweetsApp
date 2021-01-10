@@ -36,7 +36,7 @@ class FavoriteUsersCell: UICollectionViewCell {
     
     private func configureCell() {
         layer.cornerRadius  = 30
-        backgroundColor     = ColorsTwitter.twitterExtraLightGray
+        backgroundColor     = .secondarySystemBackground
     }
     
     

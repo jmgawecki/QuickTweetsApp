@@ -8,15 +8,15 @@
 import UIKit
 
 struct CollectionLayouts {
-    static func userTwitsCollectionLayout() -> UICollectionViewLayout {
+    static func userTweetsCollectionLayout() -> UICollectionViewLayout {
         let itemSize        = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                      heightDimension: .fractionalHeight(1.0))
         
         let item            = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets  = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        item.contentInsets  = NSDirectionalEdgeInsets(top: 15, leading: 10, bottom: 15, trailing: 10)
         
         let groupSize       = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                     heightDimension: .estimated(100))
+                                                     heightDimension: .estimated(300))
         
         let group           = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                                  subitems: [item])
@@ -27,7 +27,7 @@ struct CollectionLayouts {
                                                      heightDimension: .estimated(200))
         
         let headerElement   = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-                                                                          elementKind: TwitsVCCollectionHeader.reuseId,
+                                                                          elementKind: SearchTweetsVCCollectionHeader.reuseId,
                                                                           alignment: .top)
         
         section.boundarySupplementaryItems = [headerElement]
@@ -37,7 +37,7 @@ struct CollectionLayouts {
         return layout
     }
     
-    static func favoritesUsersCollectionLayout() -> UICollectionViewLayout {
+    static func favoriteUsersCollectionLayout() -> UICollectionViewLayout {
         let itemSize        = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                      heightDimension: .fractionalHeight(1.0))
         
@@ -58,12 +58,30 @@ struct CollectionLayouts {
                                                      heightDimension: .estimated(200))
         
         let headerElement   = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-                                                                          elementKind: TwitsVCCollectionHeader.reuseId,
+                                                                          elementKind: SearchTweetsVCCollectionHeader.reuseId,
                                                                           alignment: .top)
         
         section.boundarySupplementaryItems = [headerElement]
         
         let layout          = UICollectionViewCompositionalLayout(section: section)
+        
+        return layout
+    }
+    
+    static func favoriteTwitsCollectionLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(300))
+        
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+//        section.orthogonalScrollingBehavior = .groupPagingCentered
+     
+        let layout = UICollectionViewCompositionalLayout(section: section)
         
         return layout
     }

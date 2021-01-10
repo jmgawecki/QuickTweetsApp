@@ -79,7 +79,7 @@ class FavoriteUsersVC: UIViewController {
     
     private func configureCollectionView() {
         collectionView                  = UICollectionView(frame: view.bounds,
-                                                           collectionViewLayout: CollectionLayouts.favoritesUsersCollectionLayout())
+                                                           collectionViewLayout: CollectionLayouts.favoriteUsersCollectionLayout())
         view.addSubview(collectionView)
         collectionView.backgroundColor  = .systemBackground
         

@@ -9,11 +9,13 @@ import UIKit
 
 class FavoritesCollectionHeader: UICollectionReusableView {
     
-    static let reuseId  = "FavoritesUsersHeaderView"
+    static let reuseId      = "FavoritesUsersHeaderView"
         
     var avatarImageView     = TwitProfilePictureImageView(frame: .zero)
     var forenameLabel       = TwitInfoHeaderTitleLabel()
     var usernameLabel       = TwitInfoHeaderBodyLabel(textAlignment: .center)
+    
+   
     
     
     var bodyLabels: [TwitInfoHeaderBodyLabel]   = []

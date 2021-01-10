@@ -25,7 +25,8 @@ class MainVC: UIViewController {
         layoutUI()
         configureUIElements()
         configureSearchButton()
-        configureToFavoritesUsersButton()
+        configureFavoritesUsersButton()
+        configureFavoriteTweetsButton()
     }
     
     
@@ -42,6 +43,11 @@ class MainVC: UIViewController {
         navigationController?.pushViewController(destVC, animated: true)
     }
     
+    @objc private func toFavoriteTweetsTapped() {
+        let destVC              = FavoriteTwitsVC()
+        navigationController?.pushViewController(destVC, animated: true)
+    }
+    
     //MARK: - Private Functions
     
     private func configureVC() {
@@ -53,8 +59,12 @@ class MainVC: UIViewController {
         searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
     }
     
-    private func configureToFavoritesUsersButton() {
+    private func configureFavoritesUsersButton() {
         favoriteUsersButton.addTarget(self, action: #selector(toFavoritesUsersTapped), for: .touchUpInside)
+    }
+    
+    private func configureFavoriteTweetsButton() {
+        favoriteTwitsButton.addTarget(self, action: #selector(toFavoriteTweetsTapped), for: .touchUpInside)
     }
     
     

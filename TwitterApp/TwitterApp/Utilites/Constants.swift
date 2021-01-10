@@ -14,6 +14,9 @@ enum SFSymbols {
     static let followers                = UIImage(systemName: "heart")
     static let following                = UIImage(systemName: "person.2")
     static let rabbit                   = UIImage(systemName: "hare")
+    static let comment                  = UIImage(systemName: "text.bubble")
+    static let shares                   = UIImage(systemName: "square.and.arrow.up.fill")
+    static let likes                    = UIImage(systemName: "hand.thumbsup")
 }
 
 
