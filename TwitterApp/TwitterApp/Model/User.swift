@@ -8,13 +8,19 @@
 import UIKit
 
 struct User: Codable {
-    var createdAt: Date
-    var id: Int
-    var name: String
-    var location: String
-    var description: String
-    var profileImageUrl: String
-    var verified: Bool
-    var protected: Bool
-    var username: String
+    
+    let idStr:              String      // id
+    let screenName:         String      // username
+    var name:               String?     // forename, name
+    
+    var profileImageUrl:    String?     // profile picture
+    var profileBannerUrl:   String?     // BackgroundPicture
+    
+    let friendsCount:       Double      // Following
+    let followersCount:     Double      // Followers
+    let favouritesCount:    Double      // what that is?
+    let statusesCount:      Double      // how many posts in total
+    
+    var location:           String?
+    let createdAt:          Date
 }

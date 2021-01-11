@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Swifter
 
 
 class MainVC: UIViewController {
+    
+    
     
     
     let twitterLogoImageView        = TwitImageView(frame: .zero)
@@ -28,7 +31,16 @@ class MainVC: UIViewController {
         configureSearchButton()
         configureFavoritesUsersButton()
         configureFavoriteTweetsButton()
-
+        let swifter = SwifterSingleton.shared.swifter
+        if let callbackURL = URL(string: "TwitterApp://success") {
+            swifter.authorize(withCallback: callbackURL, presentingFrom: self, success: { token, _ in
+                print("MUCH SUCCESS")
+                
+            }, failure: { error in
+                print("ERROR")
+            })
+        }
+        
     }
     
     
