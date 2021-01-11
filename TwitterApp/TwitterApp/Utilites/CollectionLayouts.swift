@@ -42,7 +42,7 @@ struct CollectionLayouts {
                                                      heightDimension: .fractionalHeight(1.0))
         
         let item            = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets  = NSDirectionalEdgeInsets(top: -20, leading: 10, bottom: 15, trailing: 10)
+        item.contentInsets  = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 15, trailing: 10)
         
         let groupSize       = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),
                                                      heightDimension: .estimated(350))

@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class MainVC: UIViewController {
     
     
@@ -27,6 +28,7 @@ class MainVC: UIViewController {
         configureSearchButton()
         configureFavoritesUsersButton()
         configureFavoriteTweetsButton()
+
     }
     
     
