@@ -40,6 +40,19 @@ class MainVC: UIViewController {
                 print("ERROR")
             })
         }
+        let username = "jakubgawecki96"
+        var jsonUserArray: [JSON] = []
+        var jsonUser: JSON!
+        swifter.searchUsers(using: username, page: 1, count: 1, includeEntities: true) { (json) in
+            jsonUserArray = json.array ?? []
+            print(jsonUserArray)
+            jsonUser = jsonUserArray[0]
+            
+        } failure: { (error) in
+            print(error)
+        }
+        let user = jsonUser.string
+        print(user!)
         
     }
     
