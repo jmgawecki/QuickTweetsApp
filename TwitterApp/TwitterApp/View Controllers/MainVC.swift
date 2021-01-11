@@ -11,7 +11,8 @@ import Swifter
 
 class MainVC: UIViewController {
     
-    
+    let swifter = SwifterSingleton.shared.swifter
+    var user: JSON!
     
     
     let twitterLogoImageView        = TwitImageView(frame: .zero)
@@ -31,7 +32,7 @@ class MainVC: UIViewController {
         configureSearchButton()
         configureFavoritesUsersButton()
         configureFavoriteTweetsButton()
-        let swifter = SwifterSingleton.shared.swifter
+        
         if let callbackURL = URL(string: "TwitterApp://success") {
             swifter.authorize(withCallback: callbackURL, presentingFrom: self, success: { token, _ in
                 print("MUCH SUCCESS")
@@ -40,19 +41,7 @@ class MainVC: UIViewController {
                 print("ERROR")
             })
         }
-        let username = "jakubgawecki96"
-        var jsonUserArray: [JSON] = []
-        var jsonUser: JSON!
-        swifter.searchUsers(using: username, page: 1, count: 1, includeEntities: true) { (json) in
-            jsonUserArray = json.array ?? []
-            print(jsonUserArray)
-            jsonUser = jsonUserArray[0]
-            
-        } failure: { (error) in
-            print(error)
-        }
-        let user = jsonUser.string
-        print(user!)
+        
         
     }
     
@@ -62,7 +51,21 @@ class MainVC: UIViewController {
     @objc private func searchButtonTapped() {
         let destVC              = UserSearchVC()
         destVC.title            = "User search"
-        navigationController?.pushViewController(destVC, animated: true)
+//        navigationController?.pushViewController(destVC, animated: true)
+        let username = "jakubgawecki96"
+        var jsonUserArray: [JSON] = []
+        var jsonUser: JSON!
+        swifter.searchUsers(using: username, page: 1, count: 1, includeEntities: true) { [weak self] (json) in
+            guard let self = self else { return }
+            jsonUserArray = json.array ?? []
+            self.user = jsonUserArray[0]
+            let lang = self.user["lang"]
+            print(lang)
+        
+        } failure: { (error) in
+            print(error)
+        }
+        
     }
     
     @objc private func toFavoritesUsersTapped() {
