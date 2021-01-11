@@ -5,6 +5,7 @@
 //  Created by Jakub Gawecki on 28/12/2020.
 //
 
+import Swifter
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -26,6 +27,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         twitterMain.title           = "Twitter App"
         UINavigationBar.appearance().tintColor = ColorsTwitter.twitterBlue
         return UINavigationController(rootViewController: twitterMain)
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let context = URLContexts.first else { return }
+        let callbackUrl = URL(string: "TwitterApp://")!
+        Swifter.handleOpenURL(context.url, callbackURL: callbackUrl)
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
