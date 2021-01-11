@@ -9,11 +9,10 @@ import Foundation
 
 enum APIConsumerKeys {
     
-    static let consumerKey = "kj9BnIgesy2I7gdgydBneM7ud"
+    static let keyApi = "gdmq5546abS5qhfqpBP3Aq3HQ"
     
-    static let consumerSecretKey = "IDWP7jqFwcR7HEVqi0mGJ5Ia9LA8hCdxaaw3VyWUsolyug4tJX"
+    static let secretKeyApi = "zxoogfGZrhSAxTvPAaWYBsl3LTj9OENWBg31aUzRSajd1GLXvR"
     
-    static let accessToken = "4833435755-2WwXkAZpVJ6ViZmbBdv3OerEJOSbX4Px3dnG1Ge"
+    static let bearerToken = "AAAAAAAAAAAAAAAAAAAAACRSLgEAAAAAB9w8ASqIfczVwqkdcnCMrANdVrE%3DuWCw7fxPon9BkDSsSX3SmBgwkVvIyYCPzDAvACOPHMFpvb6gBB"
     
-    static let accessTokenSecret = "3G8U3ulbWg4uZie4UDn27U2VneTTvMc0N3Aef3YOCwdap"
 }
