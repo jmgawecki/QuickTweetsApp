@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwifteriOS
 
 class FavoriteTweetsVC: UIViewController {
     
