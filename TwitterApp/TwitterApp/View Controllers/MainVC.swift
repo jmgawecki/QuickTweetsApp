@@ -53,19 +53,36 @@ class MainVC: UIViewController {
         destVC.title            = "User search"
 //        navigationController?.pushViewController(destVC, animated: true)
         let username = "jakubgawecki96"
-        var jsonUserArray: [JSON] = []
-        var jsonUser: JSON!
-        swifter.searchUsers(using: username, page: 1, count: 1, includeEntities: true) { [weak self] (json) in
-            guard let self = self else { return }
-            jsonUserArray = json.array ?? []
-            self.user = jsonUserArray[0]
-            let lang = self.user["lang"]
-            print(lang)
-        
+        swifter.searchUsers(using: username, page: 1, count: 1, includeEntities: true) { (json) in
+            let jsonResult = json[0]
+            print(jsonResult["id_str"])
+            print(jsonResult["name"])
+            print(jsonResult["screen_name"])
+            print(jsonResult["profile_image_url"])
+            print(jsonResult["profile_background_image_url"])
+            print(jsonResult["friends_count"])
+            print(jsonResult["followers_count"])
+            print(jsonResult["favourites_count"])
+            print(jsonResult["statuses_count"])
+            print(jsonResult["location"])
+            print(jsonResult["created_at"])
+        } failure: { (error) in
+            print("error")
+        }
+
+        swifter.searchUsers(using: username, page: 1, count: 1, includeEntities: true) { (json) in
+            let jsonResult = json
+            
+            guard let apiResponse = TweetApiResponse(json: jsonResult) else {
+                print(TweetApiResponse(json: jsonResult))
+                print("response error")
+                return
+            }
+            print(apiResponse.singleUser)
         } failure: { (error) in
             print(error)
         }
-        
+
     }
     
     @objc private func toFavoritesUsersTapped() {
