@@ -36,17 +36,21 @@ class UserSearchVC: UIViewController {
         let destVC = SearchTweetsVC()
         destVC.title = ""
         destVC.username = "jakubgawecki96"
-        let username = "jakubgawecki96"
-        SwifterSingleton.shared.getSingleUser(username: username) { (user) in
-            self.user = user
-            print(user)
-        }
+        getSingleUser()
         print(user)
-//        navigationController?.pushViewController(destVC, animated: true)
+        navigationController?.pushViewController(destVC, animated: true)
     }
     
     
     //MARK: - Private Functions
+    
+    private func getSingleUser() {
+        let username = "jakubgawecki96"
+        SwifterSingleton.shared.getSingleUser(username: username) { [weak self] (user) in
+            guard let self = self else { return }
+            self.user = user
+        }
+    }
     
     private func configureVC() {
         view.backgroundColor = .systemBackground

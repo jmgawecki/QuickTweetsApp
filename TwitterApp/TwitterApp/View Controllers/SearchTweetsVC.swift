@@ -29,7 +29,6 @@ class SearchTweetsVC: UIViewController {
         configureCollectionView()
         configureDataSource()
         updateData()
-        print(user!)
     }
     
     //MARK: - Private Functions

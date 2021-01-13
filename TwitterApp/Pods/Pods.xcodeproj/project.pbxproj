@@ -102,13 +102,13 @@
 		4EC916914E26D39023B5E650F5F312C5 /* Data++.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Data++.swift"; path = "Sources/Data++.swift"; sourceTree = "<group>"; };
 		58E21C94C1ED4A643640AC8E584E9D22 /* Pods-TwitterApp-TwitterAppUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TwitterApp-TwitterAppUITests-umbrella.h"; sourceTree = "<group>"; };
 		59F60B63C5C9D69F2707B51CAD30EA12 /* Pods-TwitterAppTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TwitterAppTests-umbrella.h"; sourceTree = "<group>"; };
-		5D7BE755D1D30F6C2A1AB4AB9E54AF2D /* Pods_TwitterApp_TwitterAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TwitterApp_TwitterAppUITests.framework; path = "Pods-TwitterApp-TwitterAppUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D7BE755D1D30F6C2A1AB4AB9E54AF2D /* Pods_TwitterApp_TwitterAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwitterApp_TwitterAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EF91E6A1322C284A8C37C48E2117D76 /* SwifterSearch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwifterSearch.swift; path = Sources/SwifterSearch.swift; sourceTree = "<group>"; };
 		604803E245A5CBDDC41E9452B75E1359 /* Pods-TwitterApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TwitterApp.release.xcconfig"; sourceTree = "<group>"; };
 		6089246AE0E4D1A6F92A3D408964CC5E /* SwifterTrends.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwifterTrends.swift; path = Sources/SwifterTrends.swift; sourceTree = "<group>"; };
 		6BA6EDCF2D3B634045367DCE9FFD95DD /* SwifterTweets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwifterTweets.swift; path = Sources/SwifterTweets.swift; sourceTree = "<group>"; };
 		6D88C9A972A05EA7B28B00ED06D4F2DA /* Pods-TwitterAppTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TwitterAppTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		71B690B1B219D8CA7AF38CDF55E6F094 /* Pods_TwitterAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TwitterAppTests.framework; path = "Pods-TwitterAppTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		71B690B1B219D8CA7AF38CDF55E6F094 /* Pods_TwitterAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwitterAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		73A52837FE1AD4A053EA0662BC5DD739 /* Pods-TwitterApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TwitterApp-acknowledgements.plist"; sourceTree = "<group>"; };
 		741A47CA42C62E7879C7FECC963E9985 /* URL++.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URL++.swift"; path = "Sources/URL++.swift"; sourceTree = "<group>"; };
@@ -118,13 +118,13 @@
 		7CE8AD79422A2E597E74AB89889EBC9B /* Pods-TwitterApp-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TwitterApp-Info.plist"; sourceTree = "<group>"; };
 		7F8C9FECE6128DFEDDE20CEAA6F7F659 /* Swifter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Swifter.debug.xcconfig; sourceTree = "<group>"; };
 		80D2E98B5274D9A545D8E930589CDDDA /* Dictionary++.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dictionary++.swift"; path = "Sources/Dictionary++.swift"; sourceTree = "<group>"; };
-		81360D55586FC86208CDED243F169DF3 /* Pods_TwitterApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TwitterApp.framework; path = "Pods-TwitterApp.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81360D55586FC86208CDED243F169DF3 /* Pods_TwitterApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwitterApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8625712351703DE6B95AE2B14C76E5AF /* Swifter-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Swifter-umbrella.h"; sourceTree = "<group>"; };
 		88563B90920EBB2E74C2B0DFC19F60CD /* HMAC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HMAC.swift; path = Sources/HMAC.swift; sourceTree = "<group>"; };
 		91AB24FB38E26CE380C874CC20680966 /* Pods-TwitterAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TwitterAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		97535931610E615109FB6E11F94976E5 /* SHA1.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SHA1.swift; path = Sources/SHA1.swift; sourceTree = "<group>"; };
 		99890DDFBAF98C529770177220B573D9 /* Pods-TwitterApp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TwitterApp-umbrella.h"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E4030580D41E69EB209E189A628C691 /* Pods-TwitterApp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TwitterApp-frameworks.sh"; sourceTree = "<group>"; };
 		A4EC5893F1FDA659E8C869B8EB5A00BB /* String++.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String++.swift"; path = "Sources/String++.swift"; sourceTree = "<group>"; };
 		ADCD346E741F40BA864234D68F063D95 /* Swifter-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Swifter-prefix.pch"; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 		E60E27BEF487034DE74509B2E927093D /* Pods-TwitterApp-TwitterAppUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TwitterApp-TwitterAppUITests.modulemap"; sourceTree = "<group>"; };
 		E60F3D822C9F2E747079AA08E67A67C1 /* SwifterGIF.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwifterGIF.swift; path = Sources/SwifterGIF.swift; sourceTree = "<group>"; };
 		E70F09B408216CBD7F147A8150FBD261 /* Int++.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Int++.swift"; path = "Sources/Int++.swift"; sourceTree = "<group>"; };
-		E7E98885A0FEF49E9EE8975449969BEB /* Swifter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Swifter.framework; path = Swifter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7E98885A0FEF49E9EE8975449969BEB /* Swifter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swifter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C3446A3B4ABD71D16914BE3EFFABDD /* SwifterAuth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwifterAuth.swift; path = Sources/SwifterAuth.swift; sourceTree = "<group>"; };
 		E9E6CBD976EAC423D88BB77C6608A5E7 /* SwifterError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwifterError.swift; path = Sources/SwifterError.swift; sourceTree = "<group>"; };
 		F15E45D5E520E3BBC78B17CC0A99769B /* Pods-TwitterApp-TwitterAppUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TwitterApp-TwitterAppUITests-Info.plist"; sourceTree = "<group>"; };
@@ -255,7 +255,6 @@
 				1A172CB3834196B9E99CFE40796104B7 /* Utils.swift */,
 				DB8F1D5741A9AA7E41DE54A8E4D3827B /* Support Files */,
 			);
-			name = Swifter;
 			path = Swifter;
 			sourceTree = "<group>";
 		};
@@ -481,7 +480,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1230;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 9.3";
@@ -710,7 +709,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Swifter/Swifter-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Swifter/Swifter-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -995,7 +994,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Swifter/Swifter-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Swifter/Swifter-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

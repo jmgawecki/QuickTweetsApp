@@ -48,6 +48,7 @@ struct SwifterSingleton {
         } failure: { (error) in
             print(error)
         }
+        
     }
 }
 
