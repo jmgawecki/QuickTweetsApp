@@ -16,27 +16,41 @@ struct SwifterSingleton {
     
     private init() {}
     
-    func getSingleUser(username: String) -> User {
-        var user: User!
+    func getSingleUser(username: String, completed: @escaping(User) -> Void) {
+        var user = User(idStr: "",
+                        name: "",
+                        screenName: "",
+                        profileImageUrl: "",
+                        profileBackgroundUrl: "",
+                        friendsCount: 0,
+                        followersCount: 0,
+                        favouritesCount: 0,
+                        statusesCount: 0,
+                        location: "",
+                        createdAt: "")
         
         swifter.searchUsers(using: username, page: 1, count: 1, includeEntities: true) { (json) in
             let userJson = json[0]
-            user.idStr                  = userJson["id_str"].string!
-            user.name                   = userJson["name"].string!
-            user.screenName             = userJson["screen_name"].string!
-            user.profileImageUrl        = userJson["profile_image_url"].string!
-            user.profileBackgroundUrl   = userJson["profile_background_image_url"].string!
-            user.friendsCount           = userJson["friends_count"].string!
-            user.followersCount         = userJson["followers_count"].string!
-            user.favouritesCount        = userJson["favourites_count"].string!
-            user.statusesCount          = userJson["statuses_count"].string!
-            user.location               = userJson["location"].string!
-            user.createdAt              = userJson["created_at"].string!
+            user.idStr                  = userJson["id_str"].string
+            user.name                   = userJson["name"].string
+            user.screenName             = userJson["screen_name"].string
+            user.profileImageUrl        = userJson["profile_image_url"].string
+            user.profileBackgroundUrl   = userJson["profile_background_image_url"].string
+            user.friendsCount           = userJson["friends_count"].double
+            print(userJson["friends_count"])
+            print(user.friendsCount)
+            user.followersCount         = userJson["followers_count"].double
+            user.favouritesCount        = userJson["favourites_count"].double
+            user.statusesCount          = userJson["statuses_count"].double
+            user.location               = userJson["location"].string
+            user.createdAt              = userJson["created_at"].string
+            completed(user)
         } failure: { (error) in
             print(error)
         }
-
-        return user
     }
  }
 
+/*
+
+*/

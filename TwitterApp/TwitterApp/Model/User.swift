@@ -10,20 +10,20 @@ import Swifter
 
 struct User {
     
-    var idStr:                  String       // id
-    var name:                   String      // forename, name
-    var screenName:             String
+    var idStr:                  String?      // id
+    var name:                   String?      // forename, name
+    var screenName:             String?
 
-    var profileImageUrl:        String      // profile picture
-    var profileBackgroundUrl:   String      // BackgroundPicture
+    var profileImageUrl:        String?     // profile picture
+    var profileBackgroundUrl:   String?      // BackgroundPicture
 
-    var friendsCount:           String      // Following
-    var followersCount:         String      // Followers
-    var favouritesCount:        String      // what that is?
-    var statusesCount:          String      // how many posts in total
+    var friendsCount:           Double?     // Following
+    var followersCount:         Double?      // Followers
+    var favouritesCount:        Double?      // what that is?
+    var statusesCount:          Double?      // how many posts in total
 
-    var location:               String
-    var createdAt:              String
+    var location:               String?
+    var createdAt:              String?
 //
 //    let description:        String
 //
