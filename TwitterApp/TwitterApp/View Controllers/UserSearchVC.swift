@@ -15,6 +15,7 @@ class UserSearchVC: UIViewController {
     let searchButton                = TwitButton(backgroundColor: ColorsTwitter.twitterBlue, fontSize: 20, message: "Search for user!")
     
     var isUsernameEntered: Bool { return !usernameSearchTextField.text!.isEmpty }
+    var user: User!
     
     
     //MARK: - Overrides
@@ -34,9 +35,14 @@ class UserSearchVC: UIViewController {
         guard isUsernameEntered else { return }
         let destVC = SearchTweetsVC()
         destVC.title = ""
-        notes()
-        destVC.username = usernameSearchTextField.text
-        navigationController?.pushViewController(destVC, animated: true)
+        destVC.username = "jakubgawecki96"
+        let username = "jakubgawecki96"
+        SwifterSingleton.shared.getSingleUser(username: username) { (user) in
+            self.user = user
+            print(user)
+        }
+        print(user)
+//        navigationController?.pushViewController(destVC, animated: true)
     }
     
     
@@ -49,25 +55,6 @@ class UserSearchVC: UIViewController {
     
     private func configureSearchButton() {
         searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
-    }
-    
-    private func notes() {
-        let swifter = SwifterSingleton.shared.swifter
-//        var jsonResult: [JSON] = []
-//                swifter.getHomeTimeline(count: 10, success: { json in
-//                    jsonResult = json.array ?? []
-//                    print(jsonResult)
-//                }, failure: { error in
-//                    print("ERROR")
-//                })
-        var jsonUser: [JSON] = []
-        swifter.searchUsers(using: "jakubgawecki96", page: 1, count: 10, includeEntities: true) { (json) in
-            jsonUser = json.array ?? []
-            print(jsonUser)
-        } failure: { (error) in
-            print(error)
-        }
-
     }
     
     

@@ -12,7 +12,6 @@ import Swifter
 class MainVC: UIViewController {
     
     let swifter = SwifterSingleton.shared.swifter
-    var user: User!
     
     
     let twitterLogoImageView        = TwitImageView(frame: .zero)
@@ -40,12 +39,6 @@ class MainVC: UIViewController {
             }, failure: { error in
                 print("ERROR")
             })
-            swifter.showUser(UserTag.screenName("jakub63282236"), includeEntities: true) { (json) in
-                print(json)
-            } failure: { (error) in
-                print(error)
-            }
-
         }
         
         
@@ -57,11 +50,7 @@ class MainVC: UIViewController {
     @objc private func searchButtonTapped() {
         let destVC              = UserSearchVC()
         destVC.title            = "User search"
-//        navigationController?.pushViewController(destVC, animated: true)
-        let username = "jakubgawecki96"
-        SwifterSingleton.shared.getSingleUser(username: username) { (user) in
-            print(user)
-        }
+        navigationController?.pushViewController(destVC, animated: true)
     }
     
     @objc private func toFavoritesUsersTapped() {

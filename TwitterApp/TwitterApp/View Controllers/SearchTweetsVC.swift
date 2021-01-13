@@ -17,6 +17,7 @@ class SearchTweetsVC: UIViewController {
     var dataSource:     UICollectionViewDiffableDataSource<Section, String>!
     
     var username:       String!
+    var user: User!
     
     var array: [String] = [TweetsDebugs.tweet1, TweetsDebugs.tweet2, TweetsDebugs.tweet3, TweetsDebugs.tweet4, TweetsDebugs.tweet5]
     
@@ -28,6 +29,7 @@ class SearchTweetsVC: UIViewController {
         configureCollectionView()
         configureDataSource()
         updateData()
+        print(user!)
     }
     
     //MARK: - Private Functions

@@ -29,28 +29,25 @@ struct SwifterSingleton {
                         location: "",
                         createdAt: "")
         
-        swifter.searchUsers(using: username, page: 1, count: 1, includeEntities: true) { (json) in
-            let userJson = json[0]
-            user.idStr                  = userJson["id_str"].string
-            user.name                   = userJson["name"].string
-            user.screenName             = userJson["screen_name"].string
+        swifter.showUser(UserTag.screenName(username), includeEntities: false) { (json) in
+            let userJson = json
+            
+            user.idStr                  = userJson["id_str"].string!
+            user.name                   = userJson["name"].string!
+            user.screenName             = userJson["screen_name"].string!
             user.profileImageUrl        = userJson["profile_image_url"].string
             user.profileBackgroundUrl   = userJson["profile_background_image_url"].string
-            user.friendsCount           = userJson["friends_count"].double
-            print(userJson["friends_count"])
-            print(user.friendsCount)
-            user.followersCount         = userJson["followers_count"].double
-            user.favouritesCount        = userJson["favourites_count"].double
-            user.statusesCount          = userJson["statuses_count"].double
-            user.location               = userJson["location"].string
-            user.createdAt              = userJson["created_at"].string
+            user.friendsCount           = userJson["friends_count"].double!
+            user.followersCount         = userJson["followers_count"].double!
+            user.favouritesCount        = userJson["favourites_count"].double!
+            user.statusesCount          = userJson["statuses_count"].double!
+            user.location               = userJson["location"].string!
+            user.createdAt              = userJson["created_at"].string!
             completed(user)
+            
         } failure: { (error) in
             print(error)
         }
     }
- }
+}
 
-/*
-
-*/
