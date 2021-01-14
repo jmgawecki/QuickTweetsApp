@@ -22,6 +22,13 @@ class TwitProfilePictureImageView: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func downloadImage(from URLString: String) {
+        NetworkManager.shared.downloadImage(from: URLString) { [weak self] (image) in
+            guard let self = self else { return }
+            DispatchQueue.main.async { self.image = image }
+        }
+    }
+    
     
     //MARK: - Configurations
     

@@ -21,6 +21,7 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
     
     var bodyLabels: [TwitInfoHeaderBodyLabel]   = []
     var images: [UIImageView]                   = []
+
     
     
     //MARK: - Overrides
@@ -40,7 +41,7 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
     
     
     func set(with user: User) {
-        avatarImageView.image       = UIImage(named: "myProfile")
+        avatarImageView.downloadImage(from: user.profileImageUrl!)
         forenameLabel.text          = user.name
         usernameLabel.text          = user.screenName
         followerView.set(itemInfoType: .followers, with: Int(user.followersCount))

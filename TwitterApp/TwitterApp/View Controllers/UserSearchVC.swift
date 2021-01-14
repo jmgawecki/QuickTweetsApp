@@ -26,6 +26,7 @@ class UserSearchVC: UIViewController {
         layoutUI()
         configureUIElements()
         configureSearchButton()
+        
     }
     
     
@@ -33,16 +34,14 @@ class UserSearchVC: UIViewController {
     
     @objc func searchButtonTapped() {
         guard isUsernameEntered else { return }
-        getSingleUser()
-        
+        let username = usernameSearchTextField.text
+        getSingleUser(username: username!)
     }
     
     
     //MARK: - Private Functions
     
-    private func getSingleUser() {
-        let username                = "jakubgawecki96"
-        
+    private func getSingleUser(username: String) {
         NetworkManager.shared.getSingleUser(username: username) { (user) in
             
         }
@@ -55,7 +54,7 @@ class UserSearchVC: UIViewController {
                 destVC.username         = "jakubgawecki96"
                 self.navigationController?.pushViewController(destVC, animated: true)
             case .failure(let error):
-                <#code#>
+                print(error)
             }
         }
     }

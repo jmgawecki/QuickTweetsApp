@@ -43,10 +43,16 @@ class SearchTweetsVC: UIViewController {
         configureCollectionView()
     }
     
+    //MARK: - Objectives
+    
+    @objc private func addUserToFavorites() {
+        
+    }
+    
     //MARK: - Private Functions
     
     private func getUsersTweets() {
-        NetworkManager.shared.getSingleUsersTweets(userId: "4833435755") { [weak self] (result) in
+        NetworkManager.shared.getSingleUsersTweets(userId: user.idStr) { [weak self] (result) in
             guard let self = self else { return }
             self.tweets.append(contentsOf: result)
             DispatchQueue.main.async {
@@ -59,6 +65,7 @@ class SearchTweetsVC: UIViewController {
     private func configureVC() {
         view.backgroundColor                                    = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles  = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add to favorites", style: .plain, target: self, action: #selector(addUserToFavorites))
     }
     
     //MARK: - Layout configuration

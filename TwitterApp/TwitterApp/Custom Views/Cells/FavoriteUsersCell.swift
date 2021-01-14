@@ -61,9 +61,9 @@ class FavoriteUsersCell: UICollectionViewCell {
     }
     
     private func configureTimeDateLabel() {
-        timeDateLabel.text = "Jan 14, 2019"
-        timeDateLabel.textColor = .systemGray
-        timeDateLabel.textAlignment = .center
+        timeDateLabel.text                  = "Jan 14, 2019"
+        timeDateLabel.textColor             = .systemGray
+        timeDateLabel.textAlignment         = .center
     }
     
     private func layoutUI() {

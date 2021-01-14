@@ -59,5 +59,22 @@ struct NetworkManager {
             print(error)
         }
     }
+    
+    func downloadImage(from urlString: String, completed: @escaping(UIImage?) -> Void) {
+        guard let url = URL(string: urlString) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard error == nil,
+                  let _ = response as? HTTPURLResponse,
+                  let data = data,
+                  let image = UIImage(data: data) else {
+                completed(nil)
+                return
+            }
+            completed(image)
+        }
+        task.resume()
+    }
 }
+
 

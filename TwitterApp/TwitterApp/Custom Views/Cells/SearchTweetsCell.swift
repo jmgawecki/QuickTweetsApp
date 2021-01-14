@@ -9,19 +9,21 @@ import UIKit
 
 class SearchTweetsCell: UICollectionViewCell {
     
-    static let reuseId      = "cell"
+    static let reuseId          = "cell"
+        
+    let addToFavoritesButton    = UIButton()
+    var timeDateLabel           = UILabel()
+    let tweetBodyLabel          = UserSearchVCTextView()
+    var mediaStackView          = UIStackView()
+    var commentView             = SearchTweetsMediaInfoView()
+    var sharesView              = SearchTweetsMediaInfoView()
+    var likesView               = SearchTweetsMediaInfoView()
     
-    let tweetBodyLabel      = UserSearchVCTextView()
-    var mediaStackView      = UIStackView()
-    var commentView         = SearchTweetsMediaInfoView()
-    var sharesView          = SearchTweetsMediaInfoView()
-    var likesView           = SearchTweetsMediaInfoView()
-    var timeDateLabel       = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureCell()
-        configureTimeDateLabel()
+        configureUIElements()
         layoutUI()
         configureMediaStackView()
     }
@@ -44,36 +46,47 @@ class SearchTweetsCell: UICollectionViewCell {
     }
     
     private func debugConfiguration() {
-        tweetBodyLabel.layer.borderWidth = 1
-        mediaStackView.layer.borderWidth = 1
-        timeDateLabel.layer.borderWidth  = 1
+        tweetBodyLabel.layer.borderWidth    = 1
+        mediaStackView.layer.borderWidth    = 1
+        timeDateLabel.layer.borderWidth     = 1
     }
     
     private func configureMediaStackView() {
-        mediaStackView.axis = .horizontal
-        mediaStackView.distribution = .equalSpacing
-        mediaStackView.alignment = .center
-        
-        
+        mediaStackView.axis                 = .horizontal
+        mediaStackView.distribution         = .equalSpacing
+        mediaStackView.alignment            = .center
         
         mediaStackView.addArrangedSubview(commentView)
         mediaStackView.addArrangedSubview(sharesView)
         mediaStackView.addArrangedSubview(likesView)
     }
     
-    private func configureTimeDateLabel() {
-        timeDateLabel.textColor = .systemGray
-        timeDateLabel.textAlignment = .center
+    private func configureUIElements() {
+        timeDateLabel.textColor             = .systemGray
+        timeDateLabel.textAlignment         = .center
+        
+        addToFavoritesButton.setImage(UIImage(systemName: "plus"), for: .normal)
+        addToFavoritesButton.tintColor      = ColorsTwitter.twitterBlue
+        addToFavoritesButton.layer.borderWidth = 1
+
     }
     
     private func layoutUI() {
+        addSubview(addToFavoritesButton)
         addSubview(timeDateLabel)
         addSubview(tweetBodyLabel)
         addSubview(mediaStackView)
-        mediaStackView.translatesAutoresizingMaskIntoConstraints = false
-        timeDateLabel.translatesAutoresizingMaskIntoConstraints  = false
+        
+        addToFavoritesButton.translatesAutoresizingMaskIntoConstraints  = false
+        mediaStackView.translatesAutoresizingMaskIntoConstraints        = false
+        timeDateLabel.translatesAutoresizingMaskIntoConstraints         = false
         
         NSLayoutConstraint.activate([
+            addToFavoritesButton.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            addToFavoritesButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+            addToFavoritesButton.heightAnchor.constraint(equalToConstant: 30),
+            addToFavoritesButton.widthAnchor.constraint(equalTo: addToFavoritesButton.heightAnchor),
+            
             timeDateLabel.centerXAnchor.constraint  (equalTo: centerXAnchor, constant: 0),
             timeDateLabel.topAnchor.constraint      (equalTo: topAnchor, constant: 10),
             timeDateLabel.heightAnchor.constraint   (equalToConstant: 25),
