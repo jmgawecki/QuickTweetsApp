@@ -33,28 +33,28 @@ class UserSearchVC: UIViewController {
     
     @objc func searchButtonTapped() {
         guard isUsernameEntered else { return }
-        let destVC = SearchTweetsVC()
-        destVC.title = ""
-        destVC.username = "jakubgawecki96"
         getSingleUser()
-        print(user)
-        navigationController?.pushViewController(destVC, animated: true)
+        
     }
     
     
     //MARK: - Private Functions
     
     private func getSingleUser() {
-        let username = "jakubgawecki96"
-        SwifterSingleton.shared.getSingleUser(username: username) { [weak self] (user) in
-            guard let self = self else { return }
-            self.user = user
+        let username                = "jakubgawecki96"
+        
+        SwifterSingleton.shared.getSingleUser(username: username) { (user) in
+            self.user               = user
+            let destVC              = SearchTweetsVC(user: user)
+            destVC.title            = ""
+            destVC.username         = "jakubgawecki96"
+            self.navigationController?.pushViewController(destVC, animated: true)
         }
     }
     
     private func configureVC() {
-        view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor                                    = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles  = true
     }
     
     private func configureSearchButton() {

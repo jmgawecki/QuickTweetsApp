@@ -17,38 +17,36 @@ struct SwifterSingleton {
     private init() {}
     
     func getSingleUser(username: String, completed: @escaping(User) -> Void) {
-        var user = User(idStr: "",
-                        name: "",
-                        screenName: "",
-                        profileImageUrl: "",
-                        profileBackgroundUrl: "",
-                        friendsCount: 0,
-                        followersCount: 0,
-                        favouritesCount: 0,
-                        statusesCount: 0,
-                        location: "",
-                        createdAt: "")
-        
         swifter.showUser(UserTag.screenName(username), includeEntities: false) { (json) in
             let userJson = json
-            
-            user.idStr                  = userJson["id_str"].string!
-            user.name                   = userJson["name"].string!
-            user.screenName             = userJson["screen_name"].string!
-            user.profileImageUrl        = userJson["profile_image_url"].string
-            user.profileBackgroundUrl   = userJson["profile_background_image_url"].string
-            user.friendsCount           = userJson["friends_count"].double!
-            user.followersCount         = userJson["followers_count"].double!
-            user.favouritesCount        = userJson["favourites_count"].double!
-            user.statusesCount          = userJson["statuses_count"].double!
-            user.location               = userJson["location"].string!
-            user.createdAt              = userJson["created_at"].string!
+            let user = User(idStr:                  userJson["id_str"].string!,
+                            name:                   userJson["name"].string!,
+                            screenName:             userJson["screen_name"].string!,
+                            profileImageUrl:        userJson["profile_image_url"].string,
+                            profileBackgroundUrl:   userJson["profile_background_image_url"].string,
+                            friendsCount:           userJson["friends_count"].double!,
+                            followersCount:         userJson["followers_count"].double!,
+                            favouritesCount:        userJson["favourites_count"].double!,
+                            statusesCount:          userJson["statuses_count"].double!,
+                            location:               userJson["location"].string!,
+                            createdAt:              userJson["created_at"].string!)
             completed(user)
             
         } failure: { (error) in
             print(error)
         }
-        
     }
+    
+    func getSingleUsersTweets(userId: String) {
+        swifter.getTimeline(for: UserTag.id(userId), customParam: [:], count: 30, sinceID: nil, maxID: nil, trimUser: true, excludeReplies: true, includeRetweets: true, contributorDetails: true, includeEntities: true, tweetMode: .default) { (json) in
+            let result = json.array
+            print(result)
+        } failure: { (error) in
+            print(error)
+        }
+
+    }
+    
+    
 }
 

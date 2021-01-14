@@ -17,9 +17,21 @@ class SearchTweetsVC: UIViewController {
     var dataSource:     UICollectionViewDiffableDataSource<Section, String>!
     
     var username:       String!
-    var user: User!
+    var user:           User!
     
     var array: [String] = [TweetsDebugs.tweet1, TweetsDebugs.tweet2, TweetsDebugs.tweet3, TweetsDebugs.tweet4, TweetsDebugs.tweet5]
+    
+    
+    //MARK: - Initialiser
+    
+    init(user: User) {
+        super.init(nibName: nil, bundle: nil)
+        self.user = user
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - Overrides
 
@@ -29,6 +41,7 @@ class SearchTweetsVC: UIViewController {
         configureCollectionView()
         configureDataSource()
         updateData()
+        print(user)
     }
     
     //MARK: - Private Functions

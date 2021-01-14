@@ -50,7 +50,8 @@ class MainVC: UIViewController {
     @objc private func searchButtonTapped() {
         let destVC              = UserSearchVC()
         destVC.title            = "User search"
-        navigationController?.pushViewController(destVC, animated: true)
+        SwifterSingleton.shared.getSingleUsersTweets(userId: "4833435755")
+//        navigationController?.pushViewController(destVC, animated: true)
     }
     
     @objc private func toFavoritesUsersTapped() {
