@@ -11,7 +11,7 @@ import Swifter
 
 class MainVC: UIViewController {
     
-    let swifter = SwifterSingleton.shared.swifter
+    let swifter = NetworkManager.shared.swifter
     
     
     let twitterLogoImageView        = TwitImageView(frame: .zero)
@@ -50,8 +50,7 @@ class MainVC: UIViewController {
     @objc private func searchButtonTapped() {
         let destVC              = UserSearchVC()
         destVC.title            = "User search"
-        SwifterSingleton.shared.getSingleUsersTweets(userId: "4833435755")
-//        navigationController?.pushViewController(destVC, animated: true)
+        navigationController?.pushViewController(destVC, animated: true)
     }
     
     @objc private func toFavoritesUsersTapped() {

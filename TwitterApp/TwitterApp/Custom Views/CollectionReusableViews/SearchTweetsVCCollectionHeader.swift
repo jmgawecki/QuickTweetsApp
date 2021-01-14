@@ -33,8 +33,18 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
         configureUIElements()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    func set(with user: User) {
+        avatarImageView.image       = UIImage(named: "myProfile")
+        forenameLabel.text          = user.name
+        usernameLabel.text          = user.screenName
+        followerView.set(itemInfoType: .followers, with: Int(user.followersCount))
+        followingView.set(itemInfoType: .following, with: Int(user.favouritesCount))
     }
     
 
@@ -47,9 +57,7 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
     
     
     private func configureUIElements() {
-        avatarImageView.image       = UIImage(named: "myProfile")
-        forenameLabel.text          = "Jakub Gawecki"
-        usernameLabel.text          = "@jakubgawecki96"
+        
 
     }
 
@@ -58,8 +66,6 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
         followStackView.axis            = .horizontal
         followStackView.distribution    = .equalSpacing
         
-        followerView.set(itemInfoType: .followers, with: 25)
-        followingView.set(itemInfoType: .following, with: 30)
         
         followStackView.addArrangedSubview(followerView)
         followStackView.addArrangedSubview(followingView)

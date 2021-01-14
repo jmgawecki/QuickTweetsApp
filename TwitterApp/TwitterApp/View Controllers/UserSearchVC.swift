@@ -43,12 +43,20 @@ class UserSearchVC: UIViewController {
     private func getSingleUser() {
         let username                = "jakubgawecki96"
         
-        SwifterSingleton.shared.getSingleUser(username: username) { (user) in
-            self.user               = user
-            let destVC              = SearchTweetsVC(user: user)
-            destVC.title            = ""
-            destVC.username         = "jakubgawecki96"
-            self.navigationController?.pushViewController(destVC, animated: true)
+        NetworkManager.shared.getSingleUser(username: username) { (user) in
+            
+        }
+        NetworkManager.shared.getSingleUser(username: username) { (result) in
+            switch result {
+            case .success(let user):
+                self.user               = user
+                let destVC              = SearchTweetsVC(user: user)
+                destVC.title            = ""
+                destVC.username         = "jakubgawecki96"
+                self.navigationController?.pushViewController(destVC, animated: true)
+            case .failure(let error):
+                <#code#>
+            }
         }
     }
     
@@ -65,8 +73,8 @@ class UserSearchVC: UIViewController {
     //MARK: - Layout configuration
     
     private func configureUIElements() {
-        twitterLogoImageView.image = TwitterPNGs.twitterLogo
-        usernameSearchTextField.delegate = self
+        twitterLogoImageView.image          = TwitterPNGs.twitterLogo
+        usernameSearchTextField.delegate    = self
     }
     
     private func layoutUI() {

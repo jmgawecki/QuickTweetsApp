@@ -30,8 +30,12 @@ class SearchTweetsCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(with message: String) {
-        tweetBodyLabel.text  = message
+    func set(with usersTweet: SearchUserTweet) {
+        tweetBodyLabel.text                         = usersTweet.tweetText
+        timeDateLabel.text                          = usersTweet.createdAt
+        commentView.set(itemInfoType: .comments,    with: Int(usersTweet.likesCounter))
+        sharesView.set(itemInfoType: .shares,       with: Int(usersTweet.retweetCounter))
+        likesView.set(itemInfoType: .likes,         with: Int(usersTweet.likesCounter))
     }
     
     private func configureCell() {
@@ -50,9 +54,7 @@ class SearchTweetsCell: UICollectionViewCell {
         mediaStackView.distribution = .equalSpacing
         mediaStackView.alignment = .center
         
-        commentView.set(itemInfoType: .comments, with: 21)
-        sharesView.set(itemInfoType: .shares, with: 12)
-        likesView.set(itemInfoType: .likes, with: 136)
+        
         
         mediaStackView.addArrangedSubview(commentView)
         mediaStackView.addArrangedSubview(sharesView)
@@ -60,7 +62,6 @@ class SearchTweetsCell: UICollectionViewCell {
     }
     
     private func configureTimeDateLabel() {
-        timeDateLabel.text = "Jan 14, 2019"
         timeDateLabel.textColor = .systemGray
         timeDateLabel.textAlignment = .center
     }

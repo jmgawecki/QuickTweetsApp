@@ -14,10 +14,11 @@ class SearchTweetsVC: UIViewController {
     }
     
     var collectionView: UICollectionView!
-    var dataSource:     UICollectionViewDiffableDataSource<Section, String>!
+    var dataSource:     UICollectionViewDiffableDataSource<Section, SearchUserTweet>!
     
     var username:       String!
     var user:           User!
+    var tweets:         [SearchUserTweet] = []
     
     var array: [String] = [TweetsDebugs.tweet1, TweetsDebugs.tweet2, TweetsDebugs.tweet3, TweetsDebugs.tweet4, TweetsDebugs.tweet5]
     
@@ -37,14 +38,23 @@ class SearchTweetsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getUsersTweets()
         configureVC()
         configureCollectionView()
-        configureDataSource()
-        updateData()
-        print(user)
     }
     
     //MARK: - Private Functions
+    
+    private func getUsersTweets() {
+        NetworkManager.shared.getSingleUsersTweets(userId: "4833435755") { [weak self] (result) in
+            guard let self = self else { return }
+            self.tweets.append(contentsOf: result)
+            DispatchQueue.main.async {
+                self.configureDataSource()
+                self.updateData()
+            }
+        }
+    }
 
     private func configureVC() {
         view.backgroundColor                                    = .systemBackground
@@ -54,9 +64,9 @@ class SearchTweetsVC: UIViewController {
     //MARK: - Layout configuration
     
     private func updateData() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, SearchUserTweet>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(array)
+        snapshot.appendItems(tweets)
         DispatchQueue.main.async {
             self.dataSource.apply(snapshot, animatingDifferences: true)
         }
@@ -64,14 +74,15 @@ class SearchTweetsVC: UIViewController {
     
     
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, String>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, array) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, SearchUserTweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweet) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchTweetsCell.reuseId, for: indexPath) as! SearchTweetsCell
-            cell.set(with: array)
+            cell.set(with: tweet)
             return cell
         })
         
         dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchTweetsVCCollectionHeader.reuseId, for: indexPath) as! SearchTweetsVCCollectionHeader
+            header.set(with: self.user)
             return header
         }
     }

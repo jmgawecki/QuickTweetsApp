@@ -10,14 +10,14 @@ import UIKit
 class FavoriteUsersCell: UICollectionViewCell {
     
     
-    static let reuseId      = "cell"
-    
-    let tweetBodyLabel      = UserSearchVCTextView()
-    var mediaStackView      = UIStackView()
-    var commentView         = SearchTweetsMediaInfoView()
-    var sharesView          = SearchTweetsMediaInfoView()
-    var likesView           = SearchTweetsMediaInfoView()
-    var timeDateLabel       = UILabel()
+    static let reuseId                      = "cell"
+                    
+    let tweetBodyLabel                      = UserSearchVCTextView()
+    var mediaStackView                      = UIStackView()
+    var commentView                         = SearchTweetsMediaInfoView()
+    var sharesView                          = SearchTweetsMediaInfoView()
+    var likesView                           = SearchTweetsMediaInfoView()
+    var timeDateLabel                       = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,28 +32,28 @@ class FavoriteUsersCell: UICollectionViewCell {
     }
     
     func set(with message: String) {
-        tweetBodyLabel.text  = message
+        tweetBodyLabel.text                 = message
     }
     
     private func configureCell() {
-        backgroundColor = .secondarySystemBackground
-        layer.cornerRadius = 15
+        backgroundColor                     = .secondarySystemBackground
+        layer.cornerRadius                  = 15
     }
     
     private func debugConfiguration() {
-        tweetBodyLabel.layer.borderWidth = 1
-        mediaStackView.layer.borderWidth = 1
-        timeDateLabel.layer.borderWidth  = 1
+        tweetBodyLabel.layer.borderWidth    = 1
+        mediaStackView.layer.borderWidth    = 1
+        timeDateLabel.layer.borderWidth     = 1
     }
     
     private func configureMediaStackView() {
-        mediaStackView.axis = .horizontal
-        mediaStackView.distribution = .equalSpacing
-        mediaStackView.alignment = .center
+        mediaStackView.axis                 = .horizontal
+        mediaStackView.distribution         = .equalSpacing
+        mediaStackView.alignment            = .center
         
-        commentView.set(itemInfoType: .comments, with: 21)
-        sharesView.set(itemInfoType: .shares, with: 12)
-        likesView.set(itemInfoType: .likes, with: 136)
+        commentView.set(itemInfoType:       .comments, with: 21)
+        sharesView.set(itemInfoType:        .shares, with: 12)
+        likesView.set(itemInfoType:         .likes, with: 136)
         
         mediaStackView.addArrangedSubview(commentView)
         mediaStackView.addArrangedSubview(sharesView)

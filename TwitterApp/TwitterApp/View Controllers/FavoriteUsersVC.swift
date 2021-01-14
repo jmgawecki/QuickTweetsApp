@@ -51,7 +51,7 @@ class FavoriteUsersVC: UIViewController {
         
         snapshot.appendSections([Section.user1, Section.user2, Section.user3])
         
-        snapshot.appendItems(tweetsUser1,  toSection: Section.user1)
+        snapshot.appendItems(tweetsUser1, toSection: Section.user1)
         snapshot.appendItems(array2, toSection: Section.user2)
         snapshot.appendItems(array3, toSection: Section.user3)
         
