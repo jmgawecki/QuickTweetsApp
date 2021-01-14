@@ -15,6 +15,7 @@ class SearchTweetsCell: UICollectionViewCell {
     var timeDateLabel           = UILabel()
     let tweetBodyLabel          = UserSearchVCTextView()
     var mediaStackView          = UIStackView()
+    let seeOnlineButton         = UIButton()
     var commentView             = SearchTweetsMediaInfoView()
     var sharesView              = SearchTweetsMediaInfoView()
     var likesView               = SearchTweetsMediaInfoView()
@@ -68,7 +69,6 @@ class SearchTweetsCell: UICollectionViewCell {
         addToFavoritesButton.setImage(UIImage(systemName: "plus"), for: .normal)
         addToFavoritesButton.tintColor      = ColorsTwitter.twitterBlue
         addToFavoritesButton.layer.borderWidth = 1
-
     }
     
     private func layoutUI() {
