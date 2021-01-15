@@ -11,9 +11,10 @@ class FavoriteUsersVC: UIViewController {
     
     enum SectionsUsers: Hashable {
         case favoriteUser(User)
+        case favoriteUsers([User])
     }
     
-    var users: [User] = []
+    var users: [User]   = []
     var tweets: [Tweet] = []
     
     var collectionView: UICollectionView!
@@ -126,14 +127,11 @@ class FavoriteUsersVC: UIViewController {
 extension FavoriteUsersVC: FavoritesCollectionHeaderDelegates {
     
     func didRemoveUserFromFavorites(index: IndexPath, user: User) {
-        let indexInt: Int = index.section
-//        var indexSet: IndexSet = [indexInt]
-        users.remove(at: indexInt)
-//        snapshot.deleteSections([.favoriteUser(user)])
-//        print(self.users)
+        #warning("refactor protocol - delete indexPath passed")
+        users.removeAll {$0.idStr == user.idStr}
+        snapshot.deleteSections([.favoriteUser(user)])
+        dataSource.apply(snapshot, animatingDifferences: true)
         
-        collectionView.reloadData()
-        updateData(with: users)
     }
     
     
