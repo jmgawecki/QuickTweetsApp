@@ -21,12 +21,13 @@ class FavoritesCollectionHeader: UICollectionReusableView {
     var bodyLabels: [TwitInfoHeaderBodyLabel]   = []
     var images: [UIImageView]                   = []
     
+    
     //MARK: - Overrides
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
         layoutUI()
-        configureUIElements()
     }
     
     required init?(coder: NSCoder) {
@@ -36,18 +37,16 @@ class FavoritesCollectionHeader: UICollectionReusableView {
 
     //MARK: - Configurations
     
-    private func configure() {
-        backgroundColor         = .systemBackground
-        translatesAutoresizingMaskIntoConstraints = false
-       
+    func set(with user: User) {
+        avatarImageView.image       = UIImage(named: "myProfile")
+        forenameLabel.text          = user.name
+        usernameLabel.text          = user.screenName
     }
     
-    private func configureUIElements() {
-        avatarImageView.image       = UIImage(named: "myProfile")
-        forenameLabel.text          = "Jakub Gawecki"
-        usernameLabel.text          = "@jakubgawecki96"
+    private func configure() {
+        backgroundColor             = .systemBackground
+        translatesAutoresizingMaskIntoConstraints = false
     }
-
     
     
 

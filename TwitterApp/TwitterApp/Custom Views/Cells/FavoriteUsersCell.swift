@@ -31,8 +31,13 @@ class FavoriteUsersCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(with message: String) {
-        tweetBodyLabel.text                 = message
+    func set(with tweet: SearchUserTweet) {
+        timeDateLabel.text                  = tweet.createdAt
+        tweetBodyLabel.text                 = tweet.tweetText
+        
+        commentView.set(itemInfoType:       .comments, with: Int(tweet.likesCounter))
+        sharesView.set(itemInfoType:        .shares, with: Int(tweet.retweetCounter))
+        likesView.set(itemInfoType:         .likes, with: Int(tweet.likesCounter))
     }
     
     private func configureCell() {
@@ -51,9 +56,7 @@ class FavoriteUsersCell: UICollectionViewCell {
         mediaStackView.distribution         = .equalSpacing
         mediaStackView.alignment            = .center
         
-        commentView.set(itemInfoType:       .comments, with: 21)
-        sharesView.set(itemInfoType:        .shares, with: 12)
-        likesView.set(itemInfoType:         .likes, with: 136)
+        
         
         mediaStackView.addArrangedSubview(commentView)
         mediaStackView.addArrangedSubview(sharesView)
@@ -61,7 +64,6 @@ class FavoriteUsersCell: UICollectionViewCell {
     }
     
     private func configureTimeDateLabel() {
-        timeDateLabel.text                  = "Jan 14, 2019"
         timeDateLabel.textColor             = .systemGray
         timeDateLabel.textAlignment         = .center
     }

@@ -50,7 +50,13 @@ class MainVC: UIViewController {
     @objc private func searchButtonTapped() {
         let destVC              = UserSearchVC()
         destVC.title            = "User search"
-        navigationController?.pushViewController(destVC, animated: true)
+        swifter.showUser(UserTag.id("4833435755"), includeEntities: false) { (json) in
+            print(json)
+        } failure: { (error) in
+            print(error)
+        }
+
+//        navigationController?.pushViewController(destVC, animated: true)
     }
     
     @objc private func toFavoritesUsersTapped() {
