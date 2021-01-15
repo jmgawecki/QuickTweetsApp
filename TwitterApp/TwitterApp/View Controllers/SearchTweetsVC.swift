@@ -46,7 +46,7 @@ class SearchTweetsVC: UIViewController {
     //MARK: - Objectives
     
     @objc private func addUserToFavorites() {
-        
+        addUserToFavorite(user: user)
     }
     
     //MARK: - Private Functions
@@ -66,6 +66,29 @@ class SearchTweetsVC: UIViewController {
         view.backgroundColor                                    = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles  = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add to favorites", style: .plain, target: self, action: #selector(addUserToFavorites))
+    }
+    
+    private func addUserToFavorite(user: User) {
+        let favorite = User(idStr:                  user.idStr,
+                            name:                   user.name,
+                            screenName:             user.screenName,
+                            profileImageUrl:        user.profileImageUrl,
+                            profileBackgroundUrl:   user.profileBackgroundUrl,
+                            friendsCount:           user.friendsCount,
+                            followersCount:         user.followersCount,
+                            favouritesCount:        user.favouritesCount,
+                            statusesCount:          user.statusesCount,
+                            location:               user.location,
+                            createdAt:              user.createdAt)
+        PersistenceManager.updateWithUsers(newFavoriteUser: favorite, persistenceAction: .add) { [weak self] (error) in
+            guard self != nil else { return }
+            guard let error = error else {
+                print("success")
+                return
+            }
+            
+            print(error.rawValue)
+        }
     }
     
     //MARK: - Layout configuration

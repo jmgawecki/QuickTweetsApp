@@ -43,7 +43,8 @@ struct NetworkManager {
             let result = json.array ?? []
             var searchedUserTweets = [SearchUserTweet]()
             for tweet in result {
-                let tweetObject = SearchUserTweet(user: tweet["user"]["id_str"].string!,
+                let tweetObject = SearchUserTweet(twitsId: tweet["id_str"].string!,
+                                                  user: tweet["user"]["id_str"].string!,
                                                   repliedToUserId: tweet["in_reply_to_user_id_str"].string,
                                                   repliedToStatus: tweet["in_reply_to_status_id_str"].string,
                                                   urlToExpandWithSafari: tweet["entities"]["urls"][0]["url"].string,

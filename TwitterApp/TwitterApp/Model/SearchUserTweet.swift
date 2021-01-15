@@ -7,14 +7,13 @@
 
 import UIKit
 
-struct SearchUserTweet: Hashable {
+struct SearchUserTweet: Encodable, Decodable, Hashable {
+    var twitsId:                        String  // ["id_str"]
     var user:                           String  // ["user"]["id_str"]
     var repliedToUserId:                String? // ["in_reply_to_user_id_str"]
     var repliedToStatus:                String? // ["in_reply_to_status_id_str"]
     
     var urlToExpandWithSafari:          String? // ["entities"]["urls"]["url"]
-    
-   
     
     var likesCounter:                   Double // ["favorite_count"]
     var retweetCounter:                 Double // ["retweet_count"]

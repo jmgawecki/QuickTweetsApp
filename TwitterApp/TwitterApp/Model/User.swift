@@ -8,7 +8,7 @@
 import UIKit
 import Swifter
 
-struct User {
+struct User: Encodable, Decodable, Hashable {
     
     var idStr:                  String      // id
     var name:                   String      // forename, name

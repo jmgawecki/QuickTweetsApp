@@ -19,6 +19,8 @@ class FavoriteUsersVC: UIViewController {
     var array2 =    ["twit21", "twit22", "twit23", "twit24", "twit25", "twit26", "twit27", "twit28", "twit29", "twit210", "twit211"]
     var array3 =    ["twit31", "twit32", "twit33", "twit34", "twit35", "twit36", "twit37", "twit38", "twit39", "twit310", "twit311"]
     
+    var users: [User] = []
+    
     var collectionView: UICollectionView!
     var dataSource:     UICollectionViewDiffableDataSource<Section, String>!
     
@@ -27,6 +29,7 @@ class FavoriteUsersVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getFavorites()
         configureVC()
         configureCollectionView()
         configureDataSource()
@@ -40,6 +43,17 @@ class FavoriteUsersVC: UIViewController {
     
     //MARK: - Private Functions
     
+    private func getFavorites() {
+        PersistenceManager.retrieveFavoritesUsers { (result) in
+            switch result {
+            case .success(let users):
+                self.users = users
+            case .failure(let error):
+                print(error.rawValue)
+            }
+        }
+    }
+    
     private func configureVC() {
         view.backgroundColor    = .systemBackground
         title                   = ""
@@ -48,6 +62,8 @@ class FavoriteUsersVC: UIViewController {
     
     private func updateData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
+        
+        
         
         snapshot.appendSections([Section.user1, Section.user2, Section.user3])
         
