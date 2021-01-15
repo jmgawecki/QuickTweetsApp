@@ -42,8 +42,16 @@ class FavoriteTweetsCell: UICollectionViewCell {
     
     //MARK: - Configurations
     
-    func set(with message: String) {
-        tweetBodyLabel.text     = message
+    func set(with tweet: Tweet) {
+        #warning("fix comment, shares, likes later, add authors profile picture into tweets network call")
+        //        avatarImageView.downloadImage(from: tweet)
+        tweetBodyLabel.text             = tweet.tweetText
+        timeDateLabel.text              = tweet.createdAt
+        forenameLabel.text              = tweet.user
+        
+        commentView.set(itemInfoType:   .comments,  with: Int(tweet.retweetCounter))
+        sharesView.set(itemInfoType:    .shares,    with:  Int(tweet.retweetCounter))
+        likesView.set(itemInfoType:     .likes,     with: Int(tweet.retweetCounter))
     }
     
     
@@ -67,10 +75,6 @@ class FavoriteTweetsCell: UICollectionViewCell {
         mediaStackView.distribution         = .equalSpacing
         mediaStackView.alignment            = .center
         
-        commentView.set(itemInfoType:       .comments, with: 21)
-        sharesView.set(itemInfoType:        .shares, with: 12)
-        likesView.set(itemInfoType:         .likes, with: 136)
-        
         mediaStackView.addArrangedSubview(commentView)
         mediaStackView.addArrangedSubview(sharesView)
         mediaStackView.addArrangedSubview(likesView)
@@ -78,11 +82,8 @@ class FavoriteTweetsCell: UICollectionViewCell {
     
     
     private func configureUIElements() {
-        timeDateLabel.text                  = "Jan 14, 2019"
         timeDateLabel.textColor             = .systemGray
         timeDateLabel.textAlignment         = .left
-        avatarImageView.image               = UIImage(named: "myProfile")
-        forenameLabel.text                  = "Jakub Gawecki"
     }
     
     private func addSubviews() {

@@ -9,28 +9,16 @@ import UIKit
 
 class FavoriteUsersVC: UIViewController {
     
-    enum Section: CaseIterable {
-        case user1
-        case user2
-        case user3
-    }
-    
     enum SectionsUsers: Hashable {
         case favoriteUser(User)
     }
     
-    var tweetsUser1: [String] = [TweetsDebugs.tweet1, TweetsDebugs.tweet2, TweetsDebugs.tweet3, TweetsDebugs.tweet4, TweetsDebugs.tweet5]
-    var array2 =    ["twit21", "twit22", "twit23", "twit24", "twit25", "twit26", "twit27", "twit28", "twit29", "twit210", "twit211"]
-    var array3 =    ["twit31", "twit32", "twit33", "twit34", "twit35", "twit36", "twit37", "twit38", "twit39", "twit310", "twit311"]
-    
-    
     var users: [User] = []
-    var tweets: [SearchUserTweet] = []
-
+    var tweets: [Tweet] = []
     
     var collectionView: UICollectionView!
-    var dataSource:     UICollectionViewDiffableDataSource<SectionsUsers, SearchUserTweet>!
-    
+    var dataSource:     UICollectionViewDiffableDataSource<SectionsUsers, Tweet>!
+    var snapshot:       NSDiffableDataSourceSnapshot<SectionsUsers, Tweet>!
     
     //MARK: - Overrides
     
@@ -73,7 +61,7 @@ class FavoriteUsersVC: UIViewController {
     }
     
     private func updateData(with users: [User]) {
-        var snapshot = NSDiffableDataSourceSnapshot<SectionsUsers, SearchUserTweet>()
+        snapshot = NSDiffableDataSourceSnapshot<SectionsUsers, Tweet>()
         var index = 0
         let dispatchGroup = DispatchGroup()
         let dispatchQueue = DispatchQueue(label: "queue")
@@ -82,9 +70,9 @@ class FavoriteUsersVC: UIViewController {
             for user in users {
                 dispatchGroup.enter()
                 NetworkManager.shared.getSingleUsersTweets(userId: user.idStr) { (tweetsArray) in
-                    let tweets: [SearchUserTweet] = tweetsArray
-                    snapshot.appendSections([.favoriteUser(users[index])])
-                    snapshot.appendItems(tweets, toSection: .favoriteUser(users[index]))
+                    let tweets: [Tweet] = tweetsArray
+                    self.snapshot.appendSections([.favoriteUser(users[index])])
+                    self.snapshot.appendItems(tweets, toSection: .favoriteUser(users[index]))
                     index += 1
                     dispatchSema.signal()
                     dispatchGroup.leave()
@@ -95,13 +83,13 @@ class FavoriteUsersVC: UIViewController {
         }
         dispatchGroup.notify(queue: dispatchQueue) {
             DispatchQueue.main.async {
-                self.dataSource.apply(snapshot, animatingDifferences: true)
+                self.dataSource.apply(self.snapshot, animatingDifferences: true)
             }
         }
     }
     
     private func configureDataSource() {
-        dataSource      = UICollectionViewDiffableDataSource<SectionsUsers, SearchUserTweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweets) -> UICollectionViewCell? in
+        dataSource      = UICollectionViewDiffableDataSource<SectionsUsers, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweets) -> UICollectionViewCell? in
             let cell    = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteUsersCell.reuseId, for: indexPath) as! FavoriteUsersCell
             cell.set(with: tweets)
             return cell
@@ -111,7 +99,9 @@ class FavoriteUsersVC: UIViewController {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                                                          withReuseIdentifier: FavoritesCollectionHeader.reuseId,
                                                                          for: indexPath) as! FavoritesCollectionHeader
-            header.set(with: self.users[indexPath.section])
+            #warning("it probably did not work cause the index has changed")
+            header.set(with: self.users[indexPath.section], index: indexPath)
+            header.delegate = self
             return header
         }
     }
@@ -131,7 +121,20 @@ class FavoriteUsersVC: UIViewController {
                                 withReuseIdentifier: FavoritesCollectionHeader.reuseId)
     }
     //MARK: - Layout configuration
+}
 
+extension FavoriteUsersVC: FavoritesCollectionHeaderDelegates {
+    
+    func didRemoveUserFromFavorites(index: IndexPath, user: User) {
+        let indexInt: Int = index.section
+//        var indexSet: IndexSet = [indexInt]
+        users.remove(at: indexInt)
+//        snapshot.deleteSections([.favoriteUser(user)])
+//        print(self.users)
+        
+        collectionView.reloadData()
+        updateData(with: users)
+    }
     
     
 }

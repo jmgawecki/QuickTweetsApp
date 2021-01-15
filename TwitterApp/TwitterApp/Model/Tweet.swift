@@ -1,5 +1,5 @@
 //
-//  SearchUserTweet.swift
+//  Tweet.swift
 //  TwitterApp
 //
 //  Created by Jakub Gawecki on 14/01/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct SearchUserTweet: Encodable, Decodable, Hashable {
+struct Tweet: Encodable, Decodable, Hashable {
     var twitsId:                        String  // ["id_str"]
     var user:                           String  // ["user"]["id_str"]
     var repliedToUserId:                String? // ["in_reply_to_user_id_str"]

@@ -14,15 +14,16 @@ class FavoriteTweetsVC: UIViewController {
     }
 
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, String>!
+    var dataSource: UICollectionViewDiffableDataSource<Section, Tweet>!
     
-    var tweets: [String] = [TweetsDebugs.tweet1, TweetsDebugs.tweet2, TweetsDebugs.tweet3, TweetsDebugs.tweet4, TweetsDebugs.tweet5]
+    var tweets: [Tweet] = []
     
     
     //MARK: - Overrides
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getFavorites()
         configureVC()
         configureCollectionView()
         configureDataSource()
@@ -37,14 +38,26 @@ class FavoriteTweetsVC: UIViewController {
 
     //MARK: - Private Functions
     
+    private func getFavorites() {
+        PersistenceManager.retrieveFavoritesTweets { [weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let tweets):
+                self.tweets = tweets
+            case .failure(let error):
+                print(error.rawValue)
+            }
+        }
+    }
+    
     private func configureVC() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Favorite Tweets"
-        view.backgroundColor = .systemBackground
+        title                   = "Favorite Tweets"
+        view.backgroundColor    = .systemBackground
     }
     
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, String>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweets) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweets) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteTweetsCell.reuseId, for: indexPath) as! FavoriteTweetsCell
             cell.set(with: tweets)
             return cell
@@ -52,12 +65,10 @@ class FavoriteTweetsVC: UIViewController {
     }
     
     private func updateData() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Tweet>()
         snapshot.appendSections([.main])
         snapshot.appendItems(tweets)
-        DispatchQueue.main.async {
-            self.dataSource.apply(snapshot, animatingDifferences: true)
-        }
+        DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
     }
 
 

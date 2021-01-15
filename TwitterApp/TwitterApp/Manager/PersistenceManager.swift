@@ -71,7 +71,7 @@ enum PersistenceManager {
         }
     }
     
-    static func updateWithTweets(newFavoriteTweet: SearchUserTweet, persistenceAction: PersisenceAction, completed: @escaping(TwitterErrors?) -> Void) {
+    static func updateWithTweets(newFavoriteTweet: Tweet, persistenceAction: PersisenceAction, completed: @escaping(TwitterErrors?) -> Void) {
         retrieveFavoritesTweets { (result) in
             switch result {
             case .success(var tweets):
@@ -97,21 +97,21 @@ enum PersistenceManager {
         }
     }
     
-    static func retrieveFavoritesTweets(completed: @escaping(Result<[SearchUserTweet],TwitterErrors>) -> Void) {
+    static func retrieveFavoritesTweets(completed: @escaping(Result<[Tweet],TwitterErrors>) -> Void) {
         guard let favTweetsData = defaults.object(forKey: Keys.tweets) as? Data else {
             completed(.success([]))
             return
         }
         do {
             let decoder = JSONDecoder()
-            let favoriteTweets = try decoder.decode([SearchUserTweet].self, from: favTweetsData)
+            let favoriteTweets = try decoder.decode([Tweet].self, from: favTweetsData)
             completed(.success(favoriteTweets))
         } catch {
             completed(.failure(.retrieveTweetPM))
         }
     }
     
-    static func saveTweets(favoriteUsers: [SearchUserTweet]) -> TwitterErrors? {
+    static func saveTweets(favoriteUsers: [Tweet]) -> TwitterErrors? {
         do {
             let encoder             = JSONEncoder()
             let encodedFavorites    = try encoder.encode(favoriteUsers)

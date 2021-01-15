@@ -20,6 +20,7 @@ class SearchTweetsCell: UICollectionViewCell {
     var sharesView              = SearchTweetsMediaInfoView()
     var likesView               = SearchTweetsMediaInfoView()
     
+    var tweet: Tweet!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,12 +34,25 @@ class SearchTweetsCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(with usersTweet: SearchUserTweet) {
+    @objc private func addToFavoritesTapped() {
+        PersistenceManager.updateWithTweets(newFavoriteTweet: tweet, persistenceAction: .add) { [weak self] (error) in
+            guard self != nil else { return }
+            guard let error = error else {
+                print("sucess")
+                return
+            }
+            print(error.rawValue)
+        }
+    }
+    
+    func set(with usersTweet: Tweet) {
+        tweet                                       = usersTweet
         tweetBodyLabel.text                         = usersTweet.tweetText
         timeDateLabel.text                          = usersTweet.createdAt
         commentView.set(itemInfoType: .comments,    with: Int(usersTweet.likesCounter))
         sharesView.set(itemInfoType: .shares,       with: Int(usersTweet.retweetCounter))
         likesView.set(itemInfoType: .likes,         with: Int(usersTweet.likesCounter))
+
     }
     
     private func configureCell() {
@@ -68,6 +82,7 @@ class SearchTweetsCell: UICollectionViewCell {
         
         addToFavoritesButton.setImage(UIImage(systemName: "plus"), for: .normal)
         addToFavoritesButton.tintColor      = ColorsTwitter.twitterBlue
+        addToFavoritesButton.addTarget(self, action: #selector(addToFavoritesTapped), for: .touchUpInside)
     }
     
     private func layoutUI() {

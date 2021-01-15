@@ -38,12 +38,12 @@ struct NetworkManager {
         }
     }
     
-    func getSingleUsersTweets(userId: String, completed: @escaping([SearchUserTweet]) -> Void) {
+    func getSingleUsersTweets(userId: String, completed: @escaping([Tweet]) -> Void) {
         swifter.getTimeline(for: UserTag.id(userId), customParam: [:], count: 40, sinceID: nil, maxID: nil, trimUser: true, excludeReplies: true, includeRetweets: true, contributorDetails: true, includeEntities: true, tweetMode: .default) { (json) in
             let result = json.array ?? []
-            var searchedUserTweets = [SearchUserTweet]()
+            var searchedUserTweets = [Tweet]()
             for tweet in result {
-                let tweetObject = SearchUserTweet(twitsId: tweet["id_str"].string!,
+                let tweetObject = Tweet(twitsId: tweet["id_str"].string!,
                                                   user: tweet["user"]["id_str"].string!,
                                                   repliedToUserId: tweet["in_reply_to_user_id_str"].string,
                                                   repliedToStatus: tweet["in_reply_to_status_id_str"].string,

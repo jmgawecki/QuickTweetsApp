@@ -31,7 +31,7 @@ class FavoriteUsersCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(with tweet: SearchUserTweet) {
+    func set(with tweet: Tweet) {
         timeDateLabel.text                  = tweet.createdAt
         tweetBodyLabel.text                 = tweet.tweetText
         

@@ -41,7 +41,7 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
     
     
     func set(with user: User) {
-//        avatarImageView.downloadImage(from: user.profileImageUrl!)
+        avatarImageView.downloadImage(from: user.profileImageUrl!)
         forenameLabel.text          = user.name
         usernameLabel.text          = user.screenName
         followerView.set(itemInfoType: .followers, with: Int(user.followersCount))
