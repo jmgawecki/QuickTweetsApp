@@ -76,7 +76,8 @@ class FavoriteTweetsVC: UIViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweets) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteTweetsCell.reuseId, for: indexPath) as! FavoriteTweetsCell
             cell.set(with: tweets)
-            cell.delegate = self
+            cell.delegate       = self
+            cell.delegateSafari = self
             return cell
         })
     }
@@ -115,5 +116,12 @@ extension FavoriteTweetsVC: FavoriteTweetsCellDelegate {
                 self.presentEmptyStateView(with: "Looks like... \nYou have no favorite Tweets 🧐 \n\nTime to change that!", in: self.view)
             }
         }
+    }
+}
+
+extension FavoriteTweetsVC: FavoriteTweetsCellDelegateSafari {
+    func didRequestSafari(with urlString: String?) {
+        guard let url = URL(string: urlString ?? "") else { print("tralalala"); return }
+        presentSafariVC(with: url)
     }
 }

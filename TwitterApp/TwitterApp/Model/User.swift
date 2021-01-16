@@ -17,7 +17,7 @@ struct User: Encodable, Decodable, Hashable {
     var profileImageUrl:        String?     // profile picture
     var profileBackgroundUrl:   String?     // BackgroundPicture
 
-    var friendsCount:           Double      // Following
+    var followingCount:         Double      // Following
     var followersCount:         Double      // Followers
     var favouritesCount:        Double      // what that is?
     var statusesCount:          Double      // how many posts in total

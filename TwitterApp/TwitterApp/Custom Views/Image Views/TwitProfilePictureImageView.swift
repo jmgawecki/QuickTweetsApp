@@ -29,18 +29,17 @@ class TwitProfilePictureImageView: UIImageView {
         }
     }
     
+    func setcornerRadius() {
+        layer.cornerRadius      = self.frame.size.height / 2
+    }
+    
     
     //MARK: - Configurations
     
     private func configure() {
-        translatesAutoresizingMaskIntoConstraints = false
-        
         layer.borderWidth       = 2
         layer.borderColor       = ColorsTwitter.twitterDarkGray.cgColor
-        layer.cornerRadius      = 75
-        layer.masksToBounds     = true
-        
-        clipsToBounds           = true
+//        clipsToBounds           = true
         image                   = TwitterPNGs.twitterLogo
     }
 }

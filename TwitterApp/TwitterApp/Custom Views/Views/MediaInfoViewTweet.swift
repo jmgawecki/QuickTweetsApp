@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchTweetsMediaInfoView: UIView {
+class MediaInfoViewTweet: UIView {
 
     enum ItemInfoType {
         case comments, shares, likes
@@ -33,33 +33,33 @@ class SearchTweetsMediaInfoView: UIView {
         symbolImageView.tintColor   = ColorsTwitter.twitterBlue
         
         NSLayoutConstraint.activate([
-            symbolImageView.topAnchor.constraint(equalTo: self.topAnchor),
-            symbolImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            symbolImageView.widthAnchor.constraint(equalToConstant: 20),
-            symbolImageView.heightAnchor.constraint(equalToConstant: 20),
+            symbolImageView.topAnchor.constraint        (equalTo: self.topAnchor),
+            symbolImageView.leadingAnchor.constraint    (equalTo: self.leadingAnchor),
+            symbolImageView.widthAnchor.constraint      (equalToConstant: 20),
+            symbolImageView.heightAnchor.constraint     (equalToConstant: 20),
             
-            countLabel.centerYAnchor.constraint(equalTo: symbolImageView.centerYAnchor),
-            countLabel.leadingAnchor.constraint(equalTo: symbolImageView.trailingAnchor, constant: 12),
-            countLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            countLabel.heightAnchor.constraint(equalToConstant: 18),
+            countLabel.centerYAnchor.constraint         (equalTo: symbolImageView.centerYAnchor),
+            countLabel.leadingAnchor.constraint         (equalTo: symbolImageView.trailingAnchor, constant: 12),
+            countLabel.trailingAnchor.constraint        (equalTo: self.trailingAnchor),
+            countLabel.heightAnchor.constraint          (equalToConstant: 18),
             
          
         ])
     }
     
-    func set(itemInfoType: ItemInfoType, with count: Int) {
+    func set(itemInfoType: ItemInfoType, with count: String) {
         switch itemInfoType {
         case .comments:
             symbolImageView.image   = SFSymbols.comment
-            countLabel.text         = String(count)
+            countLabel.text         = count
             
         case .shares:
             symbolImageView.image   = SFSymbols.shares
-            countLabel.text         = String(count)
+            countLabel.text         = count
             
         case .likes:
             symbolImageView.image   = SFSymbols.likes
-            countLabel.text         = String(count)
+            countLabel.text         = count
         }
     }
 }

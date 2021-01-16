@@ -11,7 +11,7 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
     
     static let reuseId  = "UserTwitsHeaderView"
         
-    var avatarImageView     = TwitProfilePictureImageView(frame: .zero)
+    var avatarImageView     = CircledProfilePictureView()
     var forenameLabel       = TwitInfoHeaderTitleLabel()
     var usernameLabel       = TwitInfoHeaderBodyLabel(textAlignment: .center)
     
@@ -41,24 +41,24 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
     
     
     func set(with user: User) {
-        avatarImageView.downloadImage(from: user.profileImageUrl!)
+        avatarImageView.profilePicture.downloadImage(from: user.profileImageUrl!)
         forenameLabel.text          = user.name
-        usernameLabel.text          = user.screenName
+        usernameLabel.text          = "@\(user.screenName)"
         followerView.set(itemInfoType: .followers, with: Int(user.followersCount))
-        followingView.set(itemInfoType: .following, with: Int(user.favouritesCount))
+        followingView.set(itemInfoType: .following, with: Int(user.followingCount))
     }
     
 
     //MARK: - Configurations
     
     private func configure() {
-        backgroundColor         = .systemBackground
-        translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor                             = .systemBackground
+        translatesAutoresizingMaskIntoConstraints   = false
     }
     
     
     private func configureUIElements() {
-        
+        avatarImageView.setCornerRadius(with: avatarImageView.bounds.height / 2)
 
     }
 

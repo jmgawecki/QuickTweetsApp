@@ -74,7 +74,7 @@ class SearchTweetsVC: UIViewController {
                             screenName:             user.screenName,
                             profileImageUrl:        user.profileImageUrl,
                             profileBackgroundUrl:   user.profileBackgroundUrl,
-                            friendsCount:           user.friendsCount,
+                            followingCount:           user.followingCount,
                             followersCount:         user.followersCount,
                             favouritesCount:        user.favouritesCount,
                             statusesCount:          user.statusesCount,
@@ -105,6 +105,7 @@ class SearchTweetsVC: UIViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweet) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchTweetsCell.reuseId, for: indexPath) as! SearchTweetsCell
             cell.set(with: tweet)
+            cell.delegate = self
             return cell
         })
         
@@ -126,5 +127,12 @@ class SearchTweetsVC: UIViewController {
         
         collectionView.register(SearchTweetsVCCollectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchTweetsVCCollectionHeader.reuseId)
         
+    }
+}
+
+extension SearchTweetsVC: SearchTweetsCellDelegates {
+    func didRequestSafari(with urlString: String?) {
+        guard let url = URL(string: urlString ?? "") else { print("tralalala"); return }
+        presentSafariVC(with: url)
     }
 }

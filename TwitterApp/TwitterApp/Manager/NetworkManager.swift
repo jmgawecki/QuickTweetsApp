@@ -12,7 +12,6 @@ struct NetworkManager {
     
     static let shared = NetworkManager()
    
-    
     let swifter = Swifter(consumerKey: APIConsumerKeys.keyApi, consumerSecret: APIConsumerKeys.secretKeyApi)
     
     private init() {}
@@ -25,7 +24,7 @@ struct NetworkManager {
                             screenName:             userJson["screen_name"].string!,
                             profileImageUrl:        userJson["profile_image_url_https"].string,
                             profileBackgroundUrl:   userJson["profile_background_image_url_https"].string,
-                            friendsCount:           userJson["friends_count"].double!,
+                            followingCount:           userJson["friends_count"].double!,
                             followersCount:         userJson["followers_count"].double!,
                             favouritesCount:        userJson["favourites_count"].double!,
                             statusesCount:          userJson["statuses_count"].double!,
@@ -39,7 +38,7 @@ struct NetworkManager {
     }
     
     func getSingleUsersTweets(userId: String, completed: @escaping([Tweet]) -> Void) {
-        swifter.getTimeline(for: UserTag.id(userId), customParam: [:], count: 40, sinceID: nil, maxID: nil, trimUser: true, excludeReplies: true, includeRetweets: true, contributorDetails: true, includeEntities: true, tweetMode: .default) { (json) in
+        swifter.getTimeline(for: UserTag.id(userId), customParam: [:], count: 40, sinceID: nil, maxID: nil, trimUser: true, excludeReplies: true, includeRetweets: false, contributorDetails: true, includeEntities: true, tweetMode: .default) { (json) in
             let result = json.array ?? []
             var searchedUserTweets = [Tweet]()
             for tweet in result {

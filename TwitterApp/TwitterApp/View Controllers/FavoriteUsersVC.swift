@@ -112,6 +112,7 @@ class FavoriteUsersVC: UIViewController {
         dataSource      = UICollectionViewDiffableDataSource<SectionsUsers, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweets) -> UICollectionViewCell? in
             let cell    = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteUsersCell.reuseId, for: indexPath) as! FavoriteUsersCell
             cell.set(with: tweets)
+            cell.delegate = self
             return cell
         })
         
@@ -163,4 +164,13 @@ extension FavoriteUsersVC: FavoritesCollectionHeaderDelegates {
     }
     
     
+}
+
+extension FavoriteUsersVC: FavoriteUsersCellDelegates {
+    func didRequestSafari(with urlString: String?) {
+        guard let url = URL(string: urlString ?? "") else { print("tralalala"); return }
+        presentSafariVC(with: url)
+    }
+    
+
 }
