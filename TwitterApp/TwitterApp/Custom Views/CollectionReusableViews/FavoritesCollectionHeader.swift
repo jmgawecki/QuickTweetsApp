@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+#warning("refactor protocol - delete indexPath passed")
 protocol FavoritesCollectionHeaderDelegates: class {
     func didRemoveUserFromFavorites(index: IndexPath, user: User)
 }

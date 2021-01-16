@@ -26,6 +26,7 @@ class FavoriteUsersVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getFavorites()
+        
         configureVC()
         configureCollectionView()
         configureDataSource()
@@ -36,7 +37,17 @@ class FavoriteUsersVC: UIViewController {
     
     
     
-    //MARK: - Private Functions
+    //MARK: - Network Calls
+    /// One additional Network call done in a function updateData() line 85
+    private func deleteFavorite(user: User) {
+        PersistenceManager.updateWithUsers(newFavoriteUser: user, persistenceAction: .remove) { (error) in
+            guard let error = error else {
+                print("success")
+                return
+            }
+            print(error.rawValue)
+        }
+    }
     
     private func getFavorites() {
         PersistenceManager.retrieveFavoritesUsers { [weak self] (result) in
@@ -44,8 +55,14 @@ class FavoriteUsersVC: UIViewController {
             
             switch result {
             case .success(let users):
-                print(users)
                 self.users = users
+                if self.users.isEmpty {
+                    DispatchQueue.main.async {
+                        self.presentEmptyStateView(with: "Looks like... \nYou have no favorite Users 🧐 \n\nTime to change that!", in: self.view)
+                        return
+                    }
+                }
+                
                 DispatchQueue.main.async {
                     self.updateData(with: users)
                 }
@@ -54,6 +71,8 @@ class FavoriteUsersVC: UIViewController {
             }
         }
     }
+    
+    //MARK: - Private Functions
     
     private func configureVC() {
         view.backgroundColor    = .systemBackground
@@ -100,7 +119,6 @@ class FavoriteUsersVC: UIViewController {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                                                          withReuseIdentifier: FavoritesCollectionHeader.reuseId,
                                                                          for: indexPath) as! FavoritesCollectionHeader
-            #warning("it probably did not work cause the index has changed")
             header.set(with: self.users[indexPath.section], index: indexPath)
             header.delegate = self
             return header
@@ -124,14 +142,24 @@ class FavoriteUsersVC: UIViewController {
     //MARK: - Layout configuration
 }
 
+
+    //MARK: - Extensions
+
 extension FavoriteUsersVC: FavoritesCollectionHeaderDelegates {
     
     func didRemoveUserFromFavorites(index: IndexPath, user: User) {
-        #warning("refactor protocol - delete indexPath passed")
+        #warning("create a conditional here in case deleteFavorite from UserDefaults did not succeed. Or is it already working as it supposed to?")
+        deleteFavorite(user: user)
+        
         users.removeAll {$0.idStr == user.idStr}
         snapshot.deleteSections([.favoriteUser(user)])
         dataSource.apply(snapshot, animatingDifferences: true)
-        
+        if tweets.isEmpty {
+            DispatchQueue.main.async {
+                #warning("add animation here so its gonna appears in one second, not instantly")
+                self.presentEmptyStateView(with: "Looks like... \nYou have no favorite Users 🧐 \n\nTime to change that!", in: self.view)
+            }
+        }
     }
     
     

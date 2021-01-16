@@ -15,6 +15,7 @@ class FavoriteTweetsVC: UIViewController {
 
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Tweet>!
+    var snapshot: NSDiffableDataSourceSnapshot<Section, Tweet>!
     
     var tweets: [Tweet] = []
     
@@ -32,23 +33,37 @@ class FavoriteTweetsVC: UIViewController {
     }
 
 
-    //MARK: - @Objective functions
+    //MARK: - Network Calls
 
-
-
-    //MARK: - Private Functions
-    
     private func getFavorites() {
         PersistenceManager.retrieveFavoritesTweets { [weak self] (result) in
             guard let self = self else { return }
             switch result {
             case .success(let tweets):
                 self.tweets = tweets
+                if self.tweets.isEmpty {
+                    DispatchQueue.main.async {
+                        self.presentEmptyStateView(with: "Looks like... \nYou have no favorite Tweets 🧐 \n\nTime to change that!", in: self.view)
+                    }
+                    return
+                }
             case .failure(let error):
                 print(error.rawValue)
             }
         }
     }
+    
+    
+    private func deleteFavorite(tweet: Tweet) {
+        PersistenceManager.updateWithTweets(newFavoriteTweet: tweet, persistenceAction: .remove) { (error) in
+            guard let error = error else { print("success"); return }
+            print(error.rawValue)
+            return
+        }
+    }
+
+    
+    //MARK: - Private Functions
     
     private func configureVC() {
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -56,19 +71,22 @@ class FavoriteTweetsVC: UIViewController {
         view.backgroundColor    = .systemBackground
     }
     
+    
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweets) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteTweetsCell.reuseId, for: indexPath) as! FavoriteTweetsCell
             cell.set(with: tweets)
+            cell.delegate = self
             return cell
         })
     }
     
+    
     private func updateData() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Tweet>()
+        snapshot = NSDiffableDataSourceSnapshot<Section, Tweet>()
         snapshot.appendSections([.main])
         snapshot.appendItems(tweets)
-        DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
+        DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true) }
     }
 
 
@@ -80,8 +98,22 @@ class FavoriteTweetsVC: UIViewController {
         collectionView.backgroundColor = .systemBackground
         
         collectionView.register(FavoriteTweetsCell.self, forCellWithReuseIdentifier: FavoriteTweetsCell.reuseId)
-        
     }
-    
-   
+}
+
+extension FavoriteTweetsVC: FavoriteTweetsCellDelegate {
+    func didRemoveTweetFromFavorites(tweet: Tweet) {
+        #warning("creae a conditional here in case deleteFavorite from UserDefaults did not succeed. Or is it actuall already made?")
+        deleteFavorite(tweet: tweet)
+        
+        tweets.removeAll(where: { $0.twitsId == tweet.twitsId })
+        snapshot.deleteItems([tweet])
+        DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true) }
+        if tweets.isEmpty {
+            DispatchQueue.main.async {
+                #warning("add animation here so its gonna appears in one second, not instantly")
+                self.presentEmptyStateView(with: "Looks like... \nYou have no favorite Tweets 🧐 \n\nTime to change that!", in: self.view)
+            }
+        }
+    }
 }

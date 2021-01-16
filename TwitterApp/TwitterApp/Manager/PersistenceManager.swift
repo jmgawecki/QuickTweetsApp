@@ -19,7 +19,7 @@ enum PersistenceManager {
         static let users        = "users"
         static let tweets       = "tweets"
     }
-    
+    #warning("refactor function's signature newFavoriteTweet to FavoriteTweet")
     static func updateWithUsers(newFavoriteUser: User, persistenceAction: PersisenceAction, completed: @escaping(TwitterErrors?) -> Void) {
         retrieveFavoritesUsers { (result) in
             switch result {

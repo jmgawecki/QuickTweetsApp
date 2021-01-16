@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol FavoriteTweetsCellDelegate: class {
+    func didRemoveTweetFromFavorites(tweet: Tweet)
+}
+
 class FavoriteTweetsCell: UICollectionViewCell {
     
     static let reuseId      = "FavoriteTwitsCell"
+    
+    var removeFavoriteButton        = UIButton()
     
     var avatarImageView     = TwitProfilePictureImageView(frame: .zero)
     var forenameLabel       = TwitInfoHeaderTitleLabel(from: .left)
@@ -22,6 +28,10 @@ class FavoriteTweetsCell: UICollectionViewCell {
     let sharesView          = SearchTweetsMediaInfoView()
     let likesView           = SearchTweetsMediaInfoView()
     
+    var tweet: Tweet!
+    
+    weak var delegate: FavoriteTweetsCellDelegate!
+    
     
     //MARK: - Overrides
     
@@ -33,10 +43,17 @@ class FavoriteTweetsCell: UICollectionViewCell {
         addSubviews()
         layoutUI()
         configureMediaStackView()
+        configureRemoveButton()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Objectives
+    
+    @objc private func removeButtonTapped() {
+        delegate.didRemoveTweetFromFavorites(tweet: tweet)
     }
     
     
@@ -44,20 +61,27 @@ class FavoriteTweetsCell: UICollectionViewCell {
     
     func set(with tweet: Tweet) {
         #warning("fix comment, shares, likes later, add authors profile picture into tweets network call")
+        self.tweet                          = tweet
         //        avatarImageView.downloadImage(from: tweet)
-        tweetBodyLabel.text             = tweet.tweetText
-        timeDateLabel.text              = tweet.createdAt
-        forenameLabel.text              = tweet.user
-        
-        commentView.set(itemInfoType:   .comments,  with: Int(tweet.retweetCounter))
-        sharesView.set(itemInfoType:    .shares,    with:  Int(tweet.retweetCounter))
-        likesView.set(itemInfoType:     .likes,     with: Int(tweet.retweetCounter))
+        tweetBodyLabel.text                 = tweet.tweetText
+        timeDateLabel.text                  = tweet.createdAt
+        forenameLabel.text                  = tweet.user
+            
+        commentView.set(itemInfoType:       .comments,  with: Int(tweet.retweetCounter))
+        sharesView.set(itemInfoType:        .shares,    with:  Int(tweet.retweetCounter))
+        likesView.set(itemInfoType:         .likes,     with: Int(tweet.retweetCounter))
+    }
+    
+    private func configureRemoveButton() {
+        removeFavoriteButton.setImage(UIImage(systemName: "minus"), for: .normal)
+        removeFavoriteButton.tintColor      = ColorsTwitter.twitterBlue
+        removeFavoriteButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
     }
     
     
     private func configureCell() {
-        backgroundColor         = .secondarySystemBackground
-        layer.cornerRadius      = 15
+        backgroundColor                     = .secondarySystemBackground
+        layer.cornerRadius                  = 15
     }
     
     
@@ -87,6 +111,7 @@ class FavoriteTweetsCell: UICollectionViewCell {
     }
     
     private func addSubviews() {
+        addSubview(removeFavoriteButton)
         addSubview(avatarImageView)
         addSubview(forenameLabel)
         addSubview(timeDateLabel)
@@ -96,34 +121,40 @@ class FavoriteTweetsCell: UICollectionViewCell {
 
     
     private func layoutUI() {
-        mediaStackView.translatesAutoresizingMaskIntoConstraints    = false
-        timeDateLabel.translatesAutoresizingMaskIntoConstraints     = false
+        mediaStackView.translatesAutoresizingMaskIntoConstraints       = false
+        timeDateLabel.translatesAutoresizingMaskIntoConstraints        = false
+        removeFavoriteButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            avatarImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25),
-            avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
+            removeFavoriteButton.topAnchor.constraint       (equalTo: topAnchor, constant: 5),
+            removeFavoriteButton.trailingAnchor.constraint  (equalTo: trailingAnchor, constant: -5),
+            removeFavoriteButton.heightAnchor.constraint    (equalToConstant: 30),
+            removeFavoriteButton.widthAnchor.constraint     (equalTo: removeFavoriteButton.heightAnchor),
             
-            forenameLabel.topAnchor.constraint(equalTo: avatarImageView.topAnchor, constant: 0),
-            forenameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 0),
-            forenameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            forenameLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.10),
+            avatarImageView.topAnchor.constraint            (equalTo: topAnchor, constant: 0),
+            avatarImageView.leadingAnchor.constraint        (equalTo: leadingAnchor, constant: 0),
+            avatarImageView.widthAnchor.constraint          (equalTo: widthAnchor, multiplier: 0.25),
+            avatarImageView.heightAnchor.constraint         (equalTo: avatarImageView.widthAnchor),
             
-            timeDateLabel.topAnchor.constraint(equalTo: forenameLabel.bottomAnchor, constant: 0),
-            timeDateLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 0),
-            timeDateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            timeDateLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1),
+            forenameLabel.topAnchor.constraint              (equalTo: avatarImageView.topAnchor, constant: 0),
+            forenameLabel.leadingAnchor.constraint          (equalTo: avatarImageView.trailingAnchor, constant: 0),
+            forenameLabel.trailingAnchor.constraint         (equalTo: trailingAnchor, constant: 0),
+            forenameLabel.heightAnchor.constraint           (equalTo: heightAnchor, multiplier: 0.10),
             
-            mediaStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-            mediaStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
-            mediaStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
-            mediaStackView.heightAnchor.constraint(equalToConstant: 60),
+            timeDateLabel.topAnchor.constraint              (equalTo: forenameLabel.bottomAnchor, constant: 0),
+            timeDateLabel.leadingAnchor.constraint          (equalTo: avatarImageView.trailingAnchor, constant: 0),
+            timeDateLabel.trailingAnchor.constraint         (equalTo: trailingAnchor, constant: 0),
+            timeDateLabel.heightAnchor.constraint           (equalTo: heightAnchor, multiplier: 0.1),
             
-            tweetBodyLabel.topAnchor.constraint(equalTo: timeDateLabel.bottomAnchor, constant: 0),
-            tweetBodyLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            tweetBodyLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            tweetBodyLabel.bottomAnchor.constraint(equalTo: mediaStackView.topAnchor, constant: 0),
+            mediaStackView.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),
+            mediaStackView.leadingAnchor.constraint         (equalTo: leadingAnchor, constant: 30),
+            mediaStackView.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: -30),
+            mediaStackView.heightAnchor.constraint          (equalToConstant: 60),
+            
+            tweetBodyLabel.topAnchor.constraint             (equalTo: timeDateLabel.bottomAnchor, constant: 0),
+            tweetBodyLabel.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: -20),
+            tweetBodyLabel.leadingAnchor.constraint         (equalTo: leadingAnchor, constant: 20),
+            tweetBodyLabel.bottomAnchor.constraint          (equalTo: mediaStackView.topAnchor, constant: 0),
         ])
     }
 }
