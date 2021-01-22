@@ -51,7 +51,7 @@ class FavoritesCollectionHeader: UICollectionReusableView {
     func set(with user: User, index: IndexPath) {
         avatarImageView.downloadImage(from: user.profileImageUrl!)
         forenameLabel.text          = user.name
-        usernameLabel.text          = "@\(user.screenName)"
+        usernameLabel.text          = user.screenName
         self.index                  = index
         self.user                   = user
     }

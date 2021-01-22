@@ -11,10 +11,6 @@ protocol FavoriteTweetsCellDelegate: class {
     func didRemoveTweetFromFavorites(tweet: Tweet)
 }
 
-protocol FavoriteTweetsCellDelegateSafari: class {
-    func didRequestSafari(with urlString: String?)
-}
-
 class FavoriteTweetsCell: UICollectionViewCell {
     
     static let reuseId      = "FavoriteTwitsCell"
@@ -28,14 +24,13 @@ class FavoriteTweetsCell: UICollectionViewCell {
     let tweetBodyLabel      = UserSearchVCTextView()
 
     let mediaStackView      = UIStackView()
-    let goOnlineButton        = GoOnlineButton()
-    let sharesView          = MediaInfoViewTweet()
-    let likesView           = MediaInfoViewTweet()
+    let commentView         = SearchTweetsMediaInfoView()
+    let sharesView          = SearchTweetsMediaInfoView()
+    let likesView           = SearchTweetsMediaInfoView()
     
     var tweet: Tweet!
-    var urlString: String!
+    
     weak var delegate: FavoriteTweetsCellDelegate!
-    weak var delegateSafari: FavoriteTweetsCellDelegateSafari!
     
     
     //MARK: - Overrides
@@ -69,14 +64,13 @@ class FavoriteTweetsCell: UICollectionViewCell {
         self.tweet                          = tweet
         //        avatarImageView.downloadImage(from: tweet)
         tweetBodyLabel.text                 = tweet.tweetText
-        timeDateLabel.text                  = tweet.createdAt.createFormattedSwifterDateString()
+        timeDateLabel.text                  = tweet.createdAt
         forenameLabel.text                  = tweet.user
             
-        sharesView.set(itemInfoType:        .shares,    with:  tweet.retweetCounter.converToKFormatString())
-        likesView.set(itemInfoType:         .likes,     with: tweet.likesCounter.converToKFormatString())
-        urlString                           = tweet.urlToExpandWithSafari
+        commentView.set(itemInfoType:       .comments,  with: Int(tweet.retweetCounter))
+        sharesView.set(itemInfoType:        .shares,    with:  Int(tweet.retweetCounter))
+        likesView.set(itemInfoType:         .likes,     with: Int(tweet.retweetCounter))
     }
-
     
     private func configureRemoveButton() {
         removeFavoriteButton.setImage(UIImage(systemName: "minus"), for: .normal)
@@ -104,11 +98,10 @@ class FavoriteTweetsCell: UICollectionViewCell {
         mediaStackView.axis                 = .horizontal
         mediaStackView.distribution         = .equalSpacing
         mediaStackView.alignment            = .center
-        goOnlineButton.delegate               = self
         
-        
-        mediaStackView.addArrangedSubview(likesView)
+        mediaStackView.addArrangedSubview(commentView)
         mediaStackView.addArrangedSubview(sharesView)
+        mediaStackView.addArrangedSubview(likesView)
     }
     
     
@@ -124,7 +117,6 @@ class FavoriteTweetsCell: UICollectionViewCell {
         addSubview(timeDateLabel)
         addSubview(tweetBodyLabel)
         addSubview(mediaStackView)
-        addSubview(goOnlineButton)
     }
 
     
@@ -156,13 +148,8 @@ class FavoriteTweetsCell: UICollectionViewCell {
             
             mediaStackView.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),
             mediaStackView.leadingAnchor.constraint         (equalTo: leadingAnchor, constant: 30),
-            mediaStackView.widthAnchor.constraint           (equalTo: widthAnchor, multiplier: 0.55),
-            mediaStackView.heightAnchor.constraint          (equalToConstant: 30),
-                    
-            goOnlineButton.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),
-            goOnlineButton.leadingAnchor.constraint         (equalTo: mediaStackView.trailingAnchor, constant: 5),
-            goOnlineButton.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: -5),
-            goOnlineButton.heightAnchor.constraint          (equalToConstant: 30),
+            mediaStackView.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: -30),
+            mediaStackView.heightAnchor.constraint          (equalToConstant: 60),
             
             tweetBodyLabel.topAnchor.constraint             (equalTo: timeDateLabel.bottomAnchor, constant: 0),
             tweetBodyLabel.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: -20),
@@ -170,12 +157,4 @@ class FavoriteTweetsCell: UICollectionViewCell {
             tweetBodyLabel.bottomAnchor.constraint          (equalTo: mediaStackView.topAnchor, constant: 0),
         ])
     }
-}
-
-extension FavoriteTweetsCell: GoOnlineViewDelegate {
-    func didTapGoOnlineButton() {
-        delegateSafari.didRequestSafari(with: urlString)
-    }
-    
-  
 }

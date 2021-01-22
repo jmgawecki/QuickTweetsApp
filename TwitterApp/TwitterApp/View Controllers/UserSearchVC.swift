@@ -106,10 +106,3 @@ extension UserSearchVC: UITextFieldDelegate {
         return true
     }
 }
-
-extension UserSearchVC: SearchTweetsCellDelegates {
-    func didRequestSafari(with urlString: String?) {
-        guard let url = URL(string: urlString ?? "") else { print("tralalala"); return }
-        presentSafariVC(with: url)
-    }
-}

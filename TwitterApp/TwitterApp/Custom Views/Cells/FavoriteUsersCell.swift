@@ -6,12 +6,6 @@
 //
 
 import UIKit
-import SafariServices
-
-protocol FavoriteUsersCellDelegates: class {
-    func didRequestSafari(with urlString: String?)
-}
-
 
 class FavoriteUsersCell: UICollectionViewCell {
     
@@ -20,14 +14,10 @@ class FavoriteUsersCell: UICollectionViewCell {
                     
     let tweetBodyLabel                      = UserSearchVCTextView()
     var mediaStackView                      = UIStackView()
-    var goOnlineButton                      = GoOnlineButton()
-    var sharesView                          = MediaInfoViewTweet()
-    var likesView                           = MediaInfoViewTweet()
+    var commentView                         = SearchTweetsMediaInfoView()
+    var sharesView                          = SearchTweetsMediaInfoView()
+    var likesView                           = SearchTweetsMediaInfoView()
     var timeDateLabel                       = UILabel()
-    
-    weak var delegate: FavoriteUsersCellDelegates!
-    
-    var urlString: String!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,7 +25,6 @@ class FavoriteUsersCell: UICollectionViewCell {
         configureTimeDateLabel()
         layoutUI()
         configureMediaStackView()
-//        debugConfiguration()
     }
     
     required init?(coder: NSCoder) {
@@ -43,13 +32,12 @@ class FavoriteUsersCell: UICollectionViewCell {
     }
     
     func set(with tweet: Tweet) {
-        timeDateLabel.text                  = tweet.createdAt.createFormattedSwifterDateString()
+        timeDateLabel.text                  = tweet.createdAt
         tweetBodyLabel.text                 = tweet.tweetText
         
-        sharesView.set(itemInfoType:        .shares, with: tweet.retweetCounter.converToKFormatString())
-        likesView.set(itemInfoType:         .likes, with: tweet.likesCounter.converToKFormatString())
-        
-        urlString                           = tweet.urlToExpandWithSafari
+        commentView.set(itemInfoType:       .comments, with: Int(tweet.likesCounter))
+        sharesView.set(itemInfoType:        .shares, with: Int(tweet.retweetCounter))
+        likesView.set(itemInfoType:         .likes, with: Int(tweet.likesCounter))
     }
     
     private func configureCell() {
@@ -61,31 +49,29 @@ class FavoriteUsersCell: UICollectionViewCell {
         tweetBodyLabel.layer.borderWidth    = 1
         mediaStackView.layer.borderWidth    = 1
         timeDateLabel.layer.borderWidth     = 1
-        goOnlineButton.layer.borderWidth    = 1
     }
     
     private func configureMediaStackView() {
         mediaStackView.axis                 = .horizontal
         mediaStackView.distribution         = .equalSpacing
         mediaStackView.alignment            = .center
-        goOnlineButton.delegate             = self
         
         
-        mediaStackView.addArrangedSubview(likesView)
+        
+        mediaStackView.addArrangedSubview(commentView)
         mediaStackView.addArrangedSubview(sharesView)
+        mediaStackView.addArrangedSubview(likesView)
     }
     
     private func configureTimeDateLabel() {
         timeDateLabel.textColor             = .systemGray
         timeDateLabel.textAlignment         = .center
-        
     }
     
     private func layoutUI() {
         addSubview(timeDateLabel)
         addSubview(tweetBodyLabel)
         addSubview(mediaStackView)
-        addSubview(goOnlineButton)
         mediaStackView.translatesAutoresizingMaskIntoConstraints = false
         timeDateLabel.translatesAutoresizingMaskIntoConstraints  = false
         
@@ -97,24 +83,13 @@ class FavoriteUsersCell: UICollectionViewCell {
             
             mediaStackView.bottomAnchor.constraint  (equalTo: bottomAnchor, constant: -10),
             mediaStackView.leadingAnchor.constraint (equalTo: leadingAnchor, constant: 30),
-            mediaStackView.widthAnchor.constraint   (equalTo: widthAnchor, multiplier: 0.55),
-            mediaStackView.heightAnchor.constraint  (equalToConstant: 30),
-            
-            goOnlineButton.bottomAnchor.constraint  (equalTo: bottomAnchor, constant: -10),
-            goOnlineButton.leadingAnchor.constraint (equalTo: mediaStackView.trailingAnchor, constant: 5),
-            goOnlineButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
-            goOnlineButton.heightAnchor.constraint  (equalToConstant: 30),
+            mediaStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            mediaStackView.heightAnchor.constraint  (equalToConstant: 60),
             
             tweetBodyLabel.topAnchor.constraint     (equalTo: timeDateLabel.bottomAnchor, constant: 0),
             tweetBodyLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             tweetBodyLabel.leadingAnchor.constraint (equalTo: leadingAnchor, constant: 20),
-            tweetBodyLabel.heightAnchor.constraint  (equalToConstant: 150),
+            tweetBodyLabel.bottomAnchor.constraint  (equalTo: mediaStackView.topAnchor, constant: 0),
         ])
-    }
-}
-
-extension FavoriteUsersCell: GoOnlineViewDelegate {
-    func didTapGoOnlineButton() {
-        delegate.didRequestSafari(with: urlString)
     }
 }

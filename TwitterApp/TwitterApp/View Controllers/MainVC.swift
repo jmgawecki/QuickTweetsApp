@@ -50,18 +50,6 @@ class MainVC: UIViewController {
     @objc private func searchButtonTapped() {
         let destVC              = UserSearchVC()
         destVC.title            = "User search"
-        NetworkManager.shared.getSingleUser(username: "barackobama") { (result) in
-            switch result {
-                
-            case .success(_):
-                return
-            case .failure(_):
-                return
-            }
-        }
-        NetworkManager.shared.getSingleUsersTweets(userId: "813286") { (tweets) in
-            
-        }
         navigationController?.pushViewController(destVC, animated: true)
     }
     

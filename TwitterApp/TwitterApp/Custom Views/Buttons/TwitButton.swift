@@ -37,6 +37,6 @@ class TwitButton: UIButton {
     private func configure() {
         translatesAutoresizingMaskIntoConstraints   = false
         layer.cornerRadius                          = 15
-        setTitleColor(.white, for: .normal)
+        titleLabel?.textColor                       = .white
     }
 }

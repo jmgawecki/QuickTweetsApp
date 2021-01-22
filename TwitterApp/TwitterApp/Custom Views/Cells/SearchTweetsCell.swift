@@ -5,10 +5,6 @@
 //  Created by Jakub Gawecki on 04/01/2021.
 //
 
-protocol SearchTweetsCellDelegates: class {
-    func didRequestSafari(with urlString: String?)
-}
-
 import UIKit
 
 class SearchTweetsCell: UICollectionViewCell {
@@ -19,13 +15,12 @@ class SearchTweetsCell: UICollectionViewCell {
     var timeDateLabel           = UILabel()
     let tweetBodyLabel          = UserSearchVCTextView()
     var mediaStackView          = UIStackView()
-    var goOnlineButton          = GoOnlineButton()
-    var sharesView              = MediaInfoViewTweet()
-    var likesView               = MediaInfoViewTweet()
+    let seeOnlineButton         = UIButton()
+    var commentView             = SearchTweetsMediaInfoView()
+    var sharesView              = SearchTweetsMediaInfoView()
+    var likesView               = SearchTweetsMediaInfoView()
     
     var tweet: Tweet!
-    weak var delegate: SearchTweetsCellDelegates!
-    var urlString: String!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,12 +48,13 @@ class SearchTweetsCell: UICollectionViewCell {
     func set(with usersTweet: Tweet) {
         tweet                                       = usersTweet
         tweetBodyLabel.text                         = usersTweet.tweetText
-        timeDateLabel.text                          = usersTweet.createdAt.createFormattedSwifterDateString()
-        sharesView.set(itemInfoType: .shares,       with: usersTweet.retweetCounter.converToKFormatString())
-        likesView.set(itemInfoType: .likes,         with: usersTweet.likesCounter.converToKFormatString())
-        urlString                                   = tweet.urlToExpandWithSafari
-    }
+        timeDateLabel.text                          = usersTweet.createdAt
+        commentView.set(itemInfoType: .comments,    with: Int(usersTweet.likesCounter))
+        sharesView.set(itemInfoType: .shares,       with: Int(usersTweet.retweetCounter))
+        likesView.set(itemInfoType: .likes,         with: Int(usersTweet.likesCounter))
 
+    }
+    
     private func configureCell() {
         backgroundColor                     = .secondarySystemBackground
         layer.cornerRadius                  = 15
@@ -74,10 +70,10 @@ class SearchTweetsCell: UICollectionViewCell {
         mediaStackView.axis                 = .horizontal
         mediaStackView.distribution         = .equalSpacing
         mediaStackView.alignment            = .center
-        goOnlineButton.delegate               = self
         
-        mediaStackView.addArrangedSubview(likesView)
+        mediaStackView.addArrangedSubview(commentView)
         mediaStackView.addArrangedSubview(sharesView)
+        mediaStackView.addArrangedSubview(likesView)
     }
     
     private func configureUIElements() {
@@ -94,7 +90,6 @@ class SearchTweetsCell: UICollectionViewCell {
         addSubview(timeDateLabel)
         addSubview(tweetBodyLabel)
         addSubview(mediaStackView)
-        addSubview(goOnlineButton)
         
         addToFavoritesButton.translatesAutoresizingMaskIntoConstraints  = false
         mediaStackView.translatesAutoresizingMaskIntoConstraints        = false
@@ -113,13 +108,8 @@ class SearchTweetsCell: UICollectionViewCell {
                     
             mediaStackView.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),
             mediaStackView.leadingAnchor.constraint         (equalTo: leadingAnchor, constant: 30),
-            mediaStackView.widthAnchor.constraint           (equalTo: widthAnchor, multiplier: 0.55),
-            mediaStackView.heightAnchor.constraint          (equalToConstant: 30),
-            
-            goOnlineButton.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),
-            goOnlineButton.leadingAnchor.constraint         (equalTo: mediaStackView.trailingAnchor, constant: 5),
-            goOnlineButton.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: -5),
-            goOnlineButton.heightAnchor.constraint          (equalToConstant: 30),
+            mediaStackView.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: -30),
+            mediaStackView.heightAnchor.constraint          (equalToConstant: 60),
                     
             tweetBodyLabel.topAnchor.constraint             (equalTo: timeDateLabel.bottomAnchor, constant: 0),
             tweetBodyLabel.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: -20),
@@ -128,10 +118,3 @@ class SearchTweetsCell: UICollectionViewCell {
         ])
     }
 }
-
-extension SearchTweetsCell: GoOnlineViewDelegate {
-    func didTapGoOnlineButton() {
-        delegate.didRequestSafari(with: urlString)
-    }
-}
-
