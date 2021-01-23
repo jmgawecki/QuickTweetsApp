@@ -104,7 +104,7 @@ class SearchTweetsVC: UIViewController {
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweet) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchTweetsCell.reuseId, for: indexPath) as! SearchTweetsCell
-            cell.set(with: tweet)
+            cell.set(with: tweet, buttonTitle: "See full", isEnabled: true)
             return cell
         })
         

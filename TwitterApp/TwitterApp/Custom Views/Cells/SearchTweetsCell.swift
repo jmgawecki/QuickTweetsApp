@@ -19,6 +19,7 @@ class SearchTweetsCell: UICollectionViewCell {
     var commentView             = CellMediaInfoView()
     var sharesView              = CellMediaInfoView()
     var likesView               = CellMediaInfoView()
+    var goSafariButton                      = GoSafariButton()
     
     var tweet: Tweet!
     
@@ -45,13 +46,18 @@ class SearchTweetsCell: UICollectionViewCell {
         }
     }
     
-    func set(with usersTweet: Tweet) {
+    func set(with usersTweet: Tweet, buttonTitle: String?, isEnabled: Bool) {
         tweet                                       = usersTweet
         tweetBodyLabel.text                         = usersTweet.tweetText
         timeDateLabel.text                          = usersTweet.createdAt.formatToTwitterPostDate()
 
         sharesView.set(itemInfoType: .shares,       with: usersTweet.retweetCounter.convertToKMFormattedString())
         likesView.set(itemInfoType: .likes,         with: usersTweet.likesCounter.convertToKMFormattedString())
+        
+        if buttonTitle != nil {
+            goSafariButton.setTitle(buttonTitle, for: .normal)
+            goSafariButton.isEnabled = true
+        }
 
     }
     
@@ -89,6 +95,7 @@ class SearchTweetsCell: UICollectionViewCell {
         addSubview(timeDateLabel)
         addSubview(tweetBodyLabel)
         addSubview(mediaStackView)
+        addSubview(goSafariButton)
         
         addToFavoritesButton.translatesAutoresizingMaskIntoConstraints  = false
         mediaStackView.translatesAutoresizingMaskIntoConstraints        = false
@@ -107,8 +114,13 @@ class SearchTweetsCell: UICollectionViewCell {
                     
             mediaStackView.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),
             mediaStackView.leadingAnchor.constraint         (equalTo: leadingAnchor, constant: 30),
-            mediaStackView.widthAnchor.constraint           (equalTo: widthAnchor, multiplier: 0.5),
+            mediaStackView.widthAnchor.constraint           (equalTo: widthAnchor, multiplier: 0.55),
             mediaStackView.heightAnchor.constraint          (equalToConstant: 60),
+            
+            goSafariButton.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),
+            goSafariButton.leadingAnchor.constraint         (equalTo: mediaStackView.trailingAnchor, constant: 0),
+            goSafariButton.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: 0),
+            goSafariButton.heightAnchor.constraint          (equalToConstant: 60),
                     
             tweetBodyLabel.topAnchor.constraint             (equalTo: timeDateLabel.bottomAnchor, constant: 0),
             tweetBodyLabel.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: -20),

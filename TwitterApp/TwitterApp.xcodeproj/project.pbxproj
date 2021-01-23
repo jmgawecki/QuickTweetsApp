@@ -17,6 +17,8 @@
 		EF39E54525A20A9D004462DC /* TwitterErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39E54425A20A9D004462DC /* TwitterErrors.swift */; };
 		EF3E7A9525BB0D9D0036DAFC /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3E7A9425BB0D9D0036DAFC /* Double+Ext.swift */; };
 		EF3E7AA125BC6B7A0036DAFC /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3E7AA025BC6B7A0036DAFC /* String+Ext.swift */; };
+		EF3E7AA525BC78010036DAFC /* RemoveFromFavButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3E7AA425BC78010036DAFC /* RemoveFromFavButton.swift */; };
+		EF3E7AA925BC7F490036DAFC /* GoSafariButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3E7AA825BC7F490036DAFC /* GoSafariButton.swift */; };
 		EF4D7AB125AB71600096CB6A /* FavoriteTweetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4D7AB025AB71600096CB6A /* FavoriteTweetsVC.swift */; };
 		EF4D7AB525AB74B90096CB6A /* FavoriteTweetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4D7AB425AB74B90096CB6A /* FavoriteTweetsCell.swift */; };
 		EF4D7AC925AB8A320096CB6A /* CellMediaInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4D7AC825AB8A320096CB6A /* CellMediaInfoView.swift */; };
@@ -103,6 +105,8 @@
 		EF39E54425A20A9D004462DC /* TwitterErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterErrors.swift; sourceTree = "<group>"; };
 		EF3E7A9425BB0D9D0036DAFC /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
 		EF3E7AA025BC6B7A0036DAFC /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		EF3E7AA425BC78010036DAFC /* RemoveFromFavButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFromFavButton.swift; sourceTree = "<group>"; };
+		EF3E7AA825BC7F490036DAFC /* GoSafariButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoSafariButton.swift; sourceTree = "<group>"; };
 		EF4D7AB025AB71600096CB6A /* FavoriteTweetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTweetsVC.swift; sourceTree = "<group>"; };
 		EF4D7AB425AB74B90096CB6A /* FavoriteTweetsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTweetsCell.swift; sourceTree = "<group>"; };
 		EF4D7AC825AB8A320096CB6A /* CellMediaInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellMediaInfoView.swift; sourceTree = "<group>"; };
@@ -344,6 +348,8 @@
 			isa = PBXGroup;
 			children = (
 				EF88FFBA259A2D4000ADF27B /* TwitButton.swift */,
+				EF3E7AA425BC78010036DAFC /* RemoveFromFavButton.swift */,
+				EF3E7AA825BC7F490036DAFC /* GoSafariButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -684,6 +690,7 @@
 				EF294D1625AA652600850E74 /* TwitProfilePictureImageView.swift in Sources */,
 				EF7F9ED825B07F9800F9799A /* Tweet.swift in Sources */,
 				EF88FF77259A295300ADF27B /* SceneDelegate.swift in Sources */,
+				EF3E7AA925BC7F490036DAFC /* GoSafariButton.swift in Sources */,
 				EF79C70F259A8710004013BF /* TwitInfoHeaderTitleLabel.swift in Sources */,
 				EFD473F125A8C69700AC9AD9 /* FavoriteUsersCell.swift in Sources */,
 				EF79C701259A78F0004013BF /* UserResultLabel.swift in Sources */,
@@ -695,6 +702,7 @@
 				EFC7FB5D25A3A19E00E08A8E /* SearchTweetsCell.swift in Sources */,
 				EFD4744025AA503C00AC9AD9 /* CollectionLayouts.swift in Sources */,
 				EF4D7AD025AB91930096CB6A /* UserSearchVCTextView.swift in Sources */,
+				EF3E7AA525BC78010036DAFC /* RemoveFromFavButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

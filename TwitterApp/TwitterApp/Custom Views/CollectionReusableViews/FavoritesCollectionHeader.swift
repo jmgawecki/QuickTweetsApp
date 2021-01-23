@@ -16,7 +16,7 @@ class FavoritesCollectionHeader: UICollectionReusableView {
     
     static let reuseId              = "FavoritesUsersHeaderView"
         
-    var removeFromFavoritesButton   = UIButton()
+    var removeFromFavoritesButton   = RemoveFromFavButton(title: "Remove")
     var avatarImageView             = TwitProfilePictureImageView(frame: .zero)
     var forenameLabel               = TwitInfoHeaderTitleLabel()
     var usernameLabel               = TwitInfoHeaderBodyLabel(textAlignment: .center)
@@ -32,6 +32,7 @@ class FavoritesCollectionHeader: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .systemBackground
         configure()
         layoutUI()
         configureRemoveFromFavoritesButton()
@@ -62,9 +63,6 @@ class FavoritesCollectionHeader: UICollectionReusableView {
     }
     
     private func configureRemoveFromFavoritesButton() {
-        #warning("refactor strings to constants")
-        removeFromFavoritesButton.setImage(UIImage(systemName: "minus"), for: .normal)
-        removeFromFavoritesButton.tintColor = ColorsTwitter.twitterBlue
         removeFromFavoritesButton.addTarget(self, action: #selector(removeFromFavoritesTapped), for: .touchUpInside)
         
     }
@@ -78,15 +76,14 @@ class FavoritesCollectionHeader: UICollectionReusableView {
         addSubview(avatarImageView)
         addSubview(forenameLabel)
         addSubview(usernameLabel)
-        removeFromFavoritesButton.translatesAutoresizingMaskIntoConstraints = false
         
         let paddingUpDown: CGFloat = 5
         
         NSLayoutConstraint.activate([
             removeFromFavoritesButton.topAnchor.constraint          (equalTo: topAnchor, constant: 5),
             removeFromFavoritesButton.trailingAnchor.constraint     (equalTo: trailingAnchor, constant: -5),
-            removeFromFavoritesButton.heightAnchor.constraint       (equalToConstant: 30),
-            removeFromFavoritesButton.widthAnchor.constraint        (equalTo: removeFromFavoritesButton.heightAnchor),
+            removeFromFavoritesButton.heightAnchor.constraint       (equalToConstant: 50),
+            removeFromFavoritesButton.widthAnchor.constraint        (equalToConstant: 80),
             
             avatarImageView.topAnchor.constraint                    (equalTo: topAnchor, constant: 0),
             avatarImageView.centerXAnchor.constraint                (equalTo: centerXAnchor),

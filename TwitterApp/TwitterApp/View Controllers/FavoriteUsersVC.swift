@@ -111,7 +111,7 @@ class FavoriteUsersVC: UIViewController {
     private func configureDataSource() {
         dataSource      = UICollectionViewDiffableDataSource<SectionsUsers, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweets) -> UICollectionViewCell? in
             let cell    = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteUsersCell.reuseId, for: indexPath) as! FavoriteUsersCell
-            cell.set(with: tweets)
+            cell.set(with: tweets, buttonTitle: "See full", isEnabled: false)
             return cell
         })
         
