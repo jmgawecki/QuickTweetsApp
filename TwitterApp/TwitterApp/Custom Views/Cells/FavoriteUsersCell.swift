@@ -35,7 +35,6 @@ class FavoriteUsersCell: UICollectionViewCell {
         timeDateLabel.text                  = tweet.createdAt.formatToTwitterPostDate()
         tweetBodyLabel.text                 = tweet.tweetText
         
-        commentView.set(itemInfoType:       .comments,  with: tweet.likesCounter.convertToKMFormattedString())
         sharesView.set(itemInfoType:        .shares,    with: tweet.retweetCounter.convertToKMFormattedString())
         likesView.set(itemInfoType:         .likes,     with: tweet.likesCounter.convertToKMFormattedString())
     }
@@ -56,9 +55,6 @@ class FavoriteUsersCell: UICollectionViewCell {
         mediaStackView.distribution         = .equalSpacing
         mediaStackView.alignment            = .center
         
-        
-        
-        mediaStackView.addArrangedSubview(commentView)
         mediaStackView.addArrangedSubview(sharesView)
         mediaStackView.addArrangedSubview(likesView)
     }
@@ -83,7 +79,7 @@ class FavoriteUsersCell: UICollectionViewCell {
             
             mediaStackView.bottomAnchor.constraint  (equalTo: bottomAnchor, constant: -10),
             mediaStackView.leadingAnchor.constraint (equalTo: leadingAnchor, constant: 30),
-            mediaStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            mediaStackView.widthAnchor.constraint   (equalTo: widthAnchor, multiplier: 0.5),
             mediaStackView.heightAnchor.constraint  (equalToConstant: 60),
             
             tweetBodyLabel.topAnchor.constraint     (equalTo: timeDateLabel.bottomAnchor, constant: 0),

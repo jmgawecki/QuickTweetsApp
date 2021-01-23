@@ -33,7 +33,7 @@ class CellMediaInfoView: UIView {
         symbolImageView.tintColor   = ColorsTwitter.twitterBlue
         
         NSLayoutConstraint.activate([
-            symbolImageView.topAnchor.constraint        (equalTo: self.topAnchor),
+            symbolImageView.centerYAnchor.constraint    (equalTo: self.centerYAnchor),
             symbolImageView.leadingAnchor.constraint    (equalTo: self.leadingAnchor),
             symbolImageView.widthAnchor.constraint      (equalToConstant: 20),
             symbolImageView.heightAnchor.constraint     (equalToConstant: 20),

@@ -49,7 +49,7 @@ class SearchTweetsCell: UICollectionViewCell {
         tweet                                       = usersTweet
         tweetBodyLabel.text                         = usersTweet.tweetText
         timeDateLabel.text                          = usersTweet.createdAt.formatToTwitterPostDate()
-        commentView.set(itemInfoType: .comments,    with: usersTweet.likesCounter.convertToKMFormattedString())
+
         sharesView.set(itemInfoType: .shares,       with: usersTweet.retweetCounter.convertToKMFormattedString())
         likesView.set(itemInfoType: .likes,         with: usersTweet.likesCounter.convertToKMFormattedString())
 
@@ -71,7 +71,6 @@ class SearchTweetsCell: UICollectionViewCell {
         mediaStackView.distribution         = .equalSpacing
         mediaStackView.alignment            = .center
         
-        mediaStackView.addArrangedSubview(commentView)
         mediaStackView.addArrangedSubview(sharesView)
         mediaStackView.addArrangedSubview(likesView)
     }
@@ -108,7 +107,7 @@ class SearchTweetsCell: UICollectionViewCell {
                     
             mediaStackView.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),
             mediaStackView.leadingAnchor.constraint         (equalTo: leadingAnchor, constant: 30),
-            mediaStackView.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: -30),
+            mediaStackView.widthAnchor.constraint           (equalTo: widthAnchor, multiplier: 0.5),
             mediaStackView.heightAnchor.constraint          (equalToConstant: 60),
                     
             tweetBodyLabel.topAnchor.constraint             (equalTo: timeDateLabel.bottomAnchor, constant: 0),
