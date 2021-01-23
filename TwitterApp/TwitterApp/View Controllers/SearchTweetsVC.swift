@@ -76,7 +76,7 @@ class SearchTweetsVC: UIViewController {
                             profileBackgroundUrl:   user.profileBackgroundUrl,
                             friendsCount:           user.friendsCount,
                             followersCount:         user.followersCount,
-                            favouritesCount:        user.favouritesCount,
+                            followingCount:         user.followingCount,
                             statusesCount:          user.statusesCount,
                             location:               user.location,
                             createdAt:              user.createdAt)

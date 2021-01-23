@@ -39,5 +39,6 @@ class TwitTextField: UITextField {
         textAlignment           = .center
         returnKeyType           = .search
         autocorrectionType      = .no
+        autocapitalizationType  = .none
     }
 }

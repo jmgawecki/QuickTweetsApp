@@ -20,7 +20,7 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
     var followingView       = SearchTweetUserInfoView()
     
     var bodyLabels: [TwitInfoHeaderBodyLabel]   = []
-    var images: [UIImageView]                   = []
+    var images:     [UIImageView]               = []
 
     
     
@@ -44,8 +44,8 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
         avatarImageView.downloadImage(from: user.profileImageUrl!)
         forenameLabel.text          = user.name
         usernameLabel.text          = user.screenName
-        followerView.set(itemInfoType: .followers, with: Int(user.followersCount))
-        followingView.set(itemInfoType: .following, with: Int(user.favouritesCount))
+        followerView.set(itemInfoType:  .followers, with: user.followersCount.convertToKMFormattedString())
+        followingView.set(itemInfoType: .following, with: user.followingCount.convertToKMFormattedString())
     }
     
 

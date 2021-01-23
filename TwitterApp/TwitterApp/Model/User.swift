@@ -19,7 +19,7 @@ struct User: Encodable, Decodable, Hashable {
 
     var friendsCount:           Double      // Following
     var followersCount:         Double      // Followers
-    var favouritesCount:        Double      // what that is?
+    var followingCount:        Double      // what that is?
     var statusesCount:          Double      // how many posts in total
 
     var location:               String

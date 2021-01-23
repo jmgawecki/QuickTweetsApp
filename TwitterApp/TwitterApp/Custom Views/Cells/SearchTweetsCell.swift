@@ -16,9 +16,9 @@ class SearchTweetsCell: UICollectionViewCell {
     let tweetBodyLabel          = UserSearchVCTextView()
     var mediaStackView          = UIStackView()
     let seeOnlineButton         = UIButton()
-    var commentView             = SearchTweetsMediaInfoView()
-    var sharesView              = SearchTweetsMediaInfoView()
-    var likesView               = SearchTweetsMediaInfoView()
+    var commentView             = CellMediaInfoView()
+    var sharesView              = CellMediaInfoView()
+    var likesView               = CellMediaInfoView()
     
     var tweet: Tweet!
     
@@ -49,9 +49,9 @@ class SearchTweetsCell: UICollectionViewCell {
         tweet                                       = usersTweet
         tweetBodyLabel.text                         = usersTweet.tweetText
         timeDateLabel.text                          = usersTweet.createdAt
-        commentView.set(itemInfoType: .comments,    with: Int(usersTweet.likesCounter))
-        sharesView.set(itemInfoType: .shares,       with: Int(usersTweet.retweetCounter))
-        likesView.set(itemInfoType: .likes,         with: Int(usersTweet.likesCounter))
+        commentView.set(itemInfoType: .comments,    with: usersTweet.likesCounter.convertToKMFormattedString())
+        sharesView.set(itemInfoType: .shares,       with: usersTweet.retweetCounter.convertToKMFormattedString())
+        likesView.set(itemInfoType: .likes,         with: usersTweet.likesCounter.convertToKMFormattedString())
 
     }
     

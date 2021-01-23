@@ -50,6 +50,18 @@ class MainVC: UIViewController {
     @objc private func searchButtonTapped() {
         let destVC              = UserSearchVC()
         destVC.title            = "User search"
+        swifter.showUser(UserTag.screenName("barackobama"), includeEntities: true) { (json) in
+            print(json)
+        } failure: { (error) in
+            return
+        }
+
+        swifter.getTimeline(for: UserTag.screenName("barackobama"), customParam: [:], count: 1, sinceID: nil, maxID: nil, trimUser: true, excludeReplies: true, includeRetweets: true, contributorDetails: true, includeEntities: true, tweetMode: .default) { (json) in
+            print(json)
+        } failure: { (error) in
+            return
+        }
+
         navigationController?.pushViewController(destVC, animated: true)
     }
     

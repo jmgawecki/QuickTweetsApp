@@ -24,9 +24,9 @@ class FavoriteTweetsCell: UICollectionViewCell {
     let tweetBodyLabel      = UserSearchVCTextView()
 
     let mediaStackView      = UIStackView()
-    let commentView         = SearchTweetsMediaInfoView()
-    let sharesView          = SearchTweetsMediaInfoView()
-    let likesView           = SearchTweetsMediaInfoView()
+    let commentView         = CellMediaInfoView()
+    let sharesView          = CellMediaInfoView()
+    let likesView           = CellMediaInfoView()
     
     var tweet: Tweet!
     
@@ -67,9 +67,9 @@ class FavoriteTweetsCell: UICollectionViewCell {
         timeDateLabel.text                  = tweet.createdAt
         forenameLabel.text                  = tweet.user
             
-        commentView.set(itemInfoType:       .comments,  with: Int(tweet.retweetCounter))
-        sharesView.set(itemInfoType:        .shares,    with:  Int(tweet.retweetCounter))
-        likesView.set(itemInfoType:         .likes,     with: Int(tweet.retweetCounter))
+        commentView.set(itemInfoType:       .comments,  with:  tweet.retweetCounter.convertToKMFormattedString())
+        sharesView.set(itemInfoType:        .shares,    with:  tweet.retweetCounter.convertToKMFormattedString())
+        likesView.set(itemInfoType:         .likes,     with:  tweet.retweetCounter.convertToKMFormattedString())
     }
     
     private func configureRemoveButton() {

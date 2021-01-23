@@ -27,7 +27,7 @@ struct NetworkManager {
                             profileBackgroundUrl:   userJson["profile_background_image_url_https"].string,
                             friendsCount:           userJson["friends_count"].double!,
                             followersCount:         userJson["followers_count"].double!,
-                            favouritesCount:        userJson["favourites_count"].double!,
+                            followingCount:         userJson["friends_count"].double!,
                             statusesCount:          userJson["statuses_count"].double!,
                             location:               userJson["location"].string!,
                             createdAt:              userJson["created_at"].string!)

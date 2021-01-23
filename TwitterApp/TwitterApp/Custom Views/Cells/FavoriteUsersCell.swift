@@ -14,9 +14,9 @@ class FavoriteUsersCell: UICollectionViewCell {
                     
     let tweetBodyLabel                      = UserSearchVCTextView()
     var mediaStackView                      = UIStackView()
-    var commentView                         = SearchTweetsMediaInfoView()
-    var sharesView                          = SearchTweetsMediaInfoView()
-    var likesView                           = SearchTweetsMediaInfoView()
+    var commentView                         = CellMediaInfoView()
+    var sharesView                          = CellMediaInfoView()
+    var likesView                           = CellMediaInfoView()
     var timeDateLabel                       = UILabel()
     
     override init(frame: CGRect) {
@@ -35,9 +35,9 @@ class FavoriteUsersCell: UICollectionViewCell {
         timeDateLabel.text                  = tweet.createdAt
         tweetBodyLabel.text                 = tweet.tweetText
         
-        commentView.set(itemInfoType:       .comments, with: Int(tweet.likesCounter))
-        sharesView.set(itemInfoType:        .shares, with: Int(tweet.retweetCounter))
-        likesView.set(itemInfoType:         .likes, with: Int(tweet.likesCounter))
+        commentView.set(itemInfoType:       .comments,  with: tweet.likesCounter.convertToKMFormattedString())
+        sharesView.set(itemInfoType:        .shares,    with: tweet.retweetCounter.convertToKMFormattedString())
+        likesView.set(itemInfoType:         .likes,     with: tweet.likesCounter.convertToKMFormattedString())
     }
     
     private func configureCell() {

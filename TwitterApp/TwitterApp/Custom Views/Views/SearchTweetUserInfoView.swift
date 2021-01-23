@@ -52,27 +52,27 @@ class SearchTweetUserInfoView: UIView {
         ])
     }
     
-    func set(itemInfoType: ItemInfoType, with count: Int) {
+    func set(itemInfoType: ItemInfoType, with count: String) {
         switch itemInfoType {
         case .following:
             symbolImageView.image   = SFSymbols.following
             titleLabel.text         = "Following"
-            countLabel.text         = String(count)
+            countLabel.text         = count
             
         case .followers:
             symbolImageView.image   = SFSymbols.followers
             titleLabel.text         = "Followers"
-            countLabel.text         = String(count)
-            
+            countLabel.text         = count
+            #warning("refactor, as far as you know you do not need birth and location no more")
         case .birthDate:
             symbolImageView.image   = SFSymbols.rabbit
             titleLabel.text         = "Date of Birth"
-            countLabel.text         = String(count)
+            countLabel.text         = count
             
         case .location:
             symbolImageView.image   = SFSymbols.location
             titleLabel.text         = "Location"
-            countLabel.text         = String(count)
+            countLabel.text         = count
         }
     }
     
