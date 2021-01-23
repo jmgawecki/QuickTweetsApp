@@ -152,15 +152,17 @@ extension FavoriteUsersVC: FavoritesCollectionHeaderDelegates {
         deleteFavorite(user: user)
         
         users.removeAll {$0.idStr == user.idStr}
+        print(users)
         snapshot.deleteSections([.favoriteUser(user)])
-        dataSource.apply(snapshot, animatingDifferences: true)
-        if tweets.isEmpty {
+        if users.isEmpty {
             DispatchQueue.main.async {
                 #warning("add animation here so its gonna appears in one second, not instantly")
                 self.presentEmptyStateView(with: "Looks like... \nYou have no favorite Users 🧐 \n\nTime to change that!", in: self.view)
             }
+        } else {
+            DispatchQueue.main.async {
+                self.dataSource.apply(self.snapshot, animatingDifferences: true)
+            }
         }
     }
-    
-    
 }
