@@ -64,7 +64,7 @@ class FavoriteTweetsCell: UICollectionViewCell {
         self.tweet                          = tweet
         //        avatarImageView.downloadImage(from: tweet)
         tweetBodyLabel.text                 = tweet.tweetText
-        timeDateLabel.text                  = tweet.createdAt
+        timeDateLabel.text                  = tweet.createdAt.formatToTwitterPostDate()
         forenameLabel.text                  = tweet.user
             
         commentView.set(itemInfoType:       .comments,  with:  tweet.retweetCounter.convertToKMFormattedString())

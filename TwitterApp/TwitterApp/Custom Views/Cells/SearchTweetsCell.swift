@@ -48,7 +48,7 @@ class SearchTweetsCell: UICollectionViewCell {
     func set(with usersTweet: Tweet) {
         tweet                                       = usersTweet
         tweetBodyLabel.text                         = usersTweet.tweetText
-        timeDateLabel.text                          = usersTweet.createdAt
+        timeDateLabel.text                          = usersTweet.createdAt.formatToTwitterPostDate()
         commentView.set(itemInfoType: .comments,    with: usersTweet.likesCounter.convertToKMFormattedString())
         sharesView.set(itemInfoType: .shares,       with: usersTweet.retweetCounter.convertToKMFormattedString())
         likesView.set(itemInfoType: .likes,         with: usersTweet.likesCounter.convertToKMFormattedString())

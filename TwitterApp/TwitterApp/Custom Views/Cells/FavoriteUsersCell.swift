@@ -32,7 +32,7 @@ class FavoriteUsersCell: UICollectionViewCell {
     }
     
     func set(with tweet: Tweet) {
-        timeDateLabel.text                  = tweet.createdAt
+        timeDateLabel.text                  = tweet.createdAt.formatToTwitterPostDate()
         tweetBodyLabel.text                 = tweet.tweetText
         
         commentView.set(itemInfoType:       .comments,  with: tweet.likesCounter.convertToKMFormattedString())
