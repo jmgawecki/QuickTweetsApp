@@ -10,7 +10,7 @@ import Foundation
 extension Double {
     func convertToKMFormattedString() -> String {
         if self < 1_000 {
-            return String(self)
+            return String(format: "%.0f", self)
         } else if self < 1_000_000 {
             let number = self / 1_000
             return String(format: "%.1fK", number)

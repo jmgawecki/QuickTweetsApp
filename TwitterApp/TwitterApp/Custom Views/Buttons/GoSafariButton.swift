@@ -25,7 +25,6 @@ final class GoSafariButton: UIButton {
 
     }
     
-    
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor         = .secondarySystemBackground

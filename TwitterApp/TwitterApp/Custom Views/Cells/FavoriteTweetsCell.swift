@@ -11,6 +11,10 @@ protocol FavoriteTweetsCellDelegate: class {
     func didRemoveTweetFromFavorites(tweet: Tweet)
 }
 
+protocol FavoriteTweetsCellSafariDelegates: class {
+    func didRequestSafari(with urlString: String?)
+}
+
 class FavoriteTweetsCell: UICollectionViewCell {
     
     static let reuseId      = "FavoriteTwitsCell"
@@ -27,10 +31,11 @@ class FavoriteTweetsCell: UICollectionViewCell {
     let commentView         = CellMediaInfoView()
     let sharesView          = CellMediaInfoView()
     let likesView           = CellMediaInfoView()
-    var goSafariButton                      = GoSafariButton()
+    var goSafariButton      = GoSafariButton()
     
     var tweet: Tweet!
     
+    weak var delegateSafari: FavoriteTweetsCellSafariDelegates!
     weak var delegate: FavoriteTweetsCellDelegate!
     
     
@@ -45,6 +50,7 @@ class FavoriteTweetsCell: UICollectionViewCell {
         layoutUI()
         configureMediaStackView()
         configureRemoveButton()
+        configureGoSafariButton()
     }
     
     required init?(coder: NSCoder) {
@@ -57,6 +63,9 @@ class FavoriteTweetsCell: UICollectionViewCell {
         delegate.didRemoveTweetFromFavorites(tweet: tweet)
     }
     
+    @objc private func didTapGoSafariButton() {
+        delegateSafari.didRequestSafari(with: tweet.urlToExpandWithSafari)
+    }
     
     //MARK: - Configurations
     
@@ -74,6 +83,8 @@ class FavoriteTweetsCell: UICollectionViewCell {
         if buttonTitle != nil {
             goSafariButton.setTitle(buttonTitle, for: .normal)
             goSafariButton.isEnabled = true
+        } else {
+            goSafariButton.isEnabled = false
         }
     }
     
@@ -87,6 +98,10 @@ class FavoriteTweetsCell: UICollectionViewCell {
     private func configureCell() {
         backgroundColor                     = .secondarySystemBackground
         layer.cornerRadius                  = 15
+    }
+    
+    private func configureGoSafariButton() {
+        goSafariButton.addTarget(self, action: #selector(didTapGoSafariButton), for: .touchUpInside)
     }
     
     
@@ -153,7 +168,7 @@ class FavoriteTweetsCell: UICollectionViewCell {
             
             mediaStackView.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),
             mediaStackView.leadingAnchor.constraint         (equalTo: leadingAnchor, constant: 30),
-            mediaStackView.widthAnchor.constraint           (equalTo: widthAnchor, multiplier: 0.55),
+            mediaStackView.widthAnchor.constraint           (equalTo: widthAnchor, multiplier: 0.5),
             mediaStackView.heightAnchor.constraint          (equalToConstant: 60),
             
             goSafariButton.bottomAnchor.constraint  (equalTo: bottomAnchor, constant: -10),

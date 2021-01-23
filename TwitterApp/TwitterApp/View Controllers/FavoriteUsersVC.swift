@@ -109,9 +109,12 @@ class FavoriteUsersVC: UIViewController {
     }
     
     private func configureDataSource() {
-        dataSource      = UICollectionViewDiffableDataSource<SectionsUsers, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweets) -> UICollectionViewCell? in
-            let cell    = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteUsersCell.reuseId, for: indexPath) as! FavoriteUsersCell
-            cell.set(with: tweets, buttonTitle: "See full", isEnabled: false)
+        dataSource          = UICollectionViewDiffableDataSource<SectionsUsers, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweet) -> UICollectionViewCell? in
+            let cell        = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteUsersCell.reuseId, for: indexPath) as! FavoriteUsersCell
+            let buttonTitle = (tweet.urlToExpandWithSafari != nil) ? "See Full" : nil
+            let isEnabled   = (buttonTitle != nil) ? true : false
+            cell.delegateSafari = self
+            cell.set(with: tweet, buttonTitle: buttonTitle, isEnabled: isEnabled)
             return cell
         })
         
@@ -150,9 +153,7 @@ extension FavoriteUsersVC: FavoritesCollectionHeaderDelegates {
     func didRemoveUserFromFavorites(index: IndexPath, user: User) {
         #warning("create a conditional here in case deleteFavorite from UserDefaults did not succeed. Or is it already working as it supposed to?")
         deleteFavorite(user: user)
-        
         users.removeAll {$0.idStr == user.idStr}
-        print(users)
         snapshot.deleteSections([.favoriteUser(user)])
         if users.isEmpty {
             DispatchQueue.main.async {
@@ -165,4 +166,13 @@ extension FavoriteUsersVC: FavoritesCollectionHeaderDelegates {
             }
         }
     }
+}
+
+extension FavoriteUsersVC: FavoriteUsersCellDelegates {
+    func didRequestSafari(with urlString: String?) {
+        let url = URL(string: urlString!)!
+        presentSafariVC(with: url)
+    }
+    
+    
 }

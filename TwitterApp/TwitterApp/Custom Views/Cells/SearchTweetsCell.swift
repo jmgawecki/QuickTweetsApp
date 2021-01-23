@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SearchTweetsCellDelegates: class {
+    func didRequestSafari(with urlString: String?)
+}
+
 class SearchTweetsCell: UICollectionViewCell {
     
     static let reuseId          = "cell"
@@ -19,8 +23,9 @@ class SearchTweetsCell: UICollectionViewCell {
     var commentView             = CellMediaInfoView()
     var sharesView              = CellMediaInfoView()
     var likesView               = CellMediaInfoView()
-    var goSafariButton                      = GoSafariButton()
+    var goSafariButton          = GoSafariButton()
     
+    weak var delegateSafari: SearchTweetsCellDelegates!
     var tweet: Tweet!
     
     override init(frame: CGRect) {
@@ -29,6 +34,7 @@ class SearchTweetsCell: UICollectionViewCell {
         configureUIElements()
         layoutUI()
         configureMediaStackView()
+        configureGoSafariButton()
     }
     
     required init?(coder: NSCoder) {
@@ -46,6 +52,10 @@ class SearchTweetsCell: UICollectionViewCell {
         }
     }
     
+    @objc private func didTapGoSafariButton() {
+        delegateSafari.didRequestSafari(with: tweet.urlToExpandWithSafari)
+    }
+    
     func set(with usersTweet: Tweet, buttonTitle: String?, isEnabled: Bool) {
         tweet                                       = usersTweet
         tweetBodyLabel.text                         = usersTweet.tweetText
@@ -57,6 +67,8 @@ class SearchTweetsCell: UICollectionViewCell {
         if buttonTitle != nil {
             goSafariButton.setTitle(buttonTitle, for: .normal)
             goSafariButton.isEnabled = true
+        } else {
+            goSafariButton.isEnabled = false
         }
 
     }
@@ -70,6 +82,10 @@ class SearchTweetsCell: UICollectionViewCell {
         tweetBodyLabel.layer.borderWidth    = 1
         mediaStackView.layer.borderWidth    = 1
         timeDateLabel.layer.borderWidth     = 1
+    }
+    
+    private func configureGoSafariButton() {
+        goSafariButton.addTarget(self, action: #selector(didTapGoSafariButton), for: .touchUpInside)
     }
     
     private func configureMediaStackView() {
@@ -114,7 +130,7 @@ class SearchTweetsCell: UICollectionViewCell {
                     
             mediaStackView.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),
             mediaStackView.leadingAnchor.constraint         (equalTo: leadingAnchor, constant: 30),
-            mediaStackView.widthAnchor.constraint           (equalTo: widthAnchor, multiplier: 0.55),
+            mediaStackView.widthAnchor.constraint           (equalTo: widthAnchor, multiplier: 0.5),
             mediaStackView.heightAnchor.constraint          (equalToConstant: 60),
             
             goSafariButton.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),

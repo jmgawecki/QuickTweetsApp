@@ -75,8 +75,11 @@ class FavoriteTweetsVC: UIViewController {
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweet) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteTweetsCell.reuseId, for: indexPath) as! FavoriteTweetsCell
-            cell.set(with: tweet, buttonTitle: "See Full", isEnabled: true)
-            cell.delegate = self
+            let buttonTitle     = (tweet.urlToExpandWithSafari != nil) ? "See Full" : nil
+            let isEnabled       = (buttonTitle != nil) ? true : false
+            cell.set(with: tweet, buttonTitle: buttonTitle, isEnabled: isEnabled)
+            cell.delegate       = self
+            cell.delegateSafari = self
             return cell
         })
     }
@@ -115,5 +118,12 @@ extension FavoriteTweetsVC: FavoriteTweetsCellDelegate {
                 self.presentEmptyStateView(with: "Looks like... \nYou have no favorite Tweets 🧐 \n\nTime to change that!", in: self.view)
             }
         }
+    }
+}
+
+extension FavoriteTweetsVC: FavoriteTweetsCellSafariDelegates {
+    func didRequestSafari(with urlString: String?) {
+        let url = URL(string: urlString!)!
+        presentSafariVC(with: url)
     }
 }

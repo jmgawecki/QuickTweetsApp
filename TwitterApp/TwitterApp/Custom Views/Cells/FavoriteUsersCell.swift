@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol FavoriteUsersCellDelegates: class {
+    func didRequestSafari(with urlString: String?)
+}
+
 class FavoriteUsersCell: UICollectionViewCell {
     
     
@@ -20,19 +24,28 @@ class FavoriteUsersCell: UICollectionViewCell {
     var timeDateLabel                       = UILabel()
     var goSafariButton                      = GoSafariButton()
     
+    weak var delegateSafari: FavoriteUsersCellDelegates!
+    var tweet: Tweet!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureCell()
         configureTimeDateLabel()
         layoutUI()
         configureMediaStackView()
+        configureGoSafariButton()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc private func didTapGoSafariButton() {
+        delegateSafari.didRequestSafari(with: tweet.urlToExpandWithSafari)
+    }
+    
     func set(with tweet: Tweet, buttonTitle: String?, isEnabled: Bool) {
+        self.tweet                          = tweet
         timeDateLabel.text                  = tweet.createdAt.formatToTwitterPostDate()
         tweetBodyLabel.text                 = tweet.tweetText
         
@@ -42,6 +55,8 @@ class FavoriteUsersCell: UICollectionViewCell {
         if buttonTitle != nil {
             goSafariButton.setTitle(buttonTitle, for: .normal)
             goSafariButton.isEnabled = true
+        } else {
+            goSafariButton.isEnabled = false
         }
     }
     
@@ -54,6 +69,10 @@ class FavoriteUsersCell: UICollectionViewCell {
         tweetBodyLabel.layer.borderWidth    = 1
         mediaStackView.layer.borderWidth    = 1
         timeDateLabel.layer.borderWidth     = 1
+    }
+    
+    private func configureGoSafariButton() {
+        goSafariButton.addTarget(self, action: #selector(didTapGoSafariButton), for: .touchUpInside)
     }
     
     private func configureMediaStackView() {
@@ -87,7 +106,7 @@ class FavoriteUsersCell: UICollectionViewCell {
             
             mediaStackView.bottomAnchor.constraint  (equalTo: bottomAnchor, constant: -10),
             mediaStackView.leadingAnchor.constraint (equalTo: leadingAnchor, constant: 30),
-            mediaStackView.widthAnchor.constraint   (equalTo: widthAnchor, multiplier: 0.55),
+            mediaStackView.widthAnchor.constraint   (equalTo: widthAnchor, multiplier: 0.5),
             mediaStackView.heightAnchor.constraint  (equalToConstant: 60),
             
             goSafariButton.bottomAnchor.constraint  (equalTo: bottomAnchor, constant: -10),

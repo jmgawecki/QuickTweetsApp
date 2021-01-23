@@ -104,7 +104,11 @@ class SearchTweetsVC: UIViewController {
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweet) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchTweetsCell.reuseId, for: indexPath) as! SearchTweetsCell
-            cell.set(with: tweet, buttonTitle: "See full", isEnabled: true)
+            let buttonTitle = (tweet.urlToExpandWithSafari != nil) ? "See Full" : nil
+            let isEnabled   = (buttonTitle != nil) ? true : false
+            cell.set(with: tweet, buttonTitle: buttonTitle, isEnabled: isEnabled)
+            cell.delegateSafari = self
+            
             return cell
         })
         
@@ -127,4 +131,13 @@ class SearchTweetsVC: UIViewController {
         collectionView.register(SearchTweetsVCCollectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchTweetsVCCollectionHeader.reuseId)
         
     }
+}
+
+extension SearchTweetsVC: SearchTweetsCellDelegates {
+    func didRequestSafari(with urlString: String?) {
+        let url = URL(string: urlString!)!
+        presentSafariVC(with: url)
+    }
+    
+    
 }
