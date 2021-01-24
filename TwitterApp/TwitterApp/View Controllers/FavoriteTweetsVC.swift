@@ -113,10 +113,8 @@ extension FavoriteTweetsVC: FavoriteTweetsCellDelegate {
         snapshot.deleteItems([tweet])
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true) }
         if tweets.isEmpty {
-            DispatchQueue.main.async {
                 #warning("add animation here so its gonna appears in one second, not instantly")
                 self.presentEmptyStateView(with: "Looks like... \nYou have no favorite Tweets 🧐 \n\nTime to change that!", in: self.view)
-            }
         }
     }
 }

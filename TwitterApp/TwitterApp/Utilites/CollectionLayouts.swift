@@ -13,10 +13,10 @@ struct CollectionLayouts {
                                                      heightDimension: .fractionalHeight(1.0))
         
         let item            = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets  = NSDirectionalEdgeInsets(top: 15, leading: 10, bottom: 15, trailing: 10)
+        item.contentInsets  = NSDirectionalEdgeInsets(top: 15, leading: 20, bottom: 15, trailing: 20)
         
         let groupSize       = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                     heightDimension: .estimated(300))
+                                                     heightDimension: .estimated(250))
         
         let group           = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                                  subitems: [item])
@@ -45,7 +45,7 @@ struct CollectionLayouts {
         item.contentInsets  = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 15, trailing: 10)
         
         let groupSize       = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),
-                                                     heightDimension: .estimated(350))
+                                                     heightDimension: .estimated(250))
         
         let group           = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                                  subitems: [item])
@@ -74,7 +74,7 @@ struct CollectionLayouts {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(450))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(300))
         
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         

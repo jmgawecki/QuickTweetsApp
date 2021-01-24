@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func configureTwitterMainNAvigationController() -> UINavigationController {
         let twitterMain             = MainVC()
-        twitterMain.title           = "Twitter App"
+        twitterMain.title           = "Quick Tweet"
         UINavigationBar.appearance().tintColor = ColorsTwitter.twitterBlue
         return UINavigationController(rootViewController: twitterMain)
     }

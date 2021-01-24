@@ -24,6 +24,7 @@ struct Tweet: Encodable, Decodable, Hashable {
     var repliedToScreenName:            String? // in_reply_to_screen_name
     
     var tweetText:                      String // ["text"]
+  
     
 //    var usersMentions:                  SearchUserTweetUsersMentions?
 }

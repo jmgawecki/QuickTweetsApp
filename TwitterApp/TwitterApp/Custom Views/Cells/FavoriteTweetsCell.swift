@@ -148,7 +148,7 @@ class FavoriteTweetsCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             removeFavoriteButton.topAnchor.constraint       (equalTo: topAnchor, constant: 5),
             removeFavoriteButton.trailingAnchor.constraint  (equalTo: trailingAnchor, constant: -5),
-            removeFavoriteButton.heightAnchor.constraint    (equalToConstant: 30),
+            removeFavoriteButton.heightAnchor.constraint    (equalToConstant: 25),
             removeFavoriteButton.widthAnchor.constraint     (equalTo: removeFavoriteButton.heightAnchor),
             
             avatarImageView.topAnchor.constraint            (equalTo: topAnchor, constant: 0),
@@ -157,12 +157,12 @@ class FavoriteTweetsCell: UICollectionViewCell {
             avatarImageView.heightAnchor.constraint         (equalTo: avatarImageView.widthAnchor),
             
             forenameLabel.topAnchor.constraint              (equalTo: avatarImageView.topAnchor, constant: 0),
-            forenameLabel.leadingAnchor.constraint          (equalTo: avatarImageView.trailingAnchor, constant: 0),
+            forenameLabel.leadingAnchor.constraint          (equalTo: avatarImageView.trailingAnchor, constant: 10),
             forenameLabel.trailingAnchor.constraint         (equalTo: trailingAnchor, constant: 0),
             forenameLabel.heightAnchor.constraint           (equalTo: heightAnchor, multiplier: 0.10),
             
             timeDateLabel.topAnchor.constraint              (equalTo: forenameLabel.bottomAnchor, constant: 0),
-            timeDateLabel.leadingAnchor.constraint          (equalTo: avatarImageView.trailingAnchor, constant: 0),
+            timeDateLabel.leadingAnchor.constraint          (equalTo: avatarImageView.trailingAnchor, constant: 10),
             timeDateLabel.trailingAnchor.constraint         (equalTo: trailingAnchor, constant: 0),
             timeDateLabel.heightAnchor.constraint           (equalTo: heightAnchor, multiplier: 0.1),
             
@@ -171,12 +171,12 @@ class FavoriteTweetsCell: UICollectionViewCell {
             mediaStackView.widthAnchor.constraint           (equalTo: widthAnchor, multiplier: 0.5),
             mediaStackView.heightAnchor.constraint          (equalToConstant: 60),
             
-            goSafariButton.bottomAnchor.constraint  (equalTo: bottomAnchor, constant: -10),
-            goSafariButton.leadingAnchor.constraint (equalTo: mediaStackView.trailingAnchor, constant: 0),
-            goSafariButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            goSafariButton.heightAnchor.constraint  (equalToConstant: 60),
+            goSafariButton.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),
+            goSafariButton.leadingAnchor.constraint         (equalTo: mediaStackView.trailingAnchor, constant: 0),
+            goSafariButton.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: 0),
+            goSafariButton.heightAnchor.constraint          (equalToConstant: 60),
             
-            tweetBodyLabel.topAnchor.constraint             (equalTo: timeDateLabel.bottomAnchor, constant: 0),
+            tweetBodyLabel.topAnchor.constraint             (equalTo: avatarImageView.bottomAnchor, constant: 0),
             tweetBodyLabel.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: -20),
             tweetBodyLabel.leadingAnchor.constraint         (equalTo: leadingAnchor, constant: 20),
             tweetBodyLabel.bottomAnchor.constraint          (equalTo: mediaStackView.topAnchor, constant: 0),

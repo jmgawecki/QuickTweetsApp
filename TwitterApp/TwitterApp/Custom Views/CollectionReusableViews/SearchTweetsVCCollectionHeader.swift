@@ -11,6 +11,7 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
     
     static let reuseId  = "UserTwitsHeaderView"
         
+    var backgroundImageView = BackgroundPictureImageView(frame: .zero)
     var avatarImageView     = TwitProfilePictureImageView(frame: .zero)
     var forenameLabel       = TwitInfoHeaderTitleLabel()
     var usernameLabel       = TwitInfoHeaderBodyLabel(textAlignment: .center)
@@ -41,6 +42,8 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
     
     
     func set(with user: User) {
+        let backgroundPictureUrl = user.profileBackgroundUrl
+        if backgroundPictureUrl != nil { backgroundImageView.downloadImage(from: backgroundPictureUrl!) }
         avatarImageView.downloadImage(from: user.profileImageUrl!)
         forenameLabel.text          = user.name
         usernameLabel.text          = user.screenName
@@ -78,6 +81,7 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
     private func layoutUI() {
         addSubview(forenameLabel)
         addSubview(usernameLabel)
+        addSubview(backgroundImageView)
         addSubview(avatarImageView)
         addSubview(followStackView)
 
