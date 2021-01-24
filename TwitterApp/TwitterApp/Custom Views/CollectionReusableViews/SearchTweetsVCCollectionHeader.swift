@@ -45,8 +45,8 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
         let backgroundPictureUrl = user.profileBackgroundUrl
         if backgroundPictureUrl != nil { backgroundImageView.downloadImage(from: backgroundPictureUrl!) }
         avatarImageView.downloadImage(from: user.profileImageUrl!)
-        forenameLabel.text          = user.name
-        usernameLabel.text          = user.screenName
+        forenameLabel.text              = user.name
+        usernameLabel.text              = user.screenName
         followerView.set(itemInfoType:  .followers, with: user.followersCount.convertToKMFormatStr())
         followingView.set(itemInfoType: .following, with: user.followingCount.convertToKMFormatStr())
     }
@@ -79,12 +79,8 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
     //MARK: - Layout configuration
 
     private func layoutUI() {
-        addSubview(forenameLabel)
-        addSubview(usernameLabel)
-        addSubview(backgroundImageView)
-        addSubview(avatarImageView)
-        addSubview(followStackView)
-
+        addSubviews(forenameLabel, usernameLabel, backgroundImageView, avatarImageView, followStackView)
+        
         followStackView.backgroundColor = .systemBackground
         followStackView.translatesAutoresizingMaskIntoConstraints = false
         

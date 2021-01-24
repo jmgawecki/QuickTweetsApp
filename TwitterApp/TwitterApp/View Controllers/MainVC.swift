@@ -115,7 +115,7 @@ class MainVC: UIViewController {
     //MARK: - Layout configuration
     
     private func configureUIElements() {
-        twitterLogoImageView.image = TwitterPNGs.twitterLogo
+        twitterLogoImageView.image = Images.twitterLogo
     }
     
     

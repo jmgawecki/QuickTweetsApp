@@ -19,6 +19,5 @@ struct FavoriteTweet: Encodable, Decodable, Hashable {
     var likesCounter:             Double
     var retweetCounter:           Double
     var createdAt:                String
-    
 }
 

@@ -20,9 +20,6 @@ class SearchTweetsVC: UIViewController {
     var user:           User!
     var tweets:         [Tweet] = []
     
-    var array: [String] = [TweetsDebugs.tweet1, TweetsDebugs.tweet2, TweetsDebugs.tweet3, TweetsDebugs.tweet4, TweetsDebugs.tweet5]
-    
-    
     //MARK: - Initialiser
     
     init(user: User) {
@@ -47,7 +44,7 @@ class SearchTweetsVC: UIViewController {
     
     @objc private func addUserToFavorites(with button: UIBarButtonItem) {
         addUserToFavorite(user: user)
-        button.title = "In favorites"
+        button.title = TweetStrings.inFavorites
         button.tintColor = .systemGray
         button.isEnabled = false
     }
@@ -80,7 +77,7 @@ class SearchTweetsVC: UIViewController {
                     isEmpty = false
                 }
             case .failure(_):
-                print("userpersistenceCheckerror")
+                self.presentAlertVCOnMainThread(title: "Oops!", message: TweetStrings.sthWentWrong, buttonTitle: "Ok")
             }
         }
         return isEmpty
@@ -89,7 +86,7 @@ class SearchTweetsVC: UIViewController {
     private func configureVC() {
         view.backgroundColor                                    = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles  = true
-        let title = UserPersistenceCheck() ? "Add to Favorites" : "In Favorites"
+        let title = UserPersistenceCheck() ? TweetStrings.addToFavorites : TweetStrings.inFavorites
         let addButton = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(addUserToFavorites(with:)))
         addButton.tintColor = UserPersistenceCheck() ? ColorsTwitter.twitterBlue : .systemGray
         addButton.isEnabled = UserPersistenceCheck() ? true : false
@@ -108,14 +105,12 @@ class SearchTweetsVC: UIViewController {
                             statusesCount:          user.statusesCount,
                             location:               user.location,
                             createdAt:              user.createdAt)
-        PersistenceManager.updateWithUsers(newFavoriteUser: favorite, persistenceAction: .add) { [weak self] (error) in
+        PersistenceManager.updateWithUsers(favoriteUser: favorite, persistenceAction: .add) { [weak self] (error) in
             guard self != nil else { return }
-            guard let error = error else {
-                print("success")
+            guard let _ = error else {
                 return
             }
-            
-            print(error.rawValue)
+            self?.presentAlertVCOnMainThread(title: "Oops!", message: TweetStrings.sthWentWrong, buttonTitle: "Ok")
         }
     }
     
@@ -132,7 +127,7 @@ class SearchTweetsVC: UIViewController {
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweet) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchTweetsCell.reuseId, for: indexPath) as! SearchTweetsCell
-            let buttonTitle = (tweet.urlToExpandWithSafari != nil) ? "See Full" : nil
+            let buttonTitle = (tweet.urlToExpandWithSafari != nil) ? TweetStrings.seeFull : nil
             let isEnabled   = (buttonTitle != nil) ? true : false
             cell.set(with: tweet, user: self.user, buttonTitle: buttonTitle, isEnabled: isEnabled)
             cell.delegateSafari = self

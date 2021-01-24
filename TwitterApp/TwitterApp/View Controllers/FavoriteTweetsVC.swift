@@ -56,7 +56,7 @@ class FavoriteTweetsVC: UIViewController {
     
     
     private func deleteFavorite(tweet: FavoriteTweet) {
-        PersistenceManager.updateWithTweets(newFavoriteTweet: tweet, persistenceAction: .remove) { (error) in
+        PersistenceManager.updateWithTweets(favoriteTweet: tweet, persistenceAction: .remove) { (error) in
             guard let error = error else { print("success"); return }
             print(error.rawValue)
             return

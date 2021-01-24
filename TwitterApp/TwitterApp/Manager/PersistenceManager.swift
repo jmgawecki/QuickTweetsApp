@@ -20,23 +20,23 @@ enum PersistenceManager {
         static let tweets         = "tweets"
         static let favoriteTweets = "favoriteTweets"
     }
-    #warning("refactor function's signature newFavoriteTweet to FavoriteTweet")
-    static func updateWithUsers(newFavoriteUser: User, persistenceAction: PersisenceAction, completed: @escaping(TwitterErrors?) -> Void) {
+    
+    static func updateWithUsers(favoriteUser: User, persistenceAction: PersisenceAction, completed: @escaping(TwitterErrors?) -> Void) {
         retrieveFavoritesUsers { (result) in
             switch result {
             case .success(var users):
                 switch persistenceAction {
                 case .add:
-                    let filterUser = users.filter { $0.idStr == newFavoriteUser.idStr }
+                    let filterUser = users.filter { $0.idStr == favoriteUser.idStr }
                     guard filterUser.isEmpty else {
                         completed(.userAlreadyinFav)
                         return
                     }
                     
-                    users.append(newFavoriteUser)
+                    users.append(favoriteUser)
                     
                 case .remove:
-                    users.removeAll() { $0.idStr == newFavoriteUser.idStr }
+                    users.removeAll() { $0.idStr == favoriteUser.idStr }
                 }
                 
                 completed(saveUsers(favoriteUsers: users))
@@ -72,22 +72,22 @@ enum PersistenceManager {
         }
     }
     
-    static func updateWithTweets(newFavoriteTweet: FavoriteTweet, persistenceAction: PersisenceAction, completed: @escaping(TwitterErrors?) -> Void) {
+    static func updateWithTweets(favoriteTweet: FavoriteTweet, persistenceAction: PersisenceAction, completed: @escaping(TwitterErrors?) -> Void) {
         retrieveFavoritesTweets { (result) in
             switch result {
             case .success(var tweets):
                 switch persistenceAction {
                 case .add:
-                    let filterTweets = tweets.filter { $0.twitsId == newFavoriteTweet.twitsId }
+                    let filterTweets = tweets.filter { $0.twitsId == favoriteTweet.twitsId }
                     guard filterTweets.isEmpty else {
                         completed(.tweetAlreadyinFav)
                         return
                     }
                     
-                    tweets.append(newFavoriteTweet)
+                    tweets.append(favoriteTweet)
                     
                 case .remove:
-                    tweets.removeAll() { $0.twitsId == newFavoriteTweet.twitsId }
+                    tweets.removeAll() { $0.twitsId == favoriteTweet.twitsId }
                 }
                 
                 completed(saveTweets(favoriteUsers: tweets))

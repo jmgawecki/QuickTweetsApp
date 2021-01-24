@@ -39,12 +39,11 @@ class FavoriteUsersVC: TwetLoadingDataVC {
     //MARK: - Persistence Manager/ Network Calls
     /// One additional Network call done in a function updateData() line 85
     private func deleteFavorite(user: User) {
-        PersistenceManager.updateWithUsers(newFavoriteUser: user, persistenceAction: .remove) { (error) in
-            guard let error = error else {
-                print("success")
+        PersistenceManager.updateWithUsers(favoriteUser: user, persistenceAction: .remove) { (error) in
+            guard let _ = error else {
                 return
             }
-            print(error.rawValue)
+            self.presentAlertVCOnMainThread(title: "Oops!", message: TweetStrings.sthWentWrong, buttonTitle: "Ok")
         }
     }
     
@@ -57,7 +56,7 @@ class FavoriteUsersVC: TwetLoadingDataVC {
                 self.users = users
                 if self.users.isEmpty {
                     DispatchQueue.main.async {
-                        self.presentEmptyStateView(with: "Looks like... \nYou have no favorite Users 🧐 \n\nTime to change that!", in: self.view)
+                        self.presentEmptyStateView(with: TweetStrings.emptyStateMessage, in: self.view)
                         return
                     }
                 }
@@ -75,7 +74,7 @@ class FavoriteUsersVC: TwetLoadingDataVC {
     
     private func configureVC() {
         view.backgroundColor    = .systemBackground
-        title                   = ""
+        title                   = TweetStrings.emptyString
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -113,7 +112,7 @@ class FavoriteUsersVC: TwetLoadingDataVC {
     private func configureDataSource() {
         dataSource          = UICollectionViewDiffableDataSource<SectionsUsers, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweet) -> UICollectionViewCell? in
             let cell        = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteUsersCell.reuseId, for: indexPath) as! FavoriteUsersCell
-            let buttonTitle = (tweet.urlToExpandWithSafari != nil) ? "See Full" : nil
+            let buttonTitle = (tweet.urlToExpandWithSafari != nil) ? TweetStrings.seeFull : nil
             let isEnabled   = (buttonTitle != nil) ? true : false
             cell.delegateSafari = self
             cell.set(with: tweet, buttonTitle: buttonTitle, isEnabled: isEnabled)
@@ -152,7 +151,7 @@ class FavoriteUsersVC: TwetLoadingDataVC {
 
 extension FavoriteUsersVC: FavoritesCollectionHeaderDelegates {
     
-    func didRemoveUserFromFavorites(index: IndexPath, user: User) {
+    func didRemoveUserFromFavorites(user: User) {
         deleteFavorite(user: user)
         users.removeAll {$0.idStr == user.idStr}
         snapshot.deleteSections([.favoriteUser(user)])

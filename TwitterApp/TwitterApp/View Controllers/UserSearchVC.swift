@@ -55,7 +55,7 @@ class UserSearchVC: TwetLoadingDataVC {
                 destVC.username         = "jakubgawecki96"
                 self.navigationController?.pushViewController(destVC, animated: true)
             case .failure(_):
-                self.presentAlertVCOnMainThread(title: "Ops", message: "User incorrect", buttonTitle: "Ok")
+                self.presentAlertVCOnMainThread(title: "Oops!", message: "There is no username with that name. Please try again.", buttonTitle: "Ok")
             }
         }
     }
@@ -79,7 +79,7 @@ class UserSearchVC: TwetLoadingDataVC {
     //MARK: - Layout configuration
     
     private func configureUIElements() {
-        twitterLogoImageView.image          = TwitterPNGs.twitterLogo
+        twitterLogoImageView.image          = Images.twitterLogo
         usernameSearchTextField.delegate    = self
     }
     

@@ -41,6 +41,6 @@ class TwitProfilePictureImageView: UIImageView {
         layer.masksToBounds     = true
         
         clipsToBounds           = true
-        image                   = TwitterPNGs.twitterLogo
+        image                   = Images.twitterLogo
     }
 }

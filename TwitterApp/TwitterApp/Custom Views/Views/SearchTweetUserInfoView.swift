@@ -10,7 +10,7 @@ import UIKit
 class SearchTweetUserInfoView: UIView {
 
     enum ItemInfoType {
-        case following, followers, birthDate, location
+        case following, followers
     }
     
     let symbolImageView   = UIImageView()
@@ -56,22 +56,12 @@ class SearchTweetUserInfoView: UIView {
         switch itemInfoType {
         case .following:
             symbolImageView.image   = SFSymbols.following
-            titleLabel.text         = "Following"
+            titleLabel.text         = TweetStrings.following
             countLabel.text         = count
             
         case .followers:
             symbolImageView.image   = SFSymbols.followers
-            titleLabel.text         = "Followers"
-            countLabel.text         = count
-            #warning("refactor, as far as you know you do not need birth and location no more")
-        case .birthDate:
-            symbolImageView.image   = SFSymbols.rabbit
-            titleLabel.text         = "Date of Birth"
-            countLabel.text         = count
-            
-        case .location:
-            symbolImageView.image   = SFSymbols.location
-            titleLabel.text         = "Location"
+            titleLabel.text         = TweetStrings.followers
             countLabel.text         = count
         }
     }

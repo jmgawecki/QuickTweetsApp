@@ -46,7 +46,7 @@ class SearchTweetsCell: UICollectionViewCell {
     @objc private func addToFavoritesTapped() {
         let favorite = fromTweetToFavoriteTweet(user: user, tweet: tweet)
         print(favorite)
-        PersistenceManager.updateWithTweets(newFavoriteTweet: favorite, persistenceAction: .add) { [weak self] (error) in
+        PersistenceManager.updateWithTweets(favoriteTweet: favorite, persistenceAction: .add) { [weak self] (error) in
             guard self != nil else { return }
             guard let error = error else {
                 print("sucess")

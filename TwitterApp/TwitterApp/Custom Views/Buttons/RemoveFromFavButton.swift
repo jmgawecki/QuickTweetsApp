@@ -28,6 +28,5 @@ final class RemoveFromFavButton: UIButton {
         titleLabel?.font      = UIFont.systemFont(ofSize: 15, weight: .semibold)
         backgroundColor       = .systemBackground
         setTitleColor(ColorsTwitter.twitterBlue, for: .normal)
-        #warning("why the color does not change")
     }
 }

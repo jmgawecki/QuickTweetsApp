@@ -70,7 +70,6 @@ class FavoriteTweetsCell: UICollectionViewCell {
     //MARK: - Configurations
     
     func set(with favoriteTweet: FavoriteTweet, buttonTitle: String?, isEnabled: Bool) {
-        #warning("fix comment, shares, likes later, add authors profile picture into tweets network call")
         self.favoriteTweet                          = favoriteTweet
         avatarImageView.downloadImage(from: favoriteTweet.profileImageUrl!)
         tweetBodyLabel.text                 = favoriteTweet.tweetText
@@ -89,7 +88,7 @@ class FavoriteTweetsCell: UICollectionViewCell {
     }
     
     private func configureRemoveButton() {
-        removeFavoriteButton.setImage(UIImage(systemName: "minus"), for: .normal)
+        removeFavoriteButton.setImage(Images.minus, for: .normal)
         removeFavoriteButton.tintColor      = ColorsTwitter.twitterBlue
         removeFavoriteButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
     }

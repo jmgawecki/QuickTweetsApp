@@ -13,8 +13,6 @@ class FavoritesEmptyStateView: UIView {
     
     let twitterLogoView     = TwitImageView(frame: .zero)
     let twitterLogoViewTop  = TwitImageView(frame: .zero)
-//    let backButton          = TwitButton(backgroundColor: .systemYellow, fontSize: 15, message: "Ok")
-//    let searchButton        = TwitButton(backgroundColor: .systemRed, fontSize: 16, message: "Search")
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,24 +31,10 @@ class FavoritesEmptyStateView: UIView {
         messageLabel.text = message
     }
     
-//    @objc private func backButtonTapped() {
-//        let destVC = MainVC()
-//        present(destVC, animated: true)
-//    }
-//
-//    @objc private func searchButtonTapped() {
-//
-//    }
-//
     private func animate() {
         alpha = 0
         UIView.animate(withDuration: 0.5) { self.alpha = 1.0}
     }
-    
-//    private func configureButtons() {
-//        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-//        backButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
-//    }
     
     private func configure() {
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -58,16 +42,12 @@ class FavoritesEmptyStateView: UIView {
         messageLabel.numberOfLines              = 4
         messageLabel.adjustsFontSizeToFitWidth  = true
         messageLabel.textColor                  = ColorsTwitter.twitterBlue
-        twitterLogoView.image                   = TwitterPNGs.twitterLogo
-        twitterLogoViewTop.image                = TwitterPNGs.twitterLogo
+        twitterLogoView.image                   = Images.twitterLogo
+        twitterLogoViewTop.image                = Images.twitterLogo
     }
     
     private func layoutUI() {
-        addSubview(messageLabel)
-        addSubview(twitterLogoView)
-        addSubview(twitterLogoViewTop)
-//        addSubview(backButton)
-//        addSubview(searchButton)
+        addSubviews(messageLabel, twitterLogoView, twitterLogoViewTop)
         
         NSLayoutConstraint.activate([
             twitterLogoViewTop.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
@@ -79,17 +59,7 @@ class FavoritesEmptyStateView: UIView {
             messageLabel.heightAnchor.constraint(equalToConstant: 200),
             messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
-            
-//            backButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-//            backButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3),
-//            backButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 10),
-//            backButton.heightAnchor.constraint(equalToConstant: 50),
-//
-//            searchButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20),
-//            searchButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3),
-//            searchButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: -10),
-//            searchButton.heightAnchor.constraint(equalToConstant: 50),
-            
+        
             twitterLogoView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
             twitterLogoView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 450),
             twitterLogoView.widthAnchor.constraint(equalToConstant: 500),

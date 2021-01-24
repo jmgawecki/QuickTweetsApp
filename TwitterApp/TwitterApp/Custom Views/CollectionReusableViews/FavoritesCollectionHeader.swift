@@ -6,9 +6,9 @@
 //
 
 import UIKit
-#warning("refactor protocol - delete indexPath passed")
+
 protocol FavoritesCollectionHeaderDelegates: class {
-    func didRemoveUserFromFavorites(index: IndexPath, user: User)
+    func didRemoveUserFromFavorites(user: User)
 }
 
 
@@ -16,17 +16,17 @@ class FavoritesCollectionHeader: UICollectionReusableView {
     
     static let reuseId              = "FavoritesUsersHeaderView"
         
-    var removeFromFavoritesButton   = RemoveFromFavButton(title: "Remove")
+    var removeFromFavoritesButton   = RemoveFromFavButton(title: TweetStrings.removeFromFav)
     var avatarImageView             = TwitProfilePictureImageView(frame: .zero)
     var forenameLabel               = TwitInfoHeaderTitleLabel()
     var usernameLabel               = TwitInfoHeaderBodyLabel(textAlignment: .center)
     
     var bodyLabels: [TwitInfoHeaderBodyLabel]   = []
-    var images: [UIImageView]                   = []
+    var images:     [UIImageView]               = []
     
-    var delegate: FavoritesCollectionHeaderDelegates!
-    var index: IndexPath!
-    var user: User!
+    var delegate:   FavoritesCollectionHeaderDelegates!
+    var index:      IndexPath!
+    var user:       User!
     
     //MARK: - Overrides
     
@@ -46,7 +46,7 @@ class FavoritesCollectionHeader: UICollectionReusableView {
     //MARK: - Configurations
     
     @objc private func removeFromFavoritesTapped() {
-        delegate.didRemoveUserFromFavorites(index: index, user: user)
+        delegate.didRemoveUserFromFavorites(user: user)
     }
     
     func set(with user: User, index: IndexPath) {
