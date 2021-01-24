@@ -7,9 +7,7 @@
 
 import UIKit
 
-class TwitImageView: UIImageView {
-    
-    
+class TwitImageView: UIImageView {    
     
     //MARK: - Overrides
 
@@ -17,6 +15,7 @@ class TwitImageView: UIImageView {
         super.init(frame: frame)
         configure()
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

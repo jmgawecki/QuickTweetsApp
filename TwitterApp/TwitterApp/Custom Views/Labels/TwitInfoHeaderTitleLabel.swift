@@ -7,9 +7,11 @@
 
 import UIKit
 
-class TwitInfoHeaderTitleLabel: UILabel {
+final class TwitInfoHeaderTitleLabel: UILabel {
 
+    
     //MARK: - Overrides
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -18,6 +20,9 @@ class TwitInfoHeaderTitleLabel: UILabel {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    //MARK:- Initialisers
     
     convenience init(from textAlignment: NSTextAlignment) {
         self.init(frame: .zero)
@@ -32,5 +37,4 @@ class TwitInfoHeaderTitleLabel: UILabel {
         font            = UIFont.systemFont(ofSize: 20, weight: .bold)
         textAlignment   = .center
     }
-
 }

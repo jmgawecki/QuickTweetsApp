@@ -9,13 +9,20 @@ import UIKit
 
 class BackgroundPictureImageView: UIImageView {
 
+    
+    //MARK:- Overrides
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    //MARK:- Functions called outside
     
     func downloadImage(from URLString: String) {
         NetworkManager.shared.downloadImage(from: URLString) { [weak self] (image) in
@@ -23,6 +30,9 @@ class BackgroundPictureImageView: UIImageView {
             DispatchQueue.main.async { self.image = image }
         }
     }
+    
+    
+    //MARK:- Configurations
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false

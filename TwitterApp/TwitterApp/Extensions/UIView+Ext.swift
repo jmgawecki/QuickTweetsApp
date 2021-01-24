@@ -11,4 +11,8 @@ extension UIView {
     func addSubviews(_ views: UIView...) {
         for view in views { addSubview(view) }
     }
+    
+    func tamic(_ views: UIView...) {
+        for view in views { view.translatesAutoresizingMaskIntoConstraints = false }
+    }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoriteTweetsVC: UIViewController {
+final class FavoriteTweetsVC: UIViewController {
     
     enum Section {
         case main
@@ -34,7 +34,7 @@ class FavoriteTweetsVC: UIViewController {
     }
 
 
-    //MARK: - Network Calls
+    //MARK: - Network Calls/ Persistence Manager
 
     private func getFavorites() {
         PersistenceManager.retrieveFavoritesTweets { [weak self] (result) in
@@ -72,13 +72,13 @@ class FavoriteTweetsVC: UIViewController {
         view.backgroundColor    = .systemBackground
     }
     
+    //MARK:- CollectionView Configurations
     
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, FavoriteTweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, favoriteTweet) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteTweetsCell.reuseId, for: indexPath) as! FavoriteTweetsCell
             let buttonTitle     = (favoriteTweet.urlToExpandWithSafari != nil) ? "See Full" : nil
-            let isEnabled       = (buttonTitle != nil) ? true : false
-            cell.set(with: favoriteTweet, buttonTitle: buttonTitle, isEnabled: isEnabled)
+            cell.set(with: favoriteTweet, buttonTitle: buttonTitle)
             cell.delegate       = self
             cell.delegateSafari = self
             return cell
@@ -94,8 +94,6 @@ class FavoriteTweetsVC: UIViewController {
     }
 
 
-    //MARK: - Layout configuration
-
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: CollectionLayouts.favoriteTwitsCollectionLayout())
         view.addSubview(collectionView)
@@ -104,6 +102,9 @@ class FavoriteTweetsVC: UIViewController {
         collectionView.register(FavoriteTweetsCell.self, forCellWithReuseIdentifier: FavoriteTweetsCell.reuseId)
     }
 }
+
+
+//MARK:- Extensions
 
 extension FavoriteTweetsVC: FavoriteTweetsCellDelegate {
     func didRemoveTweetFromFavorites(tweet: FavoriteTweet) {
@@ -114,10 +115,11 @@ extension FavoriteTweetsVC: FavoriteTweetsCellDelegate {
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true) }
         print(favoriteTweets)
         if favoriteTweets.isEmpty {
-                self.presentEmptyStateView(with: "Looks like... \nYou have no favorite Tweets 🧐 \n\nTime to change that!", in: self.view)
+            self.presentEmptyStateView(with: TweetStrings.emptyStateMessage, in: self.view)
         }
     }
 }
+
 
 extension FavoriteTweetsVC: FavoriteTweetsCellSafariDelegates {
     func didRequestSafari(with urlString: String?) {

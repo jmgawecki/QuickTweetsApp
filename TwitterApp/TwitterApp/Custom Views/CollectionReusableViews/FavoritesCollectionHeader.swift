@@ -14,19 +14,19 @@ protocol FavoritesCollectionHeaderDelegates: class {
 
 class FavoritesCollectionHeader: UICollectionReusableView {
     
-    static let reuseId              = "FavoritesUsersHeaderView"
+    static let reuseId        = "FavoritesUsersHeaderView"
         
-    var removeFromFavoritesButton   = RemoveFromFavButton(title: TweetStrings.removeFromFav)
-    var avatarImageView             = TwitProfilePictureImageView(frame: .zero)
-    var forenameLabel               = TwitInfoHeaderTitleLabel()
-    var usernameLabel               = TwitInfoHeaderBodyLabel(textAlignment: .center)
+    var removeFromFavButton   = RemoveFromFavButton(title: TweetStrings.removeFromFav)
+    var profileImgView        = TwitProfilePictureImageView(frame: .zero)
+    var forenameLabel         = TwitInfoHeaderTitleLabel()
+    var usernameLabel         = TwitInfoHeaderBodyLabel(textAlignment: .center)
     
     var bodyLabels: [TwitInfoHeaderBodyLabel]   = []
     var images:     [UIImageView]               = []
     
     var delegate:   FavoritesCollectionHeaderDelegates!
-    var index:      IndexPath!
     var user:       User!
+    
     
     //MARK: - Overrides
     
@@ -37,6 +37,7 @@ class FavoritesCollectionHeader: UICollectionReusableView {
         layoutUI()
         configureRemoveFromFavoritesButton()
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -49,56 +50,53 @@ class FavoritesCollectionHeader: UICollectionReusableView {
         delegate.didRemoveUserFromFavorites(user: user)
     }
     
-    func set(with user: User, index: IndexPath) {
-        avatarImageView.downloadImage(from: user.profileImageUrl!)
+    
+    func set(with user: User) {
+        profileImgView.downloadImage(from: user.profileImageUrl!)
         forenameLabel.text          = user.name
         usernameLabel.text          = user.screenName
-        self.index                  = index
         self.user                   = user
     }
+    
     
     private func configure() {
         backgroundColor             = .systemBackground
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func configureRemoveFromFavoritesButton() {
-        removeFromFavoritesButton.addTarget(self, action: #selector(removeFromFavoritesTapped), for: .touchUpInside)
-        
-    }
     
+    private func configureRemoveFromFavoritesButton() {
+        removeFromFavButton.addTarget(self, action: #selector(removeFromFavoritesTapped), for: .touchUpInside)
+    }
     
 
     //MARK: - Layout configuration
 
     private func layoutUI() {
-        addSubview(removeFromFavoritesButton)
-        addSubview(avatarImageView)
-        addSubview(forenameLabel)
-        addSubview(usernameLabel)
+        addSubviews(removeFromFavButton, profileImgView, forenameLabel, usernameLabel)
         
-        let paddingUpDown: CGFloat = 5
+        let padding: CGFloat = 5
         
         NSLayoutConstraint.activate([
-            removeFromFavoritesButton.topAnchor.constraint          (equalTo: topAnchor, constant: 5),
-            removeFromFavoritesButton.trailingAnchor.constraint     (equalTo: trailingAnchor, constant: -5),
-            removeFromFavoritesButton.heightAnchor.constraint       (equalToConstant: 50),
-            removeFromFavoritesButton.widthAnchor.constraint        (equalToConstant: 80),
+            removeFromFavButton.topAnchor.constraint        (equalTo: topAnchor, constant: 5),
+            removeFromFavButton.trailingAnchor.constraint   (equalTo: trailingAnchor, constant: -5),
+            removeFromFavButton.heightAnchor.constraint     (equalToConstant: 50),
+            removeFromFavButton.widthAnchor.constraint      (equalToConstant: 80),
             
-            avatarImageView.topAnchor.constraint                    (equalTo: topAnchor, constant: 0),
-            avatarImageView.centerXAnchor.constraint                (equalTo: centerXAnchor),
-            avatarImageView.widthAnchor.constraint                  (equalTo: widthAnchor, multiplier: 0.40),
-            avatarImageView.heightAnchor.constraint                 (equalTo: avatarImageView.widthAnchor),
+            profileImgView.topAnchor.constraint             (equalTo: topAnchor, constant: 0),
+            profileImgView.centerXAnchor.constraint         (equalTo: centerXAnchor),
+            profileImgView.widthAnchor.constraint           (equalTo: widthAnchor, multiplier: 0.40),
+            profileImgView.heightAnchor.constraint          (equalTo: profileImgView.widthAnchor),
     
-            forenameLabel.topAnchor.constraint                      (equalTo: avatarImageView.bottomAnchor, constant: paddingUpDown),
-            forenameLabel.centerXAnchor.constraint                  (equalTo: centerXAnchor),
-            forenameLabel.widthAnchor.constraint                    (equalTo: widthAnchor, multiplier: 0.6),
-            forenameLabel.heightAnchor.constraint                   (equalTo: heightAnchor, multiplier: 0.10),
+            forenameLabel.topAnchor.constraint              (equalTo: profileImgView.bottomAnchor, constant: padding),
+            forenameLabel.centerXAnchor.constraint          (equalTo: centerXAnchor),
+            forenameLabel.widthAnchor.constraint            (equalTo: widthAnchor, multiplier: 0.6),
+            forenameLabel.heightAnchor.constraint           (equalTo: heightAnchor, multiplier: 0.10),
 
-            usernameLabel.topAnchor.constraint                      (equalTo: forenameLabel.bottomAnchor, constant: paddingUpDown),
-            usernameLabel.centerXAnchor.constraint                  (equalTo: centerXAnchor),
-            usernameLabel.widthAnchor.constraint                    (equalTo: widthAnchor, multiplier: 0.6),
-            usernameLabel.heightAnchor.constraint                   (equalTo: heightAnchor, multiplier: 0.10),
+            usernameLabel.topAnchor.constraint              (equalTo: forenameLabel.bottomAnchor, constant: padding),
+            usernameLabel.centerXAnchor.constraint          (equalTo: centerXAnchor),
+            usernameLabel.widthAnchor.constraint            (equalTo: widthAnchor, multiplier: 0.6),
+            usernameLabel.heightAnchor.constraint           (equalTo: heightAnchor, multiplier: 0.10),
         ])
     }
 }

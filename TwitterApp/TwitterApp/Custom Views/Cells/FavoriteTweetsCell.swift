@@ -17,26 +17,25 @@ protocol FavoriteTweetsCellSafariDelegates: class {
 
 class FavoriteTweetsCell: UICollectionViewCell {
     
-    static let reuseId      = "FavoriteTwitsCell"
+    static let reuseId          = "FavoriteTwitsCell"
     
-    var removeFavoriteButton        = UIButton()
+    var removeFavButton    = UIButton()
     
-    var avatarImageView     = TwitProfilePictureImageView(frame: .zero)
-    var forenameLabel       = TwitInfoHeaderTitleLabel(from: .left)
+    var profileImgView         = TwitProfilePictureImageView(frame: .zero)
+    var nameLabel           = TwitInfoHeaderTitleLabel(from: .left)
+        
+    let dateLabel           = UILabel()
+    let tweetBodyLabel          = UserSearchVCTextView()
     
-    let timeDateLabel       = UILabel()
-    let tweetBodyLabel      = UserSearchVCTextView()
-
-    let mediaStackView      = UIStackView()
-    let commentView         = CellMediaInfoView()
-    let sharesView          = CellMediaInfoView()
-    let likesView           = CellMediaInfoView()
-    var goSafariButton      = GoSafariButton()
+    let mediaStackView          = UIStackView()
+    let sharesView              = CellMediaInfoView()
+    let likesView               = CellMediaInfoView()
+    var safariButton          = GoSafariButton()
     
-    var favoriteTweet: FavoriteTweet!
+    var favoriteTweet:          FavoriteTweet!
     
-    weak var delegateSafari: FavoriteTweetsCellSafariDelegates!
-    weak var delegate: FavoriteTweetsCellDelegate!
+    weak var delegateSafari:    FavoriteTweetsCellSafariDelegates!
+    weak var delegate:          FavoriteTweetsCellDelegate!
     
     
     //MARK: - Overrides
@@ -44,11 +43,8 @@ class FavoriteTweetsCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureCell()
-//        debugConfiguration()
         configureUIElements()
-        addSubviews()
         layoutUI()
-        configureMediaStackView()
         configureRemoveButton()
         configureGoSafariButton()
     }
@@ -63,122 +59,107 @@ class FavoriteTweetsCell: UICollectionViewCell {
         delegate.didRemoveTweetFromFavorites(tweet: favoriteTweet)
     }
     
+    
     @objc private func didTapGoSafariButton() {
         delegateSafari.didRequestSafari(with: favoriteTweet.urlToExpandWithSafari)
     }
     
-    //MARK: - Configurations
     
-    func set(with favoriteTweet: FavoriteTweet, buttonTitle: String?, isEnabled: Bool) {
-        self.favoriteTweet                          = favoriteTweet
-        avatarImageView.downloadImage(from: favoriteTweet.profileImageUrl!)
-        tweetBodyLabel.text                 = favoriteTweet.tweetText
-        timeDateLabel.text                  = favoriteTweet.createdAt.formatToTwitterPostDate()
-        forenameLabel.text                  = favoriteTweet.name
+    //MARK: - Functions called outside
+    
+    func set(with favoriteTweet: FavoriteTweet, buttonTitle: String?) {
+        self.favoriteTweet            = favoriteTweet
+        profileImgView.downloadImage(from: favoriteTweet.profileImageUrl!)
+        tweetBodyLabel.text           = favoriteTweet.tweetText
+        dateLabel.text                = favoriteTweet.createdAt.formatToTwitterPostDate()
+        nameLabel.text                = favoriteTweet.name
             
-        sharesView.set(itemInfoType:        .shares,    with:  favoriteTweet.retweetCounter.convertToKMFormatStr())
-        likesView.set(itemInfoType:         .likes,     with:  favoriteTweet.likesCounter.convertToKMFormatStr())
+        sharesView.set(itemInfoType:  .shares, with: favoriteTweet.retweetCounter.convertToKMFormatStr())
+        likesView.set(itemInfoType:   .likes,  with: favoriteTweet.likesCounter.convertToKMFormatStr())
         
         if buttonTitle != nil {
-            goSafariButton.setTitle(buttonTitle, for: .normal)
-            goSafariButton.isEnabled = true
+            safariButton.setTitle(buttonTitle, for: .normal)
+            safariButton.isEnabled    = true
         } else {
-            goSafariButton.isEnabled = false
+            safariButton.isEnabled    = false
         }
     }
     
+    
+    //MARK: - Private Functions
+    
     private func configureRemoveButton() {
-        removeFavoriteButton.setImage(Images.minus, for: .normal)
-        removeFavoriteButton.tintColor      = ColorsTwitter.twitterBlue
-        removeFavoriteButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
+        removeFavButton.setImage(Images.minus, for: .normal)
+        removeFavButton.tintColor      = ColorsTwitter.twitterBlue
+        removeFavButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
     }
     
-    
-    private func configureCell() {
-        backgroundColor                     = .secondarySystemBackground
-        layer.cornerRadius                  = 15
-    }
     
     private func configureGoSafariButton() {
-        goSafariButton.addTarget(self, action: #selector(didTapGoSafariButton), for: .touchUpInside)
+        safariButton.addTarget(self, action: #selector(didTapGoSafariButton), for: .touchUpInside)
     }
     
     
-    private func debugConfiguration() {
-        tweetBodyLabel.layer.borderWidth    = 1
-        mediaStackView.layer.borderWidth    = 1
-        timeDateLabel.layer.borderWidth     = 1
-        avatarImageView.layer.borderWidth   = 1
-        forenameLabel.layer.borderWidth     = 1
+    //MARK:- Layout
+    
+    private func configureCell() {
+        backgroundColor                 = .secondarySystemBackground
+        layer.cornerRadius              = 15
     }
     
     
-    private func configureMediaStackView() {
-        mediaStackView.axis                 = .horizontal
-        mediaStackView.distribution         = .equalSpacing
-        mediaStackView.alignment            = .center
+    private func configureUIElements() {
+        dateLabel.textColor             = .systemGray
+        dateLabel.textAlignment         = .left
+        
+        mediaStackView.axis             = .horizontal
+        mediaStackView.distribution     = .equalSpacing
+        mediaStackView.alignment        = .center
         
         mediaStackView.addArrangedSubview(sharesView)
         mediaStackView.addArrangedSubview(likesView)
     }
     
     
-    private func configureUIElements() {
-        timeDateLabel.textColor             = .systemGray
-        timeDateLabel.textAlignment         = .left
-    }
-    
-    private func addSubviews() {
-        addSubview(removeFavoriteButton)
-        addSubview(avatarImageView)
-        addSubview(forenameLabel)
-        addSubview(timeDateLabel)
-        addSubview(tweetBodyLabel)
-        addSubview(mediaStackView)
-        addSubview(goSafariButton)
-    }
-
-    
     private func layoutUI() {
-        mediaStackView.translatesAutoresizingMaskIntoConstraints       = false
-        timeDateLabel.translatesAutoresizingMaskIntoConstraints        = false
-        removeFavoriteButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubviews(removeFavButton, profileImgView, nameLabel, dateLabel, tweetBodyLabel, mediaStackView, safariButton)
+        tamic(mediaStackView, dateLabel, removeFavButton)
         
         NSLayoutConstraint.activate([
-            removeFavoriteButton.topAnchor.constraint       (equalTo: topAnchor, constant: 5),
-            removeFavoriteButton.trailingAnchor.constraint  (equalTo: trailingAnchor, constant: -5),
-            removeFavoriteButton.heightAnchor.constraint    (equalToConstant: 25),
-            removeFavoriteButton.widthAnchor.constraint     (equalTo: removeFavoriteButton.heightAnchor),
+            removeFavButton.topAnchor.constraint       (equalTo: topAnchor, constant: 5),
+            removeFavButton.trailingAnchor.constraint  (equalTo: trailingAnchor, constant: -5),
+            removeFavButton.heightAnchor.constraint    (equalToConstant: 25),
+            removeFavButton.widthAnchor.constraint     (equalTo: removeFavButton.heightAnchor),
             
-            avatarImageView.topAnchor.constraint            (equalTo: topAnchor, constant: 0),
-            avatarImageView.leadingAnchor.constraint        (equalTo: leadingAnchor, constant: 0),
-            avatarImageView.widthAnchor.constraint          (equalTo: widthAnchor, multiplier: 0.25),
-            avatarImageView.heightAnchor.constraint         (equalTo: avatarImageView.widthAnchor),
+            profileImgView.topAnchor.constraint        (equalTo: topAnchor, constant: 0),
+            profileImgView.leadingAnchor.constraint    (equalTo: leadingAnchor, constant: 0),
+            profileImgView.widthAnchor.constraint      (equalTo: widthAnchor, multiplier: 0.25),
+            profileImgView.heightAnchor.constraint     (equalTo: profileImgView.widthAnchor),
             
-            forenameLabel.topAnchor.constraint              (equalTo: avatarImageView.topAnchor, constant: 0),
-            forenameLabel.leadingAnchor.constraint          (equalTo: avatarImageView.trailingAnchor, constant: 10),
-            forenameLabel.trailingAnchor.constraint         (equalTo: trailingAnchor, constant: 0),
-            forenameLabel.heightAnchor.constraint           (equalTo: heightAnchor, multiplier: 0.10),
+            nameLabel.topAnchor.constraint             (equalTo: profileImgView.topAnchor, constant: 0),
+            nameLabel.leadingAnchor.constraint         (equalTo: profileImgView.trailingAnchor, constant: 10),
+            nameLabel.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: 0),
+            nameLabel.heightAnchor.constraint          (equalTo: heightAnchor, multiplier: 0.10),
             
-            timeDateLabel.topAnchor.constraint              (equalTo: forenameLabel.bottomAnchor, constant: 0),
-            timeDateLabel.leadingAnchor.constraint          (equalTo: avatarImageView.trailingAnchor, constant: 10),
-            timeDateLabel.trailingAnchor.constraint         (equalTo: trailingAnchor, constant: 0),
-            timeDateLabel.heightAnchor.constraint           (equalTo: heightAnchor, multiplier: 0.1),
+            dateLabel.topAnchor.constraint             (equalTo: nameLabel.bottomAnchor, constant: 0),
+            dateLabel.leadingAnchor.constraint         (equalTo: profileImgView.trailingAnchor, constant: 10),
+            dateLabel.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: 0),
+            dateLabel.heightAnchor.constraint          (equalTo: heightAnchor, multiplier: 0.1),
             
-            mediaStackView.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),
-            mediaStackView.leadingAnchor.constraint         (equalTo: leadingAnchor, constant: 30),
-            mediaStackView.widthAnchor.constraint           (equalTo: widthAnchor, multiplier: 0.5),
-            mediaStackView.heightAnchor.constraint          (equalToConstant: 60),
+            mediaStackView.bottomAnchor.constraint     (equalTo: bottomAnchor, constant: -10),
+            mediaStackView.leadingAnchor.constraint    (equalTo: leadingAnchor, constant: 30),
+            mediaStackView.widthAnchor.constraint      (equalTo: widthAnchor, multiplier: 0.5),
+            mediaStackView.heightAnchor.constraint     (equalToConstant: 60),
             
-            goSafariButton.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),
-            goSafariButton.leadingAnchor.constraint         (equalTo: mediaStackView.trailingAnchor, constant: 0),
-            goSafariButton.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: 0),
-            goSafariButton.heightAnchor.constraint          (equalToConstant: 60),
+            safariButton.bottomAnchor.constraint       (equalTo: bottomAnchor, constant: -10),
+            safariButton.leadingAnchor.constraint      (equalTo: mediaStackView.trailingAnchor, constant: 0),
+            safariButton.trailingAnchor.constraint     (equalTo: trailingAnchor, constant: 0),
+            safariButton.heightAnchor.constraint       (equalToConstant: 60),
             
-            tweetBodyLabel.topAnchor.constraint             (equalTo: avatarImageView.bottomAnchor, constant: 0),
-            tweetBodyLabel.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: -20),
-            tweetBodyLabel.leadingAnchor.constraint         (equalTo: leadingAnchor, constant: 20),
-            tweetBodyLabel.bottomAnchor.constraint          (equalTo: mediaStackView.topAnchor, constant: 0),
+            tweetBodyLabel.topAnchor.constraint        (equalTo: profileImgView.bottomAnchor, constant: 0),
+            tweetBodyLabel.trailingAnchor.constraint   (equalTo: trailingAnchor, constant: -20),
+            tweetBodyLabel.leadingAnchor.constraint    (equalTo: leadingAnchor, constant: 20),
+            tweetBodyLabel.bottomAnchor.constraint     (equalTo: mediaStackView.topAnchor, constant: 0),
         ])
     }
 }

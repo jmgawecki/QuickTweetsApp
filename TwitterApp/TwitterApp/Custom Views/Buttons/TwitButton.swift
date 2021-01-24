@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TwitButton: UIButton {
+final class TwitButton: UIButton {
 
     
     //MARK: - Overrides
@@ -31,6 +31,7 @@ class TwitButton: UIButton {
         setTitle(message, for: .normal)
         
     }
+    
     
     //MARK: - Configurations
     

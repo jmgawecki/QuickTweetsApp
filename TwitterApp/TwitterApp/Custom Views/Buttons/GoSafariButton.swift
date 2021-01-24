@@ -8,6 +8,9 @@
 import UIKit
 
 final class GoSafariButton: UIButton {
+    
+    
+    //MARK:- Overrides
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,6 +21,8 @@ final class GoSafariButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK:- Initialisers
+    
     convenience init(title: String, isEnabled: Bool) {
         self.init(frame: .zero)
         setTitle(title, for: .normal)
@@ -25,11 +30,13 @@ final class GoSafariButton: UIButton {
 
     }
     
+    
+    //MARK:- Configurations
+    
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor         = .secondarySystemBackground
         titleLabel?.font        = UIFont.systemFont(ofSize: 17, weight: .light)
         setTitleColor(ColorsTwitter.twitterBlue, for: .normal)
     }
-
 }

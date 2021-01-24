@@ -14,18 +14,19 @@ protocol FavoriteUsersCellDelegates: class {
 class FavoriteUsersCell: UICollectionViewCell {
     
     
-    static let reuseId                      = "cell"
+    static let reuseId      = "cell"
                     
-    let tweetBodyLabel                      = UserSearchVCTextView()
-    var mediaStackView                      = UIStackView()
-    var commentView                         = CellMediaInfoView()
-    var sharesView                          = CellMediaInfoView()
-    var likesView                           = CellMediaInfoView()
-    var timeDateLabel                       = UILabel()
-    var goSafariButton                      = GoSafariButton()
+    let tweetBodyLabel      = UserSearchVCTextView()
+    var mediaStackView      = UIStackView()
+    var sharesView          = CellMediaInfoView()
+    var likesView           = CellMediaInfoView()
+    var timeDateLabel       = UILabel()
+    var goSafariButton      = GoSafariButton()
     
     weak var delegateSafari: FavoriteUsersCellDelegates!
     var tweet: Tweet!
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,13 +37,18 @@ class FavoriteUsersCell: UICollectionViewCell {
         configureGoSafariButton()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    
     @objc private func didTapGoSafariButton() {
         delegateSafari.didRequestSafari(with: tweet.urlToExpandWithSafari)
     }
+    
+    
     
     func set(with tweet: Tweet, buttonTitle: String?, isEnabled: Bool) {
         self.tweet                          = tweet
@@ -60,20 +66,17 @@ class FavoriteUsersCell: UICollectionViewCell {
         }
     }
     
+    
     private func configureCell() {
         backgroundColor                     = .secondarySystemBackground
         layer.cornerRadius                  = 15
     }
     
-    private func debugConfiguration() {
-        tweetBodyLabel.layer.borderWidth    = 1
-        mediaStackView.layer.borderWidth    = 1
-        timeDateLabel.layer.borderWidth     = 1
-    }
     
     private func configureGoSafariButton() {
         goSafariButton.addTarget(self, action: #selector(didTapGoSafariButton), for: .touchUpInside)
     }
+    
     
     private func configureMediaStackView() {
         mediaStackView.axis                 = .horizontal
@@ -84,20 +87,17 @@ class FavoriteUsersCell: UICollectionViewCell {
         mediaStackView.addArrangedSubview(likesView)
     }
     
+    
     private func configureTimeDateLabel() {
         timeDateLabel.textColor             = .systemGray
         timeDateLabel.textAlignment         = .center
     }
     
+    
     private func layoutUI() {
-        addSubview(timeDateLabel)
-        addSubview(tweetBodyLabel)
-        addSubview(mediaStackView)
-        addSubview(goSafariButton)
-        
-        mediaStackView.translatesAutoresizingMaskIntoConstraints = false
-        timeDateLabel.translatesAutoresizingMaskIntoConstraints  = false
-        
+        addSubviews(timeDateLabel, tweetBodyLabel, mediaStackView, goSafariButton)
+        tamic(mediaStackView, timeDateLabel)
+
         NSLayoutConstraint.activate([
             timeDateLabel.centerXAnchor.constraint  (equalTo: centerXAnchor, constant: 0),
             timeDateLabel.topAnchor.constraint      (equalTo: topAnchor, constant: 10),

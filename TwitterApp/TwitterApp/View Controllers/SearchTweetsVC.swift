@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchTweetsVC: UIViewController {
+final class SearchTweetsVC: UIViewController {
     
     enum Section {
         case main
@@ -20,6 +20,7 @@ class SearchTweetsVC: UIViewController {
     var user:           User!
     var tweets:         [Tweet] = []
     
+    
     //MARK: - Initialiser
     
     init(user: User) {
@@ -31,6 +32,7 @@ class SearchTweetsVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     //MARK: - Overrides
 
     override func viewDidLoad() {
@@ -40,6 +42,7 @@ class SearchTweetsVC: UIViewController {
         configureCollectionView()
     }
     
+    
     //MARK: - Objectives
     
     @objc private func addUserToFavorites(with button: UIBarButtonItem) {
@@ -48,6 +51,7 @@ class SearchTweetsVC: UIViewController {
         button.tintColor = .systemGray
         button.isEnabled = false
     }
+    
     
     //MARK: - Private Functions
     
@@ -61,6 +65,7 @@ class SearchTweetsVC: UIViewController {
             }
         }
     }
+    
     
     private func UserPersistenceCheck() -> Bool {
         var isEmpty: Bool = true
@@ -83,6 +88,7 @@ class SearchTweetsVC: UIViewController {
         return isEmpty
     }
 
+    
     private func configureVC() {
         view.backgroundColor                                    = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles  = true
@@ -92,6 +98,7 @@ class SearchTweetsVC: UIViewController {
         addButton.isEnabled = UserPersistenceCheck() ? true : false
         navigationItem.rightBarButtonItem = addButton
     }
+    
     
     private func addUserToFavorite(user: User) {
         let favorite = User(idStr:                  user.idStr,
@@ -114,7 +121,8 @@ class SearchTweetsVC: UIViewController {
         }
     }
     
-    //MARK: - Layout configuration
+    
+    //MARK: - CollectionView configuration
     
     private func updateData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Tweet>()
@@ -156,11 +164,11 @@ class SearchTweetsVC: UIViewController {
     }
 }
 
+    //MARK:- Extensions
+
 extension SearchTweetsVC: SearchTweetsCellDelegates {
     func didRequestSafari(with urlString: String?) {
         let url = URL(string: urlString!)!
         presentSafariVC(with: url)
     }
-    
-    
 }

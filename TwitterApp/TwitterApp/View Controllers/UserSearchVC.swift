@@ -8,13 +8,13 @@
 import UIKit
 import Swifter
 
-class UserSearchVC: TwetLoadingDataVC {
+final class UserSearchVC: TwetLoadingDataVC {
     
-    let twitterLogoImageView        = TwitImageView(frame: .zero)
-    let usernameSearchTextField     = TwitTextField(frame: .zero)
-    let searchButton                = TwitButton(backgroundColor: ColorsTwitter.twitterBlue, fontSize: 20, message: "Search for user!")
+    let logoImgView        = TwitImageView(frame: .zero)
+    let searchTextField    = TwitTextField(frame: .zero)
+    let searchButton       = TwitButton(backgroundColor: ColorsTwitter.twitterBlue, fontSize: 20, message: "Search for user!")
     
-    var isUsernameEntered: Bool { return !usernameSearchTextField.text!.isEmpty }
+    var isUsernameEntered: Bool { return !searchTextField.text!.isEmpty }
     var user: User!
     
     
@@ -24,9 +24,8 @@ class UserSearchVC: TwetLoadingDataVC {
         super.viewDidLoad()
         configureVC()
         layoutUI()
-        configureUIElements()
+        configureUI()
         configureSearchButton()
-        
     }
     
     
@@ -35,7 +34,7 @@ class UserSearchVC: TwetLoadingDataVC {
     @objc func searchButtonTapped(sender: UIView) {
         self.animateButtonsView(sender)
         guard isUsernameEntered else { return }
-        let username = usernameSearchTextField.text
+        let username = searchTextField.text
         getSingleUser(username: username!)
     }
     
@@ -60,52 +59,57 @@ class UserSearchVC: TwetLoadingDataVC {
         }
     }
     
-    private func configureVC() {
-        view.backgroundColor                                    = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles  = true
-    }
     
     private func configureSearchButton() {
         searchButton.addTarget(self, action: #selector(searchButtonTapped(sender:)), for: .touchUpInside)
     }
     
+    
     private func keyboardReturnButtonTapped() {
         guard isUsernameEntered else { return }
-        let username = usernameSearchTextField.text
+        let username = searchTextField.text
         getSingleUser(username: username!)
     }
     
     
     //MARK: - Layout configuration
     
-    private func configureUIElements() {
-        twitterLogoImageView.image          = Images.twitterLogo
-        usernameSearchTextField.delegate    = self
+    private func configureVC() {
+        view.backgroundColor                                    = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles  = true
     }
     
+    
+    private func configureUI() {
+        logoImgView.image          = Images.twitterLogo
+        searchTextField.delegate    = self
+    }
+    
+    
     private func layoutUI() {
-        view.addSubview(twitterLogoImageView)
-        view.addSubview(usernameSearchTextField)
-        view.addSubview(searchButton)
-        
+        view.addSubviews(logoImgView, searchTextField, searchButton)
+     
         NSLayoutConstraint.activate([
-            twitterLogoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
-            twitterLogoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            twitterLogoImageView.heightAnchor.constraint(equalToConstant: 220),
-            twitterLogoImageView.widthAnchor.constraint(equalTo: twitterLogoImageView.heightAnchor),
+            logoImgView.topAnchor.constraint        (equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
+            logoImgView.centerXAnchor.constraint    (equalTo: view.centerXAnchor),
+            logoImgView.heightAnchor.constraint     (equalToConstant: 220),
+            logoImgView.widthAnchor.constraint      (equalTo: logoImgView.heightAnchor),
             
-            usernameSearchTextField.topAnchor.constraint(equalTo: twitterLogoImageView.bottomAnchor, constant: 10),
-            usernameSearchTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
-            usernameSearchTextField.heightAnchor.constraint(equalToConstant: 46),
-            usernameSearchTextField.widthAnchor.constraint(equalToConstant: 240),
+            searchTextField.topAnchor.constraint    (equalTo: logoImgView.bottomAnchor, constant: 10),
+            searchTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+            searchTextField.heightAnchor.constraint (equalToConstant: 46),
+            searchTextField.widthAnchor.constraint  (equalToConstant: 240),
             
-            searchButton.topAnchor.constraint(equalTo: usernameSearchTextField.bottomAnchor, constant: 20),
-            searchButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
-            searchButton.heightAnchor.constraint(equalToConstant: 50),
-            searchButton.widthAnchor.constraint(equalToConstant: 240),
+            searchButton.topAnchor.constraint       (equalTo: searchTextField.bottomAnchor, constant: 20),
+            searchButton.centerXAnchor.constraint   (equalTo: view.centerXAnchor, constant: 0),
+            searchButton.heightAnchor.constraint    (equalToConstant: 50),
+            searchButton.widthAnchor.constraint     (equalToConstant: 240),
         ])
     }
 }
+
+
+//MARK:- Extensions
 
 extension UserSearchVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

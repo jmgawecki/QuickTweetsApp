@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TwitTextField: UITextField {
+final class TwitTextField: UITextField {
     
     
     

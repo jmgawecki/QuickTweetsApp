@@ -7,59 +7,67 @@
 
 import UIKit
 
-class CellMediaInfoView: UIView {
+final class CellMediaInfoView: UIView {
 
     enum ItemInfoType {
         case comments, shares, likes
     }
     
-    let symbolImageView   = UIImageView()
+    let symbolImgView   = UIImageView()
     let countLabel        = TwitInfoHeaderBodyLabel(textAlignment: .left)
    
+    
+    //MARK:- Overrides
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    //MARK:- Configurations
+    
     private func configure() {
-        addSubview(symbolImageView)
-        addSubview(countLabel)
-        symbolImageView.translatesAutoresizingMaskIntoConstraints = false
-        symbolImageView.contentMode = .scaleAspectFill
-        symbolImageView.tintColor   = ColorsTwitter.twitterBlue
+        addSubviews(symbolImgView, countLabel)
+        tamic(symbolImgView)
+        
+        symbolImgView.contentMode = .scaleAspectFill
+        symbolImgView.tintColor   = ColorsTwitter.twitterBlue
         
         NSLayoutConstraint.activate([
-            symbolImageView.centerYAnchor.constraint    (equalTo: self.centerYAnchor),
-            symbolImageView.leadingAnchor.constraint    (equalTo: self.leadingAnchor),
-            symbolImageView.widthAnchor.constraint      (equalToConstant: 20),
-            symbolImageView.heightAnchor.constraint     (equalToConstant: 20),
+            symbolImgView.centerYAnchor.constraint    (equalTo: self.centerYAnchor),
+            symbolImgView.leadingAnchor.constraint    (equalTo: self.leadingAnchor),
+            symbolImgView.widthAnchor.constraint      (equalToConstant: 20),
+            symbolImgView.heightAnchor.constraint     (equalToConstant: 20),
             
-            countLabel.centerYAnchor.constraint         (equalTo: symbolImageView.centerYAnchor),
-            countLabel.leadingAnchor.constraint         (equalTo: symbolImageView.trailingAnchor, constant: 12),
-            countLabel.trailingAnchor.constraint        (equalTo: self.trailingAnchor),
-            countLabel.heightAnchor.constraint          (equalToConstant: 18),
+            countLabel.centerYAnchor.constraint       (equalTo: symbolImgView.centerYAnchor),
+            countLabel.leadingAnchor.constraint       (equalTo: symbolImgView.trailingAnchor, constant: 12),
+            countLabel.trailingAnchor.constraint      (equalTo: self.trailingAnchor),
+            countLabel.heightAnchor.constraint        (equalToConstant: 18),
             
          
         ])
     }
     
+    
     func set(itemInfoType: ItemInfoType, with count: String) {
         switch itemInfoType {
         case .comments:
-            symbolImageView.image   = SFSymbols.comment
-            countLabel.text         = String(count)
+            symbolImgView.image   = SFSymbols.comment
+            countLabel.text       = String(count)
             
         case .shares:
-            symbolImageView.image   = SFSymbols.shares
-            countLabel.text         = String(count)
+            symbolImgView.image   = SFSymbols.shares
+            countLabel.text       = String(count)
             
         case .likes:
-            symbolImageView.image   = SFSymbols.likes
-            countLabel.text         = String(count)
+            symbolImgView.image   = SFSymbols.likes
+            countLabel.text       = String(count)
         }
     }
 }

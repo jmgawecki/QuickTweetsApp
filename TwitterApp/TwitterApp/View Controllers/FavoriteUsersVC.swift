@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoriteUsersVC: TwetLoadingDataVC {
+final class FavoriteUsersVC: TwetLoadingDataVC {
     
     enum SectionsUsers: Hashable {
         case favoriteUser(User)
@@ -20,6 +20,7 @@ class FavoriteUsersVC: TwetLoadingDataVC {
     var collectionView: UICollectionView!
     var dataSource:     UICollectionViewDiffableDataSource<SectionsUsers, Tweet>!
     var snapshot:       NSDiffableDataSourceSnapshot<SectionsUsers, Tweet>!
+    
     
     //MARK: - Overrides
     
@@ -37,7 +38,7 @@ class FavoriteUsersVC: TwetLoadingDataVC {
     
     
     //MARK: - Persistence Manager/ Network Calls
-    /// One additional Network call done in a function updateData() line 85
+    
     private func deleteFavorite(user: User) {
         PersistenceManager.updateWithUsers(favoriteUser: user, persistenceAction: .remove) { (error) in
             guard let _ = error else {
@@ -78,6 +79,9 @@ class FavoriteUsersVC: TwetLoadingDataVC {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
+    
+    //MARK:- CollectionView Configurations
+    
     private func updateData(with users: [User]) {
         snapshot = NSDiffableDataSourceSnapshot<SectionsUsers, Tweet>()
         var index = 0
@@ -109,6 +113,7 @@ class FavoriteUsersVC: TwetLoadingDataVC {
         }
     }
     
+    
     private func configureDataSource() {
         dataSource          = UICollectionViewDiffableDataSource<SectionsUsers, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweet) -> UICollectionViewCell? in
             let cell        = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteUsersCell.reuseId, for: indexPath) as! FavoriteUsersCell
@@ -123,7 +128,7 @@ class FavoriteUsersVC: TwetLoadingDataVC {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                                                          withReuseIdentifier: FavoritesCollectionHeader.reuseId,
                                                                          for: indexPath) as! FavoritesCollectionHeader
-            header.set(with: self.users[indexPath.section], index: indexPath)
+            header.set(with: self.users[indexPath.section])
             header.delegate = self
             return header
         }
@@ -143,7 +148,6 @@ class FavoriteUsersVC: TwetLoadingDataVC {
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: FavoritesCollectionHeader.reuseId)
     }
-    //MARK: - Layout configuration
 }
 
 

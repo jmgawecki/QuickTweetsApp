@@ -20,14 +20,13 @@ class SearchTweetsCell: UICollectionViewCell {
     let tweetBodyLabel          = UserSearchVCTextView()
     var mediaStackView          = UIStackView()
     let seeOnlineButton         = UIButton()
-    var commentView             = CellMediaInfoView()
     var sharesView              = CellMediaInfoView()
     var likesView               = CellMediaInfoView()
     var goSafariButton          = GoSafariButton()
     
     weak var delegateSafari: SearchTweetsCellDelegates!
-    var tweet: Tweet!
-    var user: User!
+    var tweet:               Tweet!
+    var user:                User!
     
     
     override init(frame: CGRect) {
@@ -39,9 +38,11 @@ class SearchTweetsCell: UICollectionViewCell {
         configureGoSafariButton()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     @objc private func addToFavoritesTapped() {
         let favorite = fromTweetToFavoriteTweet(user: user, tweet: tweet)
@@ -56,9 +57,11 @@ class SearchTweetsCell: UICollectionViewCell {
         }
     }
     
+    
     @objc private func didTapGoSafariButton() {
         delegateSafari.didRequestSafari(with: tweet.urlToExpandWithSafari)
     }
+    
     
     private func fromTweetToFavoriteTweet(user: User ,tweet: Tweet) -> FavoriteTweet {
         let favoriteTweet = FavoriteTweet(twitsId: tweet.twitsId,
@@ -71,6 +74,7 @@ class SearchTweetsCell: UICollectionViewCell {
                                           createdAt: tweet.createdAt)
         return favoriteTweet
     }
+    
     
     func set(with usersTweet: Tweet, user: User, buttonTitle: String?, isEnabled: Bool) {
         self.user                               = user
@@ -87,13 +91,14 @@ class SearchTweetsCell: UICollectionViewCell {
         } else {
             goSafariButton.isEnabled = false
         }
-
     }
+    
     
     private func configureCell() {
         backgroundColor                     = .secondarySystemBackground
         layer.cornerRadius                  = 15
     }
+    
     
     private func debugConfiguration() {
         tweetBodyLabel.layer.borderWidth    = 1
@@ -101,9 +106,11 @@ class SearchTweetsCell: UICollectionViewCell {
         timeDateLabel.layer.borderWidth     = 1
     }
     
+    
     private func configureGoSafariButton() {
         goSafariButton.addTarget(self, action: #selector(didTapGoSafariButton), for: .touchUpInside)
     }
+    
     
     private func configureMediaStackView() {
         mediaStackView.axis                 = .horizontal
@@ -114,6 +121,7 @@ class SearchTweetsCell: UICollectionViewCell {
         mediaStackView.addArrangedSubview(likesView)
     }
     
+    
     private func configureUIElements() {
         timeDateLabel.textColor             = .systemGray
         timeDateLabel.textAlignment         = .center
@@ -123,16 +131,10 @@ class SearchTweetsCell: UICollectionViewCell {
         addToFavoritesButton.addTarget(self, action: #selector(addToFavoritesTapped), for: .touchUpInside)
     }
     
+    
     private func layoutUI() {
-        addSubview(addToFavoritesButton)
-        addSubview(timeDateLabel)
-        addSubview(tweetBodyLabel)
-        addSubview(mediaStackView)
-        addSubview(goSafariButton)
-        
-        addToFavoritesButton.translatesAutoresizingMaskIntoConstraints  = false
-        mediaStackView.translatesAutoresizingMaskIntoConstraints        = false
-        timeDateLabel.translatesAutoresizingMaskIntoConstraints         = false
+        addSubviews(addToFavoritesButton, timeDateLabel, tweetBodyLabel, mediaStackView, goSafariButton)
+        tamic(addToFavoritesButton, mediaStackView, timeDateLabel)
         
         NSLayoutConstraint.activate([
             addToFavoritesButton.topAnchor.constraint       (equalTo: topAnchor, constant: 5),

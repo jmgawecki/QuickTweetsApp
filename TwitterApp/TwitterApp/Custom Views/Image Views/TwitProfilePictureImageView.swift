@@ -9,8 +9,6 @@ import UIKit
 
 class TwitProfilePictureImageView: UIImageView {
     
-    
-    
     //MARK: - Overrides
     
     override init(frame: CGRect) {
@@ -18,9 +16,11 @@ class TwitProfilePictureImageView: UIImageView {
         configure()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     func downloadImage(from URLString: String) {
         NetworkManager.shared.downloadImage(from: URLString) { [weak self] (image) in
@@ -28,7 +28,7 @@ class TwitProfilePictureImageView: UIImageView {
             DispatchQueue.main.async { self.image = image }
         }
     }
-    
+
     
     //MARK: - Configurations
     

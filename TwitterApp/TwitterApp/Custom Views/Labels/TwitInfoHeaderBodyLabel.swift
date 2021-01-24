@@ -7,9 +7,11 @@
 
 import UIKit
 
-class TwitInfoHeaderBodyLabel: UILabel {
+final class TwitInfoHeaderBodyLabel: UILabel {
 
+    
     //MARK: - Overrides
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -18,6 +20,8 @@ class TwitInfoHeaderBodyLabel: UILabel {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK:- Initialisers
     
     convenience init(textAlignment: NSTextAlignment) {
         self.init(frame: .zero)
@@ -33,5 +37,4 @@ class TwitInfoHeaderBodyLabel: UILabel {
         tintColor       = .secondaryLabel
         
     }
-
 }

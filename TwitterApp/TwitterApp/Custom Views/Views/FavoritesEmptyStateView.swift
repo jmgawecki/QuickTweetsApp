@@ -13,11 +13,13 @@ class FavoritesEmptyStateView: UIView {
     
     let twitterLogoView     = TwitImageView(frame: .zero)
     let twitterLogoViewTop  = TwitImageView(frame: .zero)
+    
+    //MARK:- Overrides
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemBackground
-        configure()
+        configureCell()
+        configureUI()
         layoutUI()
         animate()
     }
@@ -26,18 +28,30 @@ class FavoritesEmptyStateView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK:- Initialisers
+    
     convenience init(with message: String) {
         self.init(frame: .zero)
         messageLabel.text = message
     }
+    
+    
+    //MARK:- Private functions
     
     private func animate() {
         alpha = 0
         UIView.animate(withDuration: 0.5) { self.alpha = 1.0}
     }
     
-    private func configure() {
-        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+    
+    //MARK:- Layout
+    
+    private func configureCell() {
+        backgroundColor = .systemBackground
+    }
+    
+    
+    private func configureUI() {
         messageLabel.font                       = UIFont.preferredFont(forTextStyle: .largeTitle)
         messageLabel.numberOfLines              = 4
         messageLabel.adjustsFontSizeToFitWidth  = true
@@ -46,24 +60,26 @@ class FavoritesEmptyStateView: UIView {
         twitterLogoViewTop.image                = Images.twitterLogo
     }
     
+    
     private func layoutUI() {
         addSubviews(messageLabel, twitterLogoView, twitterLogoViewTop)
+        tamic(messageLabel)
         
         NSLayoutConstraint.activate([
-            twitterLogoViewTop.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
-            twitterLogoViewTop.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -80),
-            twitterLogoViewTop.widthAnchor.constraint(equalToConstant: 100),
-            twitterLogoViewTop.heightAnchor.constraint(equalTo: twitterLogoViewTop.widthAnchor),
+            twitterLogoViewTop.centerXAnchor.constraint (equalTo: centerXAnchor, constant: 0),
+            twitterLogoViewTop.centerYAnchor.constraint (equalTo: centerYAnchor, constant: -80),
+            twitterLogoViewTop.widthAnchor.constraint   (equalToConstant: 100),
+            twitterLogoViewTop.heightAnchor.constraint  (equalTo: twitterLogoViewTop.widthAnchor),
             
-            messageLabel.topAnchor.constraint(equalTo: twitterLogoViewTop.bottomAnchor, constant: -10),
-            messageLabel.heightAnchor.constraint(equalToConstant: 200),
-            messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            messageLabel.topAnchor.constraint           (equalTo: twitterLogoViewTop.bottomAnchor, constant: -10),
+            messageLabel.heightAnchor.constraint        (equalToConstant: 200),
+            messageLabel.leadingAnchor.constraint       (equalTo: leadingAnchor, constant: 15),
+            messageLabel.trailingAnchor.constraint      (equalTo: trailingAnchor, constant: -15),
         
-            twitterLogoView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
-            twitterLogoView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 450),
-            twitterLogoView.widthAnchor.constraint(equalToConstant: 500),
-            twitterLogoView.heightAnchor.constraint(equalTo: twitterLogoView.widthAnchor),
+            twitterLogoView.centerXAnchor.constraint    (equalTo: centerXAnchor, constant: 0),
+            twitterLogoView.centerYAnchor.constraint    (equalTo: centerYAnchor, constant: 450),
+            twitterLogoView.widthAnchor.constraint      (equalToConstant: 500),
+            twitterLogoView.heightAnchor.constraint     (equalTo: twitterLogoView.widthAnchor),
         ])
     }
 }

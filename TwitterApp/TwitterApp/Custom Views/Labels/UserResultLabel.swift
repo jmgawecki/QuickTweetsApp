@@ -7,9 +7,11 @@
 
 import UIKit
 
-class UserResultLabel: UILabel {
+final class UserResultLabel: UILabel {
 
+    
     //MARK: - Overrides
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -24,7 +26,6 @@ class UserResultLabel: UILabel {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        
         font            = UIFont.systemFont(ofSize: 20, weight: .regular)
         textAlignment   = .left
     }

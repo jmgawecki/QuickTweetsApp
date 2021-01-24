@@ -8,7 +8,9 @@
 import UIKit
 
 final class AlertContainerView: UIView {
-
+    
+    
+    //MARK:- Overrides
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,6 +20,9 @@ final class AlertContainerView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    //MARK:- Private functions
     
     private func configure() {
         backgroundColor       = .systemBackground

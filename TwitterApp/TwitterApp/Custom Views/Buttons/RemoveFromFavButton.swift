@@ -8,6 +8,8 @@
 import UIKit
 
 final class RemoveFromFavButton: UIButton {
+    
+    //MARK: - Overrides
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,10 +20,14 @@ final class RemoveFromFavButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK:- Initialisers
+    
     convenience init(title: String) {
         self.init(frame: .zero)
         setTitle(title, for: .normal)
     }
+    
+    //MARK:- Configurations
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
