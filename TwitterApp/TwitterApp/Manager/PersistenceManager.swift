@@ -16,8 +16,9 @@ enum PersistenceManager {
     static private let defaults = UserDefaults.standard
     
     enum Keys {
-        static let users        = "users"
-        static let tweets       = "tweets"
+        static let users          = "users"
+        static let tweets         = "tweets"
+        static let favoriteTweets = "favoriteTweets"
     }
     #warning("refactor function's signature newFavoriteTweet to FavoriteTweet")
     static func updateWithUsers(newFavoriteUser: User, persistenceAction: PersisenceAction, completed: @escaping(TwitterErrors?) -> Void) {
@@ -71,7 +72,7 @@ enum PersistenceManager {
         }
     }
     
-    static func updateWithTweets(newFavoriteTweet: Tweet, persistenceAction: PersisenceAction, completed: @escaping(TwitterErrors?) -> Void) {
+    static func updateWithTweets(newFavoriteTweet: FavoriteTweet, persistenceAction: PersisenceAction, completed: @escaping(TwitterErrors?) -> Void) {
         retrieveFavoritesTweets { (result) in
             switch result {
             case .success(var tweets):
@@ -97,25 +98,25 @@ enum PersistenceManager {
         }
     }
     
-    static func retrieveFavoritesTweets(completed: @escaping(Result<[Tweet],TwitterErrors>) -> Void) {
-        guard let favTweetsData = defaults.object(forKey: Keys.tweets) as? Data else {
+    static func retrieveFavoritesTweets(completed: @escaping(Result<[FavoriteTweet],TwitterErrors>) -> Void) {
+        guard let favTweetsData = defaults.object(forKey: Keys.favoriteTweets) as? Data else {
             completed(.success([]))
             return
         }
         do {
             let decoder = JSONDecoder()
-            let favoriteTweets = try decoder.decode([Tweet].self, from: favTweetsData)
+            let favoriteTweets = try decoder.decode([FavoriteTweet].self, from: favTweetsData)
             completed(.success(favoriteTweets))
         } catch {
             completed(.failure(.retrieveTweetPM))
         }
     }
     
-    static func saveTweets(favoriteUsers: [Tweet]) -> TwitterErrors? {
+    static func saveTweets(favoriteUsers: [FavoriteTweet]) -> TwitterErrors? {
         do {
             let encoder             = JSONEncoder()
             let encodedFavorites    = try encoder.encode(favoriteUsers)
-            defaults.set(encodedFavorites, forKey: Keys.tweets)
+            defaults.set(encodedFavorites, forKey: Keys.favoriteTweets)
             return nil
         } catch {
             return .saveTweetsPM

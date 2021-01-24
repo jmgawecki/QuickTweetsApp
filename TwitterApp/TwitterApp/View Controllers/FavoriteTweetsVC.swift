@@ -14,10 +14,11 @@ class FavoriteTweetsVC: UIViewController {
     }
 
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, Tweet>!
-    var snapshot: NSDiffableDataSourceSnapshot<Section, Tweet>!
+    var dataSource: UICollectionViewDiffableDataSource<Section, FavoriteTweet>!
+    var snapshot: NSDiffableDataSourceSnapshot<Section, FavoriteTweet>!
     
-    var tweets: [Tweet] = []
+    var favoriteTweets: [FavoriteTweet] = []
+    var tweets:         [Tweet] = []
     
     
     //MARK: - Overrides
@@ -29,7 +30,7 @@ class FavoriteTweetsVC: UIViewController {
         configureCollectionView()
         configureDataSource()
         updateData()
-        
+        print(favoriteTweets)
     }
 
 
@@ -39,9 +40,9 @@ class FavoriteTweetsVC: UIViewController {
         PersistenceManager.retrieveFavoritesTweets { [weak self] (result) in
             guard let self = self else { return }
             switch result {
-            case .success(let tweets):
-                self.tweets = tweets
-                if self.tweets.isEmpty {
+            case .success(let favoriteTweets):
+                self.favoriteTweets = favoriteTweets
+                if self.favoriteTweets.isEmpty {
                     DispatchQueue.main.async {
                         self.presentEmptyStateView(with: "Looks like... \nYou have no favorite Tweets 🧐 \n\nTime to change that!", in: self.view)
                     }
@@ -54,7 +55,7 @@ class FavoriteTweetsVC: UIViewController {
     }
     
     
-    private func deleteFavorite(tweet: Tweet) {
+    private func deleteFavorite(tweet: FavoriteTweet) {
         PersistenceManager.updateWithTweets(newFavoriteTweet: tweet, persistenceAction: .remove) { (error) in
             guard let error = error else { print("success"); return }
             print(error.rawValue)
@@ -73,11 +74,11 @@ class FavoriteTweetsVC: UIViewController {
     
     
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweet) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, FavoriteTweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, favoriteTweet) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteTweetsCell.reuseId, for: indexPath) as! FavoriteTweetsCell
-            let buttonTitle     = (tweet.urlToExpandWithSafari != nil) ? "See Full" : nil
+            let buttonTitle     = (favoriteTweet.urlToExpandWithSafari != nil) ? "See Full" : nil
             let isEnabled       = (buttonTitle != nil) ? true : false
-            cell.set(with: tweet, buttonTitle: buttonTitle, isEnabled: isEnabled)
+            cell.set(with: favoriteTweet, buttonTitle: buttonTitle, isEnabled: isEnabled)
             cell.delegate       = self
             cell.delegateSafari = self
             return cell
@@ -86,9 +87,9 @@ class FavoriteTweetsVC: UIViewController {
     
     
     private func updateData() {
-        snapshot = NSDiffableDataSourceSnapshot<Section, Tweet>()
+        snapshot = NSDiffableDataSourceSnapshot<Section, FavoriteTweet>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(tweets)
+        snapshot.appendItems(favoriteTweets)
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true) }
     }
 
@@ -105,14 +106,14 @@ class FavoriteTweetsVC: UIViewController {
 }
 
 extension FavoriteTweetsVC: FavoriteTweetsCellDelegate {
-    func didRemoveTweetFromFavorites(tweet: Tweet) {
+    func didRemoveTweetFromFavorites(tweet: FavoriteTweet) {
         #warning("creae a conditional here in case deleteFavorite from UserDefaults did not succeed. Or is it actuall already made?")
         deleteFavorite(tweet: tweet)
         
         tweets.removeAll(where: { $0.twitsId == tweet.twitsId })
         snapshot.deleteItems([tweet])
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true) }
-        if tweets.isEmpty {
+        if favoriteTweets.isEmpty {
                 #warning("add animation here so its gonna appears in one second, not instantly")
                 self.presentEmptyStateView(with: "Looks like... \nYou have no favorite Tweets 🧐 \n\nTime to change that!", in: self.view)
         }

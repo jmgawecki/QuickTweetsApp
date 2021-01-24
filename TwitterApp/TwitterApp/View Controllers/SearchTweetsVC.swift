@@ -106,7 +106,7 @@ class SearchTweetsVC: UIViewController {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchTweetsCell.reuseId, for: indexPath) as! SearchTweetsCell
             let buttonTitle = (tweet.urlToExpandWithSafari != nil) ? "See Full" : nil
             let isEnabled   = (buttonTitle != nil) ? true : false
-            cell.set(with: tweet, buttonTitle: buttonTitle, isEnabled: isEnabled)
+            cell.set(with: tweet, user: self.user, buttonTitle: buttonTitle, isEnabled: isEnabled)
             cell.delegateSafari = self
             
             return cell

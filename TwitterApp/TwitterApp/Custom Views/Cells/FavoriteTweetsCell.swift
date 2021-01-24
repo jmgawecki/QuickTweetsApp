@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FavoriteTweetsCellDelegate: class {
-    func didRemoveTweetFromFavorites(tweet: Tweet)
+    func didRemoveTweetFromFavorites(tweet: FavoriteTweet)
 }
 
 protocol FavoriteTweetsCellSafariDelegates: class {
@@ -33,7 +33,7 @@ class FavoriteTweetsCell: UICollectionViewCell {
     let likesView           = CellMediaInfoView()
     var goSafariButton      = GoSafariButton()
     
-    var tweet: Tweet!
+    var favoriteTweet: FavoriteTweet!
     
     weak var delegateSafari: FavoriteTweetsCellSafariDelegates!
     weak var delegate: FavoriteTweetsCellDelegate!
@@ -60,25 +60,25 @@ class FavoriteTweetsCell: UICollectionViewCell {
     //MARK: - Objectives
     
     @objc private func removeButtonTapped() {
-        delegate.didRemoveTweetFromFavorites(tweet: tweet)
+        delegate.didRemoveTweetFromFavorites(tweet: favoriteTweet)
     }
     
     @objc private func didTapGoSafariButton() {
-        delegateSafari.didRequestSafari(with: tweet.urlToExpandWithSafari)
+        delegateSafari.didRequestSafari(with: favoriteTweet.urlToExpandWithSafari)
     }
     
     //MARK: - Configurations
     
-    func set(with tweet: Tweet, buttonTitle: String?, isEnabled: Bool) {
+    func set(with favoriteTweet: FavoriteTweet, buttonTitle: String?, isEnabled: Bool) {
         #warning("fix comment, shares, likes later, add authors profile picture into tweets network call")
-        self.tweet                          = tweet
-        //        avatarImageView.downloadImage(from: tweet)
-        tweetBodyLabel.text                 = tweet.tweetText
-        timeDateLabel.text                  = tweet.createdAt.formatToTwitterPostDate()
-        forenameLabel.text                  = tweet.user
+        self.favoriteTweet                          = favoriteTweet
+        avatarImageView.downloadImage(from: favoriteTweet.profileImageUrl!)
+        tweetBodyLabel.text                 = favoriteTweet.tweetText
+        timeDateLabel.text                  = favoriteTweet.createdAt.formatToTwitterPostDate()
+        forenameLabel.text                  = favoriteTweet.name
             
-        sharesView.set(itemInfoType:        .shares,    with:  tweet.retweetCounter.convertToKMFormattedString())
-        likesView.set(itemInfoType:         .likes,     with:  tweet.likesCounter.convertToKMFormattedString())
+        sharesView.set(itemInfoType:        .shares,    with:  favoriteTweet.retweetCounter.convertToKMFormatStr())
+        likesView.set(itemInfoType:         .likes,     with:  favoriteTweet.likesCounter.convertToKMFormatStr())
         
         if buttonTitle != nil {
             goSafariButton.setTitle(buttonTitle, for: .normal)

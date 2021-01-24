@@ -27,6 +27,8 @@ class SearchTweetsCell: UICollectionViewCell {
     
     weak var delegateSafari: SearchTweetsCellDelegates!
     var tweet: Tweet!
+    var user: User!
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,7 +44,9 @@ class SearchTweetsCell: UICollectionViewCell {
     }
     
     @objc private func addToFavoritesTapped() {
-        PersistenceManager.updateWithTweets(newFavoriteTweet: tweet, persistenceAction: .add) { [weak self] (error) in
+        let favorite = fromTweetToFavoriteTweet(user: user, tweet: tweet)
+        print(favorite)
+        PersistenceManager.updateWithTweets(newFavoriteTweet: favorite, persistenceAction: .add) { [weak self] (error) in
             guard self != nil else { return }
             guard let error = error else {
                 print("sucess")
@@ -56,13 +60,26 @@ class SearchTweetsCell: UICollectionViewCell {
         delegateSafari.didRequestSafari(with: tweet.urlToExpandWithSafari)
     }
     
-    func set(with usersTweet: Tweet, buttonTitle: String?, isEnabled: Bool) {
-        tweet                                       = usersTweet
-        tweetBodyLabel.text                         = usersTweet.tweetText
-        timeDateLabel.text                          = usersTweet.createdAt.formatToTwitterPostDate()
-
-        sharesView.set(itemInfoType: .shares,       with: usersTweet.retweetCounter.convertToKMFormattedString())
-        likesView.set(itemInfoType: .likes,         with: usersTweet.likesCounter.convertToKMFormattedString())
+    private func fromTweetToFavoriteTweet(user: User ,tweet: Tweet) -> FavoriteTweet {
+        let favoriteTweet = FavoriteTweet(twitsId: tweet.twitsId,
+                                          name: user.name,
+                                          tweetText: tweet.tweetText,
+                                          profileImageUrl: user.profileImageUrl,
+                                          urlToExpandWithSafari: tweet.urlToExpandWithSafari,
+                                          likesCounter: tweet.likesCounter,
+                                          retweetCounter: tweet.retweetCounter,
+                                          createdAt: tweet.createdAt)
+        return favoriteTweet
+    }
+    
+    func set(with usersTweet: Tweet, user: User, buttonTitle: String?, isEnabled: Bool) {
+        self.user                               = user
+        tweet                                   = usersTweet
+        tweetBodyLabel.text                     = usersTweet.tweetText
+        timeDateLabel.text                      = usersTweet.createdAt.formatToTwitterPostDate()
+        
+        sharesView.set(itemInfoType: .shares,   with: usersTweet.retweetCounter.convertToKMFormatStr())
+        likesView.set(itemInfoType: .likes,     with: usersTweet.likesCounter.convertToKMFormatStr())
         
         if buttonTitle != nil {
             goSafariButton.setTitle(buttonTitle, for: .normal)

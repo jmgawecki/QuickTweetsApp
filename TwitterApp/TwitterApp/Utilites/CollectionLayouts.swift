@@ -16,7 +16,7 @@ struct CollectionLayouts {
         item.contentInsets  = NSDirectionalEdgeInsets(top: 15, leading: 20, bottom: 15, trailing: 20)
         
         let groupSize       = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                     heightDimension: .estimated(250))
+                                                     heightDimension: .estimated(290))
         
         let group           = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                                  subitems: [item])

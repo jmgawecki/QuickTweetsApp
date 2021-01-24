@@ -49,8 +49,8 @@ class FavoriteUsersCell: UICollectionViewCell {
         timeDateLabel.text                  = tweet.createdAt.formatToTwitterPostDate()
         tweetBodyLabel.text                 = tweet.tweetText
         
-        sharesView.set(itemInfoType:        .shares,    with: tweet.retweetCounter.convertToKMFormattedString())
-        likesView.set(itemInfoType:         .likes,     with: tweet.likesCounter.convertToKMFormattedString())
+        sharesView.set(itemInfoType:        .shares,    with: tweet.retweetCounter.convertToKMFormatStr())
+        likesView.set(itemInfoType:         .likes,     with: tweet.likesCounter.convertToKMFormatStr())
         
         if buttonTitle != nil {
             goSafariButton.setTitle(buttonTitle, for: .normal)

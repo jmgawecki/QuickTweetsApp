@@ -8,7 +8,7 @@
 import Foundation
 
 extension Double {
-    func convertToKMFormattedString() -> String {
+    func convertToKMFormatStr() -> String {
         if self < 1_000 {
             return String(format: "%.0f", self)
         } else if self < 1_000_000 {

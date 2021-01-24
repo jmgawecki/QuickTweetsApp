@@ -47,8 +47,8 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
         avatarImageView.downloadImage(from: user.profileImageUrl!)
         forenameLabel.text          = user.name
         usernameLabel.text          = user.screenName
-        followerView.set(itemInfoType:  .followers, with: user.followersCount.convertToKMFormattedString())
-        followingView.set(itemInfoType: .following, with: user.followingCount.convertToKMFormattedString())
+        followerView.set(itemInfoType:  .followers, with: user.followersCount.convertToKMFormatStr())
+        followingView.set(itemInfoType: .following, with: user.followingCount.convertToKMFormatStr())
     }
     
 
