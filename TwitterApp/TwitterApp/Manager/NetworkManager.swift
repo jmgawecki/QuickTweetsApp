@@ -52,7 +52,7 @@ struct NetworkManager {
                                                   retweetCounter: tweet["retweet_count"].double!,
                                                   createdAt: tweet["created_at"].string!,
                                                   repliedToScreenName: tweet["in_reply_to_screen_name"].string,
-                                                  tweetText: tweet["text"].string!)
+                                                  tweetText: tweet["text"].string!.removeHTTPSfromTweet())
                 searchedUserTweets.append(tweetObject)
             }
             completed(searchedUserTweets)

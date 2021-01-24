@@ -54,8 +54,8 @@ class UserSearchVC: TwetLoadingDataVC {
                 destVC.title            = ""
                 destVC.username         = "jakubgawecki96"
                 self.navigationController?.pushViewController(destVC, animated: true)
-            case .failure(let error):
-                print(error)
+            case .failure(_):
+                self.presentAlertVCOnMainThread(title: "Ops", message: "User incorrect", buttonTitle: "Ok")
             }
         }
     }

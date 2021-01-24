@@ -15,6 +15,20 @@ extension String {
         let formattedDateString     =  "\(formattedHour) \(date[1]) \(date[2]) \(date[5])"
         return formattedDateString
     }
+    
+    func removeHTTPSfromTweet() -> String {
+        let tweet = self
+        var newTweet = ""
+        var tweetComponents = tweet.components(separatedBy: " ")
+        let counter = Int(tweetComponents.count)
+        if tweetComponents[counter - 1].contains("https") {
+            tweetComponents.removeLast()
+        }
+        for word in tweetComponents {
+            newTweet.append("\(word) ")
+        }
+        return newTweet
+    }
 }
 
 /// Mon Mar 05 22:08:25 +0000 2007

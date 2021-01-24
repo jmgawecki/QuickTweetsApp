@@ -14,6 +14,7 @@ extension UIViewController {
         emptyStateView.frame = view.bounds
         view.addSubview(emptyStateView)
     }
+    
     func presentSafariVC(with url: URL) {
         let safariVC = SFSafariViewController(url: url)
         safariVC.preferredControlTintColor = .systemGreen
@@ -26,6 +27,16 @@ extension UIViewController {
         } completion: { (_) in
             UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: { viewToAnimate.transform = CGAffineTransform.init(scaleX: 1, y: 1) }, completion: nil)
         }
+    }
+    
+    func presentAlertVCOnMainThread(title: String, message: String, buttonTitle: String) {
+        DispatchQueue.main.async {
+            let alertVC = TweetAlertVC(title: title, message: message, buttonTitle: buttonTitle)
+            alertVC.modalPresentationStyle = .overFullScreen
+            alertVC.modalTransitionStyle = .crossDissolve
+            self.present(alertVC, animated: true)
+        }
+        
     }
 
 }
