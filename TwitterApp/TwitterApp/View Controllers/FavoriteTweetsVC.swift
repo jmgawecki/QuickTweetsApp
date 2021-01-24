@@ -107,14 +107,13 @@ class FavoriteTweetsVC: UIViewController {
 
 extension FavoriteTweetsVC: FavoriteTweetsCellDelegate {
     func didRemoveTweetFromFavorites(tweet: FavoriteTweet) {
-        #warning("creae a conditional here in case deleteFavorite from UserDefaults did not succeed. Or is it actuall already made?")
         deleteFavorite(tweet: tweet)
         
-        tweets.removeAll(where: { $0.twitsId == tweet.twitsId })
+        favoriteTweets.removeAll(where: { $0.twitsId == tweet.twitsId })
         snapshot.deleteItems([tweet])
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true) }
+        print(favoriteTweets)
         if favoriteTweets.isEmpty {
-                #warning("add animation here so its gonna appears in one second, not instantly")
                 self.presentEmptyStateView(with: "Looks like... \nYou have no favorite Tweets 🧐 \n\nTime to change that!", in: self.view)
         }
     }

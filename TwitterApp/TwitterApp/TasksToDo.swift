@@ -7,10 +7,8 @@
 
 import Foundation
 
-#warning("create date convertor")
 #warning("images to be a perfect circles")
 #warning("handle safari services to make them more smooth")
-#warning("fix the issues with the likes, comments and retweets")
 #warning("add some plain animations to uibuttons")
 #warning("add search button functionality to favorite Tweets")
 #warning("Refactor cells")

@@ -45,8 +45,11 @@ class SearchTweetsVC: UIViewController {
     
     //MARK: - Objectives
     
-    @objc private func addUserToFavorites() {
+    @objc private func addUserToFavorites(with button: UIBarButtonItem) {
         addUserToFavorite(user: user)
+        button.title = "In favorites"
+        button.tintColor = .systemGray
+        button.isEnabled = false
     }
     
     //MARK: - Private Functions
@@ -61,11 +64,36 @@ class SearchTweetsVC: UIViewController {
             }
         }
     }
+    
+    private func UserPersistenceCheck() -> Bool {
+        var isEmpty: Bool = true
+        PersistenceManager.retrieveFavoritesUsers { [weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let users):
+                print(users)
+                let user = users.filter { $0.screenName == self.user.screenName }
+                print(user)
+                if user.isEmpty {
+                    isEmpty = true
+                } else {
+                    isEmpty = false
+                }
+            case .failure(_):
+                print("userpersistenceCheckerror")
+            }
+        }
+        return isEmpty
+    }
 
     private func configureVC() {
         view.backgroundColor                                    = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles  = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add to favorites", style: .plain, target: self, action: #selector(addUserToFavorites))
+        let title = UserPersistenceCheck() ? "Add to Favorites" : "In Favorites"
+        let addButton = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(addUserToFavorites(with:)))
+        addButton.tintColor = UserPersistenceCheck() ? ColorsTwitter.twitterBlue : .systemGray
+        addButton.isEnabled = UserPersistenceCheck() ? true : false
+        navigationItem.rightBarButtonItem = addButton
     }
     
     private func addUserToFavorite(user: User) {

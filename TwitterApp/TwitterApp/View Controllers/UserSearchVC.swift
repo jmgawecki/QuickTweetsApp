@@ -8,7 +8,7 @@
 import UIKit
 import Swifter
 
-class UserSearchVC: UIViewController {
+class UserSearchVC: TwetLoadingDataVC {
     
     let twitterLogoImageView        = TwitImageView(frame: .zero)
     let usernameSearchTextField     = TwitTextField(frame: .zero)
@@ -32,7 +32,8 @@ class UserSearchVC: UIViewController {
     
     //MARK: - @Objective functions
     
-    @objc func searchButtonTapped() {
+    @objc func searchButtonTapped(sender: UIView) {
+        self.animateButtonsView(sender)
         guard isUsernameEntered else { return }
         let username = usernameSearchTextField.text
         getSingleUser(username: username!)
@@ -42,10 +43,10 @@ class UserSearchVC: UIViewController {
     //MARK: - Private Functions
     
     private func getSingleUser(username: String) {
-        NetworkManager.shared.getSingleUser(username: username) { (user) in
-            
-        }
-        NetworkManager.shared.getSingleUser(username: username) { (result) in
+        showLoadingView()
+        NetworkManager.shared.getSingleUser(username: username) { [weak self] (result) in
+            guard let self = self else { return }
+            self.dismissLoadingView()
             switch result {
             case .success(let user):
                 self.user               = user
@@ -65,7 +66,13 @@ class UserSearchVC: UIViewController {
     }
     
     private func configureSearchButton() {
-        searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        searchButton.addTarget(self, action: #selector(searchButtonTapped(sender:)), for: .touchUpInside)
+    }
+    
+    private func keyboardReturnButtonTapped() {
+        guard isUsernameEntered else { return }
+        let username = usernameSearchTextField.text
+        getSingleUser(username: username!)
     }
     
     
@@ -102,7 +109,7 @@ class UserSearchVC: UIViewController {
 
 extension UserSearchVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        searchButtonTapped()
+        keyboardReturnButtonTapped()
         return true
     }
 }

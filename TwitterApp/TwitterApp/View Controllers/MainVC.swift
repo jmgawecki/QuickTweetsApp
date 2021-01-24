@@ -25,6 +25,7 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        authoriseAPI()
         configureVC()
         layoutUI()
         configureUIElements()
@@ -32,23 +33,14 @@ class MainVC: UIViewController {
         configureFavoritesUsersButton()
         configureFavoriteTweetsButton()
         
-        if let callbackURL = URL(string: "TwitterApp://success") {
-            swifter.authorize(withCallback: callbackURL, presentingFrom: self, success: { token, _ in
-                print("MUCH SUCCESS")
-                self.dismiss(animated: true)
-                
-            }, failure: { error in
-                print("ERROR")
-            })
-        }
-        
         
     }
     
     
     //MARK: - @Objective functions
     
-    @objc private func searchButtonTapped() {
+    @objc private func searchButtonTapped(sender: UIButton) {
+        self.animateButtonsView(sender)
         let destVC              = UserSearchVC()
         destVC.title            = "User search"
         swifter.showUser(UserTag.screenName("barackobama"), includeEntities: true) { (json) in
@@ -62,21 +54,45 @@ class MainVC: UIViewController {
         } failure: { (error) in
             return
         }
-
+        
         navigationController?.pushViewController(destVC, animated: true)
     }
     
-    @objc private func toFavoritesUsersTapped() {
+    @objc private func toFavoritesUsersTapped(sender: UIButton) {
+        self.animateButtonsView(sender)
         let destVC              = FavoriteUsersVC()
         navigationController?.pushViewController(destVC, animated: true)
     }
     
-    @objc private func toFavoriteTweetsTapped() {
+    @objc private func toFavoriteTweetsTapped(sender: UIButton) {
+        self.animateButtonsView(sender)
         let destVC              = FavoriteTweetsVC()
         navigationController?.pushViewController(destVC, animated: true)
     }
     
+    //MARK: - Animations
+    
+   
+    
     //MARK: - Private Functions
+    
+    private func authoriseAPI() {
+        var hasAlreadyLaunched :Bool!
+        hasAlreadyLaunched = UserDefaults.standard.bool(forKey: "hasAlreadyLaunched")
+        if hasAlreadyLaunched {
+        } else {
+            UserDefaults.standard.set(true, forKey: "hasAlreadyLaunched")
+            
+            if let callbackURL = URL(string: "TwitterApp://success") {
+                swifter.authorize(withCallback: callbackURL, presentingFrom: self, success: { token, _ in
+                    print("MUCH SUCCESS")
+                    
+                }, failure: { error in
+                    print("ERROR")
+                })
+            }
+        }
+    }
     
     private func configureVC() {
         view.backgroundColor    = .systemBackground
@@ -84,15 +100,15 @@ class MainVC: UIViewController {
     }
     
     private func configureSearchButton() {
-        searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        searchButton.addTarget(self, action: #selector(searchButtonTapped(sender:)), for: .touchUpInside)
     }
     
     private func configureFavoritesUsersButton() {
-        favoriteUsersButton.addTarget(self, action: #selector(toFavoritesUsersTapped), for: .touchUpInside)
+        favoriteUsersButton.addTarget(self, action: #selector(toFavoritesUsersTapped(sender:)), for: .touchUpInside)
     }
     
     private func configureFavoriteTweetsButton() {
-        favoriteTwitsButton.addTarget(self, action: #selector(toFavoriteTweetsTapped), for: .touchUpInside)
+        favoriteTwitsButton.addTarget(self, action: #selector(toFavoriteTweetsTapped(sender:)), for: .touchUpInside)
     }
     
     

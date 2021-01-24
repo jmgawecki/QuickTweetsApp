@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoriteUsersVC: UIViewController {
+class FavoriteUsersVC: TwetLoadingDataVC {
     
     enum SectionsUsers: Hashable {
         case favoriteUser(User)
@@ -26,7 +26,6 @@ class FavoriteUsersVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getFavorites()
-        
         configureVC()
         configureCollectionView()
         configureDataSource()
@@ -37,7 +36,7 @@ class FavoriteUsersVC: UIViewController {
     
     
     
-    //MARK: - Network Calls
+    //MARK: - Persistence Manager/ Network Calls
     /// One additional Network call done in a function updateData() line 85
     private func deleteFavorite(user: User) {
         PersistenceManager.updateWithUsers(newFavoriteUser: user, persistenceAction: .remove) { (error) in
@@ -86,10 +85,12 @@ class FavoriteUsersVC: UIViewController {
         let dispatchGroup = DispatchGroup()
         let dispatchQueue = DispatchQueue(label: "queue")
         let dispatchSema  = DispatchSemaphore(value: 0)
+        showLoadingView()
         dispatchQueue.async {
             for user in users {
                 dispatchGroup.enter()
-                NetworkManager.shared.getSingleUsersTweets(userId: user.idStr) { (tweetsArray) in
+                NetworkManager.shared.getSingleUsersTweets(userId: user.idStr) { [weak self] (tweetsArray) in
+                    guard let self = self else { return }
                     let tweets: [Tweet] = tweetsArray
                     self.snapshot.appendSections([.favoriteUser(users[index])])
                     self.snapshot.appendItems(tweets, toSection: .favoriteUser(users[index]))
@@ -103,6 +104,7 @@ class FavoriteUsersVC: UIViewController {
         }
         dispatchGroup.notify(queue: dispatchQueue) {
             DispatchQueue.main.async {
+                self.dismissLoadingView()
                 self.dataSource.apply(self.snapshot, animatingDifferences: true)
             }
         }
@@ -151,12 +153,10 @@ class FavoriteUsersVC: UIViewController {
 extension FavoriteUsersVC: FavoritesCollectionHeaderDelegates {
     
     func didRemoveUserFromFavorites(index: IndexPath, user: User) {
-        #warning("create a conditional here in case deleteFavorite from UserDefaults did not succeed. Or is it already working as it supposed to?")
         deleteFavorite(user: user)
         users.removeAll {$0.idStr == user.idStr}
         snapshot.deleteSections([.favoriteUser(user)])
         if users.isEmpty {
-                #warning("add animation here so its gonna appears in one second, not instantly")
                 self.presentEmptyStateView(with: "Looks like... \nYou have no favorite Users 🧐 \n\nTime to change that!", in: self.view)
         } else {
             DispatchQueue.main.async {

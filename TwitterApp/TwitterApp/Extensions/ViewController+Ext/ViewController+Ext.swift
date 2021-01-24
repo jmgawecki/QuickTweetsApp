@@ -19,4 +19,13 @@ extension UIViewController {
         safariVC.preferredControlTintColor = .systemGreen
         present(safariVC, animated: true)
     }
+    
+    func animateButtonsView(_ viewToAnimate: UIView) {
+        UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.5, options: .curveEaseIn) {
+            viewToAnimate.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        } completion: { (_) in
+            UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: { viewToAnimate.transform = CGAffineTransform.init(scaleX: 1, y: 1) }, completion: nil)
+        }
+    }
+
 }
