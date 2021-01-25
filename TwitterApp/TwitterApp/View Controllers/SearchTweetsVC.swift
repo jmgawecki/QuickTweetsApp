@@ -42,6 +42,10 @@ final class SearchTweetsVC: UIViewController {
         configureCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     
     //MARK: - Objectives
     
@@ -90,6 +94,7 @@ final class SearchTweetsVC: UIViewController {
     private func configureVC() {
         view.backgroundColor                                    = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles  = true
+        navigationController?.setNavigationBarHidden(false, animated: true)
         let title = UserPersistenceCheck() ? TweetStrings.addToFavorites : TweetStrings.inFavorites
         let addButton = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(addUserToFavorites(with:)))
         addButton.tintColor = UserPersistenceCheck() ? ColorsTwitter.twitterBlue : .systemGray

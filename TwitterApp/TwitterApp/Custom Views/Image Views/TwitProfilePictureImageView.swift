@@ -16,6 +16,10 @@ class TwitProfilePictureImageView: UIImageView {
         configure()
     }
     
+    override func layoutSubviews() {
+        layer.cornerRadius = bounds.height / 2
+    }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -37,7 +41,7 @@ class TwitProfilePictureImageView: UIImageView {
         
         layer.borderWidth       = 2
         layer.borderColor       = ColorsTwitter.twitterDarkGray.cgColor
-        layer.cornerRadius      = 75
+//        layer.cornerRadius      = 75
         layer.masksToBounds     = true
         
         clipsToBounds           = true

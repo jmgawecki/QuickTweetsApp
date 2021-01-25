@@ -18,16 +18,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene       = (scene as? UIWindowScene) else { return }
         window                      = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene         = windowScene
-        window?.rootViewController  = configureTwitterMainNAvigationController()
+        window?.rootViewController  = configureTabBarController()
         window?.makeKeyAndVisible()
     }
     
-    func configureTwitterMainNAvigationController() -> UINavigationController {
-        let twitterMain             = MainVC()
-        twitterMain.title           = "Quick Tweet"
+    
+    func configureTabBarController() -> UITabBarController {
+        let tabbar = UITabBarController()
+        UITabBar.appearance().tintColor = ColorsTwitter.twitterBlue
         UINavigationBar.appearance().tintColor = ColorsTwitter.twitterBlue
-        return UINavigationController(rootViewController: twitterMain)
+        tabbar.viewControllers = [configureSearchNC(), configureFavoriteNC()]
+        return tabbar
     }
+    
+    
+    func configureSearchNC() -> UINavigationController {
+        let searchVC        = UserSearchVC()
+        searchVC.title      = "Search"
+        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        return UINavigationController(rootViewController: searchVC)
+    }
+    
+    
+    func configureFavoriteNC() -> UINavigationController {
+        let favoritesVC         = FavoritesVC()
+        favoritesVC.title       = "Favorites"
+        favoritesVC.tabBarItem  = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+        return UINavigationController(rootViewController: favoritesVC)
+    }
+    
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let context = URLContexts.first else { return }

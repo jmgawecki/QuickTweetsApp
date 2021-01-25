@@ -15,6 +15,8 @@ final class UserSearchVC: TwetLoadingDataVC {
     let searchButton       = TwitButton(backgroundColor: ColorsTwitter.twitterBlue, fontSize: 20, message: "Search for user!")
     
     var isUsernameEntered: Bool { return !searchTextField.text!.isEmpty }
+    let isNavigationHidden: Bool = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? true : false
+    let isTitleLarge: Bool       = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? false : true
     var user: User!
     
     
@@ -26,6 +28,11 @@ final class UserSearchVC: TwetLoadingDataVC {
         layoutUI()
         configureUI()
         configureSearchButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.setNavigationBarHidden(isNavigationHidden, animated: true)
     }
     
     
@@ -53,6 +60,7 @@ final class UserSearchVC: TwetLoadingDataVC {
                 destVC.title            = ""
                 destVC.username         = "jakubgawecki96"
                 self.navigationController?.pushViewController(destVC, animated: true)
+                self.searchTextField.text    = ""
             case .failure(_):
                 self.presentAlertVCOnMainThread(title: "Oops!", message: "There is no username with that name. Please try again.", buttonTitle: "Ok")
             }
@@ -76,7 +84,8 @@ final class UserSearchVC: TwetLoadingDataVC {
     
     private func configureVC() {
         view.backgroundColor                                    = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles  = true
+        navigationController?.navigationBar.prefersLargeTitles  = isTitleLarge
+        navigationController?.setNavigationBarHidden(isNavigationHidden, animated: true)
     }
     
     
@@ -88,21 +97,24 @@ final class UserSearchVC: TwetLoadingDataVC {
     
     private func layoutUI() {
         view.addSubviews(logoImgView, searchTextField, searchButton)
-     
+        
+        let imgTopPadding: CGFloat      = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? -25 : 25
+        let searchTextFPadding: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? -25 : 10
+        
         NSLayoutConstraint.activate([
-            logoImgView.topAnchor.constraint        (equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
+            logoImgView.topAnchor.constraint        (equalTo: view.safeAreaLayoutGuide.topAnchor, constant: imgTopPadding),
             logoImgView.centerXAnchor.constraint    (equalTo: view.centerXAnchor),
             logoImgView.heightAnchor.constraint     (equalToConstant: 220),
             logoImgView.widthAnchor.constraint      (equalTo: logoImgView.heightAnchor),
             
-            searchTextField.topAnchor.constraint    (equalTo: logoImgView.bottomAnchor, constant: 10),
+            searchTextField.topAnchor.constraint    (equalTo: logoImgView.bottomAnchor, constant: searchTextFPadding),
             searchTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
             searchTextField.heightAnchor.constraint (equalToConstant: 46),
             searchTextField.widthAnchor.constraint  (equalToConstant: 240),
             
             searchButton.topAnchor.constraint       (equalTo: searchTextField.bottomAnchor, constant: 20),
             searchButton.centerXAnchor.constraint   (equalTo: view.centerXAnchor, constant: 0),
-            searchButton.heightAnchor.constraint    (equalToConstant: 50),
+            searchButton.heightAnchor.constraint    (equalToConstant: 46),
             searchButton.widthAnchor.constraint     (equalToConstant: 240),
         ])
     }

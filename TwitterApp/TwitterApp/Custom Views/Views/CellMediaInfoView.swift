@@ -39,6 +39,8 @@ final class CellMediaInfoView: UIView {
         symbolImgView.contentMode = .scaleAspectFill
         symbolImgView.tintColor   = ColorsTwitter.twitterBlue
         
+        let innerPadding: CGFloat      = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 4 : 12
+        
         NSLayoutConstraint.activate([
             symbolImgView.centerYAnchor.constraint    (equalTo: self.centerYAnchor),
             symbolImgView.leadingAnchor.constraint    (equalTo: self.leadingAnchor),
@@ -46,7 +48,7 @@ final class CellMediaInfoView: UIView {
             symbolImgView.heightAnchor.constraint     (equalToConstant: 20),
             
             countLabel.centerYAnchor.constraint       (equalTo: symbolImgView.centerYAnchor),
-            countLabel.leadingAnchor.constraint       (equalTo: symbolImgView.trailingAnchor, constant: 12),
+            countLabel.leadingAnchor.constraint       (equalTo: symbolImgView.trailingAnchor, constant: innerPadding),
             countLabel.trailingAnchor.constraint      (equalTo: self.trailingAnchor),
             countLabel.heightAnchor.constraint        (equalToConstant: 18),
             

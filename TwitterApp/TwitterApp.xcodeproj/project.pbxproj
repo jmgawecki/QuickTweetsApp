@@ -35,7 +35,7 @@
 		EF7F9EE425B0CAF200F9799A /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7F9EE325B0CAF200F9799A /* PersistenceManager.swift */; };
 		EF88FF75259A295300ADF27B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88FF74259A295300ADF27B /* AppDelegate.swift */; };
 		EF88FF77259A295300ADF27B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88FF76259A295300ADF27B /* SceneDelegate.swift */; };
-		EF88FF79259A295300ADF27B /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88FF78259A295300ADF27B /* MainVC.swift */; };
+		EF88FF79259A295300ADF27B /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88FF78259A295300ADF27B /* FavoritesVC.swift */; };
 		EF88FF7C259A295300ADF27B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF88FF7A259A295300ADF27B /* Main.storyboard */; };
 		EF88FF7E259A295500ADF27B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF88FF7D259A295500ADF27B /* Assets.xcassets */; };
 		EF88FF81259A295500ADF27B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF88FF7F259A295500ADF27B /* LaunchScreen.storyboard */; };
@@ -125,7 +125,7 @@
 		EF88FF71259A295300ADF27B /* TwitterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF88FF74259A295300ADF27B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF88FF76259A295300ADF27B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EF88FF78259A295300ADF27B /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		EF88FF78259A295300ADF27B /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 		EF88FF7B259A295300ADF27B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EF88FF7D259A295500ADF27B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF88FF80259A295500ADF27B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -333,7 +333,7 @@
 		EF88FFA8259A29AB00ADF27B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EF88FF78259A295300ADF27B /* MainVC.swift */,
+				EF88FF78259A295300ADF27B /* FavoritesVC.swift */,
 				EF88FFC2259A337C00ADF27B /* UserSearchVC.swift */,
 				EF88FFD9259A3FF500ADF27B /* SearchTweetsVC.swift */,
 				EFD473E425A8C16E00AC9AD9 /* FavoriteUsersVC.swift */,
@@ -680,7 +680,7 @@
 				EF4D7AB525AB74B90096CB6A /* FavoriteTweetsCell.swift in Sources */,
 				EF4D7AC925AB8A320096CB6A /* CellMediaInfoView.swift in Sources */,
 				EFCB661125B2664400EECD0E /* ViewController+Ext.swift in Sources */,
-				EF88FF79259A295300ADF27B /* MainVC.swift in Sources */,
+				EF88FF79259A295300ADF27B /* FavoritesVC.swift in Sources */,
 				EFC7FB5825A39F8B00E08A8E /* SearchTweetsVCCollectionHeader.swift in Sources */,
 				EF4D7AB125AB71600096CB6A /* FavoriteTweetsVC.swift in Sources */,
 				EF294D1E25AA6F6200850E74 /* SearchTweetUserInfoView.swift in Sources */,

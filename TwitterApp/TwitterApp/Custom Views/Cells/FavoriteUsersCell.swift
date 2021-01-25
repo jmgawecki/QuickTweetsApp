@@ -97,6 +97,9 @@ class FavoriteUsersCell: UICollectionViewCell {
     private func layoutUI() {
         addSubviews(timeDateLabel, tweetBodyLabel, mediaStackView, goSafariButton)
         tamic(mediaStackView, timeDateLabel)
+        
+        let mediaLeadingPadding: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 10 : 30
+        let mediaWidthMltp: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 0.55 : 0.5
 
         NSLayoutConstraint.activate([
             timeDateLabel.centerXAnchor.constraint  (equalTo: centerXAnchor, constant: 0),
@@ -105,8 +108,8 @@ class FavoriteUsersCell: UICollectionViewCell {
             timeDateLabel.widthAnchor.constraint    (equalToConstant: 150),
             
             mediaStackView.bottomAnchor.constraint  (equalTo: bottomAnchor, constant: -10),
-            mediaStackView.leadingAnchor.constraint (equalTo: leadingAnchor, constant: 30),
-            mediaStackView.widthAnchor.constraint   (equalTo: widthAnchor, multiplier: 0.5),
+            mediaStackView.leadingAnchor.constraint (equalTo: leadingAnchor, constant: mediaLeadingPadding),
+            mediaStackView.widthAnchor.constraint   (equalTo: widthAnchor, multiplier: mediaWidthMltp),
             mediaStackView.heightAnchor.constraint  (equalToConstant: 60),
             
             goSafariButton.bottomAnchor.constraint  (equalTo: bottomAnchor, constant: -10),

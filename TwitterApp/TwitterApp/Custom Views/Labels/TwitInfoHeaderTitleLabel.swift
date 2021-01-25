@@ -35,6 +35,7 @@ final class TwitInfoHeaderTitleLabel: UILabel {
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         font            = UIFont.systemFont(ofSize: 20, weight: .bold)
+        numberOfLines   = 5
         textAlignment   = .center
     }
 }

@@ -16,18 +16,25 @@ final class TwitTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
+        configureKeyboardToolbar()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    
+    //MARK:- Objectives
+    
+    @objc private func barButtonTapped() {
+        resignFirstResponder()
+    }
     
     //MARK: - Configurations
-
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor         = .systemBackground
         
         layer.cornerRadius      = 15
         layer.borderWidth       = 2
@@ -40,5 +47,14 @@ final class TwitTextField: UITextField {
         returnKeyType           = .search
         autocorrectionType      = .no
         autocapitalizationType  = .none
+    }
+    
+    private func configureKeyboardToolbar() {
+        let toolbar         = UIToolbar()
+        let flexibleSpace   = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done            = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(barButtonTapped))
+        toolbar.items = [flexibleSpace, done]
+        toolbar.sizeToFit()
+        inputAccessoryView = toolbar
     }
 }

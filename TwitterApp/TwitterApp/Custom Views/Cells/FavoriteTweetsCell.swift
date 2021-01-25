@@ -125,41 +125,44 @@ class FavoriteTweetsCell: UICollectionViewCell {
         addSubviews(removeFavButton, profileImgView, nameLabel, dateLabel, tweetBodyLabel, mediaStackView, safariButton)
         tamic(mediaStackView, dateLabel, removeFavButton)
         
-        NSLayoutConstraint.activate([
-            removeFavButton.topAnchor.constraint       (equalTo: topAnchor, constant: 5),
-            removeFavButton.trailingAnchor.constraint  (equalTo: trailingAnchor, constant: -5),
-            removeFavButton.heightAnchor.constraint    (equalToConstant: 25),
-            removeFavButton.widthAnchor.constraint     (equalTo: removeFavButton.heightAnchor),
+        let mediaLeadingPadding: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 10 : 30
+        let mediaWidthMltp: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 0.55 : 0.5
+        
+        NSLayoutConstraint.activate([ //85 + 156 + 70
+            removeFavButton.topAnchor.constraint        (equalTo: topAnchor, constant: 5),
+            removeFavButton.trailingAnchor.constraint   (equalTo: trailingAnchor, constant: -5),
+            removeFavButton.heightAnchor.constraint     (equalToConstant: 25),
+            removeFavButton.widthAnchor.constraint      (equalTo: removeFavButton.heightAnchor),
+                
+            profileImgView.topAnchor.constraint         (equalTo: topAnchor, constant: 10),
+            profileImgView.leadingAnchor.constraint     (equalTo: leadingAnchor, constant: 20),
+            profileImgView.widthAnchor.constraint       (equalToConstant: 75),
+            profileImgView.heightAnchor.constraint      (equalTo: profileImgView.widthAnchor),
+                
+            nameLabel.leadingAnchor.constraint          (equalTo: profileImgView.trailingAnchor, constant: 10),
+            nameLabel.trailingAnchor.constraint         (equalTo: removeFavButton.leadingAnchor, constant: 0),
+            nameLabel.heightAnchor.constraint           (equalToConstant: 28),
+            nameLabel.bottomAnchor.constraint           (equalTo: profileImgView.centerYAnchor),
+                
+            dateLabel.topAnchor.constraint              (equalTo: nameLabel.bottomAnchor, constant: 0),
+            dateLabel.leadingAnchor.constraint          (equalTo: profileImgView.trailingAnchor, constant: 10),
+            dateLabel.trailingAnchor.constraint         (equalTo: removeFavButton.leadingAnchor, constant: 0),
+            dateLabel.heightAnchor.constraint           (equalToConstant: 28),
+                
+            mediaStackView.bottomAnchor.constraint      (equalTo: bottomAnchor, constant: -10),
+            mediaStackView.leadingAnchor.constraint     (equalTo: leadingAnchor, constant: mediaLeadingPadding),
+            mediaStackView.widthAnchor.constraint       (equalTo: widthAnchor, multiplier: mediaWidthMltp),
+            mediaStackView.heightAnchor.constraint      (equalToConstant: 60),
+                
+            safariButton.bottomAnchor.constraint        (equalTo: bottomAnchor, constant: -10),
+            safariButton.leadingAnchor.constraint       (equalTo: mediaStackView.trailingAnchor, constant: 0),
+            safariButton.trailingAnchor.constraint      (equalTo: trailingAnchor, constant: 0),
+            safariButton.heightAnchor.constraint        (equalToConstant: 60),
             
-            profileImgView.topAnchor.constraint        (equalTo: topAnchor, constant: 0),
-            profileImgView.leadingAnchor.constraint    (equalTo: leadingAnchor, constant: 0),
-            profileImgView.widthAnchor.constraint      (equalTo: widthAnchor, multiplier: 0.25),
-            profileImgView.heightAnchor.constraint     (equalTo: profileImgView.widthAnchor),
-            
-            nameLabel.topAnchor.constraint             (equalTo: profileImgView.topAnchor, constant: 0),
-            nameLabel.leadingAnchor.constraint         (equalTo: profileImgView.trailingAnchor, constant: 10),
-            nameLabel.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: 0),
-            nameLabel.heightAnchor.constraint          (equalTo: heightAnchor, multiplier: 0.10),
-            
-            dateLabel.topAnchor.constraint             (equalTo: nameLabel.bottomAnchor, constant: 0),
-            dateLabel.leadingAnchor.constraint         (equalTo: profileImgView.trailingAnchor, constant: 10),
-            dateLabel.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: 0),
-            dateLabel.heightAnchor.constraint          (equalTo: heightAnchor, multiplier: 0.1),
-            
-            mediaStackView.bottomAnchor.constraint     (equalTo: bottomAnchor, constant: -10),
-            mediaStackView.leadingAnchor.constraint    (equalTo: leadingAnchor, constant: 30),
-            mediaStackView.widthAnchor.constraint      (equalTo: widthAnchor, multiplier: 0.5),
-            mediaStackView.heightAnchor.constraint     (equalToConstant: 60),
-            
-            safariButton.bottomAnchor.constraint       (equalTo: bottomAnchor, constant: -10),
-            safariButton.leadingAnchor.constraint      (equalTo: mediaStackView.trailingAnchor, constant: 0),
-            safariButton.trailingAnchor.constraint     (equalTo: trailingAnchor, constant: 0),
-            safariButton.heightAnchor.constraint       (equalToConstant: 60),
-            
-            tweetBodyLabel.topAnchor.constraint        (equalTo: profileImgView.bottomAnchor, constant: 0),
-            tweetBodyLabel.trailingAnchor.constraint   (equalTo: trailingAnchor, constant: -20),
-            tweetBodyLabel.leadingAnchor.constraint    (equalTo: leadingAnchor, constant: 20),
-            tweetBodyLabel.bottomAnchor.constraint     (equalTo: mediaStackView.topAnchor, constant: 0),
+            tweetBodyLabel.topAnchor.constraint         (equalTo: profileImgView.bottomAnchor, constant: 0),
+            tweetBodyLabel.trailingAnchor.constraint    (equalTo: trailingAnchor, constant: -20),
+            tweetBodyLabel.leadingAnchor.constraint     (equalTo: leadingAnchor, constant: 20),
+            tweetBodyLabel.heightAnchor.constraint      (equalToConstant: 156),
         ])
     }
 }

@@ -120,14 +120,6 @@ class SearchTweetsCell: UICollectionViewCell {
         layer.cornerRadius                  = 15
     }
     
-    
-    private func debugConfiguration() {
-        tweetBodyLabel.layer.borderWidth    = 1
-        mediaStackView.layer.borderWidth    = 1
-        timeDateLabel.layer.borderWidth     = 1
-    }
-    
-    
     private func configureGoSafariButton() {
         goSafariButton.addTarget(self, action: #selector(didTapGoSafariButton), for: .touchUpInside)
     }
@@ -157,10 +149,13 @@ class SearchTweetsCell: UICollectionViewCell {
         addSubviews(addToFavoritesButton, timeDateLabel, tweetBodyLabel, mediaStackView, goSafariButton)
         tamic(addToFavoritesButton, mediaStackView, timeDateLabel)
         
+        let mediaLeadingPadding: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 10 : 30
+        let mediaWidthMltp: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 0.55 : 0.5
+        
         NSLayoutConstraint.activate([
             addToFavoritesButton.topAnchor.constraint       (equalTo: topAnchor, constant: 5),
             addToFavoritesButton.trailingAnchor.constraint  (equalTo: trailingAnchor, constant: -5),
-            addToFavoritesButton.heightAnchor.constraint    (equalToConstant: 30),
+            addToFavoritesButton.heightAnchor.constraint    (equalToConstant: 23),
             addToFavoritesButton.widthAnchor.constraint     (equalTo: addToFavoritesButton.heightAnchor),
             
             timeDateLabel.centerXAnchor.constraint          (equalTo: centerXAnchor, constant: 0),
@@ -169,8 +164,8 @@ class SearchTweetsCell: UICollectionViewCell {
             timeDateLabel.widthAnchor.constraint            (equalToConstant: 150),
                     
             mediaStackView.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),
-            mediaStackView.leadingAnchor.constraint         (equalTo: leadingAnchor, constant: 30),
-            mediaStackView.widthAnchor.constraint           (equalTo: widthAnchor, multiplier: 0.5),
+            mediaStackView.leadingAnchor.constraint         (equalTo: leadingAnchor, constant: mediaLeadingPadding),
+            mediaStackView.widthAnchor.constraint           (equalTo: widthAnchor, multiplier: mediaWidthMltp),
             mediaStackView.heightAnchor.constraint          (equalToConstant: 60),
             
             goSafariButton.bottomAnchor.constraint          (equalTo: bottomAnchor, constant: -10),
@@ -181,7 +176,7 @@ class SearchTweetsCell: UICollectionViewCell {
             tweetBodyLabel.topAnchor.constraint             (equalTo: timeDateLabel.bottomAnchor, constant: 0),
             tweetBodyLabel.trailingAnchor.constraint        (equalTo: trailingAnchor, constant: -20),
             tweetBodyLabel.leadingAnchor.constraint         (equalTo: leadingAnchor, constant: 20),
-            tweetBodyLabel.bottomAnchor.constraint          (equalTo: mediaStackView.topAnchor, constant: 0),
+            tweetBodyLabel.heightAnchor.constraint          (equalToConstant: 156),
         ])
     }
 }

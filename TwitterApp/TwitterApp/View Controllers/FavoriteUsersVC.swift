@@ -33,11 +33,6 @@ final class FavoriteUsersVC: TwetLoadingDataVC {
         configureDataSource()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        getFavorites()
-    }
-    
     
     //MARK: - @Objective functions
     

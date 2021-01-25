@@ -46,7 +46,7 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
         if backgroundPictureUrl != nil { backgroundImageView.downloadImage(from: backgroundPictureUrl!) }
         avatarImageView.downloadImage(from: user.profileImageUrl!)
         forenameLabel.text              = user.name
-        usernameLabel.text              = user.screenName
+        usernameLabel.text              = "@\(user.screenName)"
         followerView.set(itemInfoType:  .followers, with: user.followersCount.convertToKMFormatStr())
         followingView.set(itemInfoType: .following, with: user.followingCount.convertToKMFormatStr())
     }
@@ -69,8 +69,7 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
     private func configureStackViews() {
         followStackView.axis            = .horizontal
         followStackView.distribution    = .equalSpacing
-        
-        
+
         followStackView.addArrangedSubview(followerView)
         followStackView.addArrangedSubview(followingView)
     }
@@ -85,7 +84,7 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
         followStackView.translatesAutoresizingMaskIntoConstraints = false
         
         let paddingUpDown: CGFloat = 5
-        
+        let followStackViewWidth: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 250 : 300
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: -30),
             avatarImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -104,7 +103,7 @@ class SearchTweetsVCCollectionHeader: UICollectionReusableView {
 
             followStackView.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 10),
             followStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            followStackView.widthAnchor.constraint(equalToConstant: 300),
+            followStackView.widthAnchor.constraint(equalToConstant: followStackViewWidth),
             followStackView.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
