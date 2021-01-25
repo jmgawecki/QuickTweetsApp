@@ -10,7 +10,7 @@ import UIKit
 final class CellMediaInfoView: UIView {
 
     enum ItemInfoType {
-        case comments, shares, likes
+        case shares, likes
     }
     
     let symbolImgView   = UIImageView()
@@ -57,16 +57,12 @@ final class CellMediaInfoView: UIView {
     
     func set(itemInfoType: ItemInfoType, with count: String) {
         switch itemInfoType {
-        case .comments:
-            symbolImgView.image   = SFSymbols.comment
-            countLabel.text       = String(count)
-            
         case .shares:
-            symbolImgView.image   = SFSymbols.shares
+            symbolImgView.image   = SFSymbolsAsImg.shares
             countLabel.text       = String(count)
             
         case .likes:
-            symbolImgView.image   = SFSymbols.likes
+            symbolImgView.image   = SFSymbolsAsImg.likes
             countLabel.text       = String(count)
         }
     }

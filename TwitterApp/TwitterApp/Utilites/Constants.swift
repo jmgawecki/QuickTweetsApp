@@ -7,16 +7,18 @@
 
 import UIKit
 
-enum SFSymbols {
-    static let location                 = UIImage(systemName: "mappin.and.ellipse")
-    static let repos                    = UIImage(systemName: "folder")
-    static let gists                    = UIImage(systemName: "text.alignleft")
+enum SFSymbolsAsImg {
     static let followers                = UIImage(systemName: "heart")
     static let following                = UIImage(systemName: "person.2")
-    static let rabbit                   = UIImage(systemName: "hare")
-    static let comment                  = UIImage(systemName: "text.bubble")
-    static let shares                   = UIImage(systemName: "square.and.arrow.up.fill")
+    static let shares                   = UIImage(systemName: "square.and.arrow.up")
     static let likes                    = UIImage(systemName: "hand.thumbsup")
+    static let plus                     = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(scale: .large))
+    static let checkmark                = UIImage(systemName: "checkmark", withConfiguration: UIImage.SymbolConfiguration(scale: .large))
+    static let refresh                  = UIImage(systemName: "arrow.clockwise")
+}
+
+enum SFSymbolsAsStr {
+    static let refresh = "arrow.clockwise"
 }
 
 

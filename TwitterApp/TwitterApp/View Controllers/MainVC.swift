@@ -67,10 +67,8 @@ final class MainVC: UIViewController {
             
             if let callbackURL = URL(string: "TwitterApp://success") {
                 swifter.authorize(withCallback: callbackURL, presentingFrom: self, success: { token, _ in
-                    print("MUCH SUCCESS")
                     
                 }, failure: { error in
-                    print("ERROR")
                 })
             }
         }

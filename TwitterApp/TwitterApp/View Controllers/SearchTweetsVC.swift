@@ -73,9 +73,7 @@ final class SearchTweetsVC: UIViewController {
             guard let self = self else { return }
             switch result {
             case .success(let users):
-                print(users)
                 let user = users.filter { $0.screenName == self.user.screenName }
-                print(user)
                 if user.isEmpty {
                     isEmpty = true
                 } else {

@@ -14,7 +14,7 @@ final class FavoriteUsersVC: TwetLoadingDataVC {
         case favoriteUsers([User])
     }
     
-    var users: [User]   = []
+    var users:  [User]  = []
     var tweets: [Tweet] = []
     
     var collectionView: UICollectionView!
@@ -28,13 +28,22 @@ final class FavoriteUsersVC: TwetLoadingDataVC {
         super.viewDidLoad()
         getFavorites()
         configureVC()
+        configureNC()
         configureCollectionView()
         configureDataSource()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getFavorites()
     }
     
     
     //MARK: - @Objective functions
     
+    @objc private func refreshData() {
+        updateData(with: users)
+    }
     
     
     //MARK: - Persistence Manager/ Network Calls
@@ -71,12 +80,16 @@ final class FavoriteUsersVC: TwetLoadingDataVC {
         }
     }
     
+    
     //MARK: - Private Functions
     
     private func configureVC() {
         view.backgroundColor    = .systemBackground
         title                   = TweetStrings.emptyString
-        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func configureNC() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: SFSymbolsAsImg.refresh, style: .plain, target: self, action: #selector(refreshData))
     }
     
     

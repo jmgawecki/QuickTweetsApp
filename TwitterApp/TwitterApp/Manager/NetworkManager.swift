@@ -57,7 +57,6 @@ struct NetworkManager {
             }
             completed(searchedUserTweets)
         } failure: { (error) in
-            print(error)
         }
     }
     

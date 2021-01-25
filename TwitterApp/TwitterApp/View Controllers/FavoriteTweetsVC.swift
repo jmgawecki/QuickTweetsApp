@@ -30,7 +30,6 @@ final class FavoriteTweetsVC: UIViewController {
         configureCollectionView()
         configureDataSource()
         updateData()
-        print(favoriteTweets)
     }
 
 
@@ -113,7 +112,6 @@ extension FavoriteTweetsVC: FavoriteTweetsCellDelegate {
         favoriteTweets.removeAll(where: { $0.twitsId == tweet.twitsId })
         snapshot.deleteItems([tweet])
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true) }
-        print(favoriteTweets)
         if favoriteTweets.isEmpty {
             self.presentEmptyStateView(with: TweetStrings.emptyStateMessage, in: self.view)
         }

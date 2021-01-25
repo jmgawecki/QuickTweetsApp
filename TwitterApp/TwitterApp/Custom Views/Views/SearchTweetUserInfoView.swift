@@ -63,12 +63,12 @@ final class SearchTweetUserInfoView: UIView {
     func set(itemInfoType: ItemInfoType, with count: String) {
         switch itemInfoType {
         case .following:
-            symbolImgView.image   = SFSymbols.following
+            symbolImgView.image     = SFSymbolsAsImg.following
             titleLabel.text         = TweetStrings.following
             countLabel.text         = count
             
         case .followers:
-            symbolImgView.image   = SFSymbols.followers
+            symbolImgView.image     = SFSymbolsAsImg.followers
             titleLabel.text         = TweetStrings.followers
             countLabel.text         = count
         }

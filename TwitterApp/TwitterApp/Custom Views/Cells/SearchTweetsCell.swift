@@ -44,9 +44,9 @@ class SearchTweetsCell: UICollectionViewCell {
     }
     
     
-    @objc private func addToFavoritesTapped() {
+    @objc private func addToFavoritesTapped(sender: UIView) {
+        animateButtonView(sender)
         let favorite = fromTweetToFavoriteTweet(user: user, tweet: tweet)
-        print(favorite)
         PersistenceManager.updateWithTweets(favoriteTweet: favorite, persistenceAction: .add) { [weak self] (error) in
             guard self != nil else { return }
             guard let error = error else {
@@ -55,10 +55,12 @@ class SearchTweetsCell: UICollectionViewCell {
             }
             print(error.rawValue)
         }
+        self.addToFavoritesButton.isEnabled = false
     }
     
     
-    @objc private func didTapGoSafariButton() {
+    @objc private func didTapGoSafariButton(_ sender: UIView) {
+        animateButtonView(sender)
         delegateSafari.didRequestSafari(with: tweet.urlToExpandWithSafari)
     }
     
@@ -75,6 +77,25 @@ class SearchTweetsCell: UICollectionViewCell {
         return favoriteTweet
     }
     
+    private func animateButtonView(_ viewToAnimate: UIView) {
+        UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 5, initialSpringVelocity: 2, options: .curveEaseIn) {
+            viewToAnimate.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        } completion: { (_) in
+            UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 5, initialSpringVelocity: 2, options: .curveEaseIn, animations: { viewToAnimate.transform = CGAffineTransform.init(scaleX: 1, y: 1) }, completion: nil)
+        }
+        UIView.animate(withDuration: 0.2, animations: {viewToAnimate.alpha = 0}) { [weak self] (true) in
+            guard let self = self else { return }
+            switch true {
+            case true:
+                DispatchQueue.main.async {
+                    self.addToFavoritesButton.setImage(SFSymbolsAsImg.checkmark, for: .normal)
+                }
+                UIView.animate(withDuration: 0.2, animations: {viewToAnimate.alpha = 1} )
+            case false:
+                return
+            }
+        }
+    }
     
     func set(with usersTweet: Tweet, user: User, buttonTitle: String?, isEnabled: Bool) {
         self.user                               = user
@@ -126,7 +147,7 @@ class SearchTweetsCell: UICollectionViewCell {
         timeDateLabel.textColor             = .systemGray
         timeDateLabel.textAlignment         = .center
         
-        addToFavoritesButton.setImage(UIImage(systemName: "plus"), for: .normal)
+        addToFavoritesButton.setImage(SFSymbolsAsImg.plus, for: .normal)
         addToFavoritesButton.tintColor      = ColorsTwitter.twitterBlue
         addToFavoritesButton.addTarget(self, action: #selector(addToFavoritesTapped), for: .touchUpInside)
     }
