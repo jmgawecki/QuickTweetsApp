@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		04BC69725EC22AF0083D946F /* Pods_TwitterApp_TwitterAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00D5509CAB6AC1376E10B269 /* Pods_TwitterApp_TwitterAppUITests.framework */; };
 		23C167C791A5480ADB894545 /* Pods_TwitterAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402A1509683D8175D27D5D3B /* Pods_TwitterAppTests.framework */; };
-		BE1448B21F71C3D1781506D8 /* Pods_TwitterApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A24D670BC481EC55D9A1D297 /* Pods_TwitterApp.framework */; };
 		EF294D1625AA652600850E74 /* TwitProfilePictureImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF294D1525AA652600850E74 /* TwitProfilePictureImageView.swift */; };
 		EF294D1E25AA6F6200850E74 /* SearchTweetUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF294D1D25AA6F6200850E74 /* SearchTweetUserInfoView.swift */; };
 		EF294D2E25AA713C00850E74 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF294D2D25AA713C00850E74 /* Constants.swift */; };
@@ -31,6 +30,7 @@
 		EF79C701259A78F0004013BF /* UserResultLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF79C700259A78F0004013BF /* UserResultLabel.swift */; };
 		EF79C70F259A8710004013BF /* TwitInfoHeaderTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF79C70E259A8710004013BF /* TwitInfoHeaderTitleLabel.swift */; };
 		EF79C71F259A8763004013BF /* TwitInfoHeaderBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF79C71E259A8763004013BF /* TwitInfoHeaderBodyLabel.swift */; };
+		EF7BF86A25C3170900D912A0 /* Pods_TwitterApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A24D670BC481EC55D9A1D297 /* Pods_TwitterApp.framework */; };
 		EF7F9ED825B07F9800F9799A /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7F9ED725B07F9800F9799A /* Tweet.swift */; };
 		EF7F9EE425B0CAF200F9799A /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7F9EE325B0CAF200F9799A /* PersistenceManager.swift */; };
 		EF88FF75259A295300ADF27B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88FF74259A295300ADF27B /* AppDelegate.swift */; };
@@ -75,19 +75,6 @@
 			remoteInfo = TwitterApp;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		EFC7FBBF25A4AD2000E08A8E /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00D5509CAB6AC1376E10B269 /* Pods_TwitterApp_TwitterAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwitterApp_TwitterAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,7 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE1448B21F71C3D1781506D8 /* Pods_TwitterApp.framework in Frameworks */,
+				EF7BF86A25C3170900D912A0 /* Pods_TwitterApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,7 +424,6 @@
 				EF88FF6D259A295300ADF27B /* Sources */,
 				EF88FF6E259A295300ADF27B /* Frameworks */,
 				EF88FF6F259A295300ADF27B /* Resources */,
-				EFC7FBBF25A4AD2000E08A8E /* Embed Frameworks */,
 				BFA77BB613636821EAB67A89 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -885,6 +871,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9HHDDYFD2W;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				INFOPLIST_FILE = TwitterApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

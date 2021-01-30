@@ -32,7 +32,6 @@ final class FavoritesVC: UIViewController {
         configureButtons()
     }
     
-    
     //MARK: - @Objective functions
     
     @objc private func toFavoritesUsersTapped(sender: UIButton) {
@@ -49,7 +48,6 @@ final class FavoritesVC: UIViewController {
 
     
     //MARK: - Private Functions
-    
     private func authoriseAPI() {
         var hasAlreadyLaunched :Bool!
         hasAlreadyLaunched = UserDefaults.standard.bool(forKey: "hasAlreadyLaunched")
