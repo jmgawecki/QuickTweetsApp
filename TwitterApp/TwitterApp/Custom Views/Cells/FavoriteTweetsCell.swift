@@ -30,7 +30,7 @@ class FavoriteTweetsCell: UICollectionViewCell {
     let mediaStackView          = UIStackView()
     let sharesView              = CellMediaInfoView()
     let likesView               = CellMediaInfoView()
-    var safariButton          = GoSafariButton()
+    var goSafariButton          = GoSafariButton()
     
     var favoriteTweet:          FavoriteTweet!
     
@@ -67,22 +67,22 @@ class FavoriteTweetsCell: UICollectionViewCell {
     
     //MARK: - Functions called outside
     
-    func set(with favoriteTweet: FavoriteTweet, buttonTitle: String?) {
-        self.favoriteTweet            = favoriteTweet
-        profileImgView.downloadImage(from: favoriteTweet.profileImageUrl!)
-        tweetBodyLabel.text           = favoriteTweet.tweetText
-        dateLabel.text                = favoriteTweet.createdAt.formatToTwitterPostDate()
-        nameLabel.text                = favoriteTweet.name
+    func set(with tweet: FavoriteTweet, buttonTitle: String?) {
+        self.favoriteTweet            = tweet
+        profileImgView.downloadImage(from: tweet.profileImageUrl!)
+        tweetBodyLabel.text           = tweet.tweetText
+        dateLabel.text                = tweet.createdAt.formatToTwitterPostDate()
+        nameLabel.text                = tweet.name
             
-        sharesView.set(itemInfoType:  .shares, with: favoriteTweet.retweetCounter.convertToKMFormatStr())
-        likesView.set(itemInfoType:   .likes,  with: favoriteTweet.likesCounter.convertToKMFormatStr())
+        sharesView.set(itemInfoType:  .shares, with: tweet.retweetCounter.convertToKMFormatStr())
+        likesView.set(itemInfoType:   .likes,  with: tweet.likesCounter.convertToKMFormatStr())
         
-        if buttonTitle != nil {
-            safariButton.setTitle(buttonTitle, for: .normal)
-            safariButton.isEnabled    = true
-        } else {
-            safariButton.isEnabled    = false
+        guard tweet.urlToExpandWithSafari != nil else {
+            DispatchQueue.main.async { self.goSafariButton.isHidden = true }
+            goSafariButton.isEnabled = false
+            return
         }
+        DispatchQueue.main.async { self.goSafariButton.setTitle(TweetStrings.seeFull, for: .normal) }
     }
     
     
@@ -96,7 +96,7 @@ class FavoriteTweetsCell: UICollectionViewCell {
     
     
     private func configureGoSafariButton() {
-        safariButton.addTarget(self, action: #selector(didTapGoSafariButton), for: .touchUpInside)
+        goSafariButton.addTarget(self, action: #selector(didTapGoSafariButton), for: .touchUpInside)
     }
     
     
@@ -122,7 +122,7 @@ class FavoriteTweetsCell: UICollectionViewCell {
     
     
     private func layoutUI() {
-        addSubviews(removeFavButton, profileImgView, nameLabel, dateLabel, tweetBodyLabel, mediaStackView, safariButton)
+        addSubviews(removeFavButton, profileImgView, nameLabel, dateLabel, tweetBodyLabel, mediaStackView, goSafariButton)
         tamic(mediaStackView, dateLabel, removeFavButton)
         
         let mediaLeadingPadding: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 10 : 30
@@ -154,10 +154,10 @@ class FavoriteTweetsCell: UICollectionViewCell {
             mediaStackView.widthAnchor.constraint       (equalTo: widthAnchor, multiplier: mediaWidthMltp),
             mediaStackView.heightAnchor.constraint      (equalToConstant: 60),
                 
-            safariButton.bottomAnchor.constraint        (equalTo: bottomAnchor, constant: -10),
-            safariButton.leadingAnchor.constraint       (equalTo: mediaStackView.trailingAnchor, constant: 0),
-            safariButton.trailingAnchor.constraint      (equalTo: trailingAnchor, constant: 0),
-            safariButton.heightAnchor.constraint        (equalToConstant: 60),
+            goSafariButton.bottomAnchor.constraint        (equalTo: bottomAnchor, constant: -10),
+            goSafariButton.leadingAnchor.constraint       (equalTo: mediaStackView.trailingAnchor, constant: 0),
+            goSafariButton.trailingAnchor.constraint      (equalTo: trailingAnchor, constant: 0),
+            goSafariButton.heightAnchor.constraint        (equalToConstant: 60),
             
             tweetBodyLabel.topAnchor.constraint         (equalTo: profileImgView.bottomAnchor, constant: 0),
             tweetBodyLabel.trailingAnchor.constraint    (equalTo: trailingAnchor, constant: -20),

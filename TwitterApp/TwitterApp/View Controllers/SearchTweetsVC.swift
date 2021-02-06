@@ -138,9 +138,8 @@ final class SearchTweetsVC: UIViewController {
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweet) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchTweetsCell.reuseId, for: indexPath) as! SearchTweetsCell
-            let buttonTitle = (tweet.urlToExpandWithSafari != nil) ? TweetStrings.seeFull : nil
-            let isEnabled   = (buttonTitle != nil) ? true : false
-            cell.set(with: tweet, user: self.user, buttonTitle: buttonTitle, isEnabled: isEnabled)
+            
+            cell.set(with: tweet, user: self.user)
             cell.delegateSafari = self
             
             return cell

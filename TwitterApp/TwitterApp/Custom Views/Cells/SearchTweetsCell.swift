@@ -24,9 +24,10 @@ class SearchTweetsCell: UICollectionViewCell {
     var likesView               = CellMediaInfoView()
     var goSafariButton          = GoSafariButton()
     
-    weak var delegateSafari: SearchTweetsCellDelegates!
-    var tweet:               Tweet!
-    var user:                User!
+    weak var delegateSafari:    SearchTweetsCellDelegates!
+    var tweet:                  Tweet!
+    var user:                   User!
+    var urlString:                    String?
     
     
     override init(frame: CGRect) {
@@ -60,8 +61,7 @@ class SearchTweetsCell: UICollectionViewCell {
     
     
     @objc private func didTapGoSafariButton(_ sender: UIView) {
-        animateButtonView(sender)
-        delegateSafari.didRequestSafari(with: tweet.urlToExpandWithSafari)
+        delegateSafari.didRequestSafari(with: urlString)
     }
     
     
@@ -78,40 +78,35 @@ class SearchTweetsCell: UICollectionViewCell {
     }
     
     private func animateButtonView(_ viewToAnimate: UIView) {
-        UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 5, initialSpringVelocity: 2, options: .curveEaseIn) {
-            viewToAnimate.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-        } completion: { (_) in
-            UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 5, initialSpringVelocity: 2, options: .curveEaseIn, animations: { viewToAnimate.transform = CGAffineTransform.init(scaleX: 1, y: 1) }, completion: nil)
-        }
         UIView.animate(withDuration: 0.2, animations: {viewToAnimate.alpha = 0}) { [weak self] (true) in
             guard let self = self else { return }
             switch true {
             case true:
-                DispatchQueue.main.async {
-                    self.addToFavoritesButton.setImage(SFSymbolsAsImg.checkmark, for: .normal)
-                }
+                DispatchQueue.main.async { self.addToFavoritesButton.setImage(SFSymbolsAsImg.checkmark, for: .normal) }
                 UIView.animate(withDuration: 0.2, animations: {viewToAnimate.alpha = 1} )
+            
             case false:
                 return
             }
         }
     }
     
-    func set(with usersTweet: Tweet, user: User, buttonTitle: String?, isEnabled: Bool) {
+    func set(with usersTweet: Tweet, user: User) {
         self.user                               = user
         tweet                                   = usersTweet
+        urlString                               = usersTweet.urlToExpandWithSafari
         tweetBodyLabel.text                     = usersTweet.tweetText
         timeDateLabel.text                      = usersTweet.createdAt.formatToTwitterPostDate()
         
         sharesView.set(itemInfoType: .shares,   with: usersTweet.retweetCounter.convertToKMFormatStr())
         likesView.set(itemInfoType: .likes,     with: usersTweet.likesCounter.convertToKMFormatStr())
         
-        if buttonTitle != nil {
-            goSafariButton.setTitle(buttonTitle, for: .normal)
-            goSafariButton.isEnabled = true
-        } else {
+        guard tweet.urlToExpandWithSafari != nil else {
+            DispatchQueue.main.async { self.goSafariButton.isHidden = true }
             goSafariButton.isEnabled = false
+            return
         }
+        DispatchQueue.main.async { self.goSafariButton.setTitle(TweetStrings.seeFull, for: .normal) }
     }
     
     
