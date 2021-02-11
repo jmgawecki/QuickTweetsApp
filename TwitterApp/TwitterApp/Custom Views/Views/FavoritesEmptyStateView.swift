@@ -8,7 +8,6 @@
 import UIKit
 
 class FavoritesEmptyStateView: UIView {
-    #warning("refactor to custom later")
     let messageLabel        = UILabel()
     
     let twitterLogoView     = TwitImageView(frame: .zero)

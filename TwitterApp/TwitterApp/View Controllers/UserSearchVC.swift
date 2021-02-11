@@ -8,7 +8,6 @@
 import UIKit
 import Swifter
 
-
 final class UserSearchVC: TwetLoadingDataVC {
     
     let logoImgView        = TwitImageView(frame: .zero)
