@@ -42,6 +42,15 @@ class FavoriteUsersCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        guard tweet.urlToExpandWithSafari != nil else {
+            self.goSafariButton.isHidden = true
+            goSafariButton.isEnabled = false
+            return
+        }
+        self.goSafariButton.setTitle(TweetStrings.seeFull, for: .normal)
+    }
+    
     
     
     @objc private func didTapGoSafariButton() {
@@ -58,13 +67,7 @@ class FavoriteUsersCell: UICollectionViewCell {
         sharesView.set(itemInfoType:        .shares,    with: tweet.retweetCounter.convertToKMFormatStr())
         likesView.set(itemInfoType:         .likes,     with: tweet.likesCounter.convertToKMFormatStr())
         
-        guard tweet.urlToExpandWithSafari != nil else {
-            DispatchQueue.main.async { self.goSafariButton.isHidden = true }
-            goSafariButton.isEnabled = false
-            return
-        }
-        DispatchQueue.main.async { self.goSafariButton.setTitle(TweetStrings.seeFull, for: .normal) }
-    }
+            }
     
     
     private func configureCell() {

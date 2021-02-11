@@ -44,6 +44,15 @@ class SearchTweetsCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        guard tweet.urlToExpandWithSafari != nil else {
+            self.goSafariButton.isHidden = true
+            goSafariButton.isEnabled = false
+            return
+        }
+        self.goSafariButton.setTitle(TweetStrings.seeFull, for: .normal)
+    }
+    
     
     @objc private func addToFavoritesTapped(sender: UIView) {
         animateButtonView(sender)
@@ -100,13 +109,6 @@ class SearchTweetsCell: UICollectionViewCell {
         
         sharesView.set(itemInfoType: .shares,   with: usersTweet.retweetCounter.convertToKMFormatStr())
         likesView.set(itemInfoType: .likes,     with: usersTweet.likesCounter.convertToKMFormatStr())
-        
-        guard tweet.urlToExpandWithSafari != nil else {
-            DispatchQueue.main.async { self.goSafariButton.isHidden = true }
-            goSafariButton.isEnabled = false
-            return
-        }
-        DispatchQueue.main.async { self.goSafariButton.setTitle(TweetStrings.seeFull, for: .normal) }
     }
     
     
