@@ -43,12 +43,7 @@ class FavoriteUsersCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        guard tweet.urlToExpandWithSafari != nil else {
-            self.goSafariButton.isHidden = true
-            goSafariButton.isEnabled = false
-            return
-        }
-        self.goSafariButton.setTitle(TweetStrings.seeFull, for: .normal)
+        self.goSafariButton.isHidden = false
     }
     
     
@@ -67,7 +62,9 @@ class FavoriteUsersCell: UICollectionViewCell {
         sharesView.set(itemInfoType:        .shares,    with: tweet.retweetCounter.convertToKMFormatStr())
         likesView.set(itemInfoType:         .likes,     with: tweet.likesCounter.convertToKMFormatStr())
         
-            }
+        if tweet.urlToExpandWithSafari == nil { goSafariButton.isEnabled = true }
+        self.goSafariButton.setTitle(TweetStrings.seeFull, for: .normal)
+    }
     
     
     private func configureCell() {

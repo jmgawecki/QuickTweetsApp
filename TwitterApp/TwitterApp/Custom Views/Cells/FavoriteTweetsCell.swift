@@ -49,19 +49,16 @@ class FavoriteTweetsCell: UICollectionViewCell {
         configureGoSafariButton()
     }
     
+    
+    override func prepareForReuse() {
+        self.goSafariButton.isHidden = false
+    }
+    
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        
-        guard favoriteTweet.urlToExpandWithSafari != nil else {
-            self.goSafariButton.isHidden = true
-            goSafariButton.isEnabled = false
-            return
-        }
-        self.goSafariButton.setTitle(TweetStrings.seeFull, for: .normal)
-    }
     
     //MARK: - Objectives
     
@@ -86,6 +83,9 @@ class FavoriteTweetsCell: UICollectionViewCell {
             
         sharesView.set(itemInfoType:  .shares, with: tweet.retweetCounter.convertToKMFormatStr())
         likesView.set(itemInfoType:   .likes,  with: tweet.likesCounter.convertToKMFormatStr())
+        
+        if tweet.urlToExpandWithSafari == nil { goSafariButton.isEnabled = true }
+        self.goSafariButton.setTitle(TweetStrings.seeFull, for: .normal)
     }
     
     
