@@ -15,7 +15,7 @@ protocol FavoritesCollectionHeaderDelegates: class {
 }
 
 
-class FavoritesCollectionHeader: UICollectionReusableView {
+final class FavoritesCollectionHeader: UICollectionReusableView {
     // MARK: - Declarations
     
     

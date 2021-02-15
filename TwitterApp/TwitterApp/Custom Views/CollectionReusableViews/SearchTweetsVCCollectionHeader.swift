@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchTweetsVCCollectionHeader: UICollectionReusableView {
+final class SearchTweetsVCCollectionHeader: UICollectionReusableView {
     // MARK: - Declarations
     
     

@@ -14,7 +14,7 @@ protocol SearchTweetsCellDelegates: class {
     func didRequestSafari(with urlString: String?)
 }
 
-class SearchTweetsCell: UICollectionViewCell {
+final class SearchTweetsCell: UICollectionViewCell {
     // MARK: - Declarations
     
     

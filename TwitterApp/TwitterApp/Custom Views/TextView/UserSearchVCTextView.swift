@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserSearchVCTextView: UITextView {
+final class UserSearchVCTextView: UITextView {
     //MARK: - Initialisers
 
     

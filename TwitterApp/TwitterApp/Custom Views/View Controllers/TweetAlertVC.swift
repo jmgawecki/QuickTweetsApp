@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TweetAlertVC: UIViewController {
+final class TweetAlertVC: UIViewController {
     //MARK: - Declarations
     
 

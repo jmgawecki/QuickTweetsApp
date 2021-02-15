@@ -15,7 +15,7 @@ protocol FavoriteUsersCellDelegates: class {
     func didRequestSafari(with urlString: String?)
 }
 
-class FavoriteUsersCell: UICollectionViewCell {
+final class FavoriteUsersCell: UICollectionViewCell {
     // MARK: - Declarations
     
     
