@@ -7,11 +7,16 @@
 
 import UIKit
 
+
+// MARK: - Protocols and Delegates
+
+
 protocol FavoriteUsersCellDelegates: class {
     func didRequestSafari(with urlString: String?)
 }
 
 class FavoriteUsersCell: UICollectionViewCell {
+    // MARK: - Declarations
     
     
     static let reuseId      = "cell"
@@ -27,6 +32,8 @@ class FavoriteUsersCell: UICollectionViewCell {
     var tweet: Tweet!
     
     
+    // MARK: - Initialisers
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,20 +45,19 @@ class FavoriteUsersCell: UICollectionViewCell {
     }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func prepareForReuse() {
-        self.goSafariButton.isHidden = false
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
+    override func prepareForReuse() { self.goSafariButton.isHidden = false }
     
-    @objc private func didTapGoSafariButton() {
-        delegateSafari.didRequestSafari(with: tweet.urlToExpandWithSafari)
-    }
     
+    // MARK: - Objectives
+    
+    
+    @objc private func didTapGoSafariButton() { delegateSafari.didRequestSafari(with: tweet.urlToExpandWithSafari) }
+    
+    
+    // MARK: - Called outside
     
     
     func set(with tweet: Tweet, buttonTitle: String?, isEnabled: Bool) {
@@ -65,6 +71,9 @@ class FavoriteUsersCell: UICollectionViewCell {
         if tweet.urlToExpandWithSafari == nil { goSafariButton.isEnabled = true }
         self.goSafariButton.setTitle(TweetStrings.seeFull, for: .normal)
     }
+    
+    
+    // MARK: - Cell configuration
     
     
     private func configureCell() {
@@ -92,6 +101,9 @@ class FavoriteUsersCell: UICollectionViewCell {
         timeDateLabel.textColor             = .systemGray
         timeDateLabel.textAlignment         = .center
     }
+    
+    
+    // MARK: - Layout configuration
     
     
     private func layoutUI() {

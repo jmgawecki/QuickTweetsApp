@@ -12,6 +12,7 @@ final class GoSafariButton: UIButton {
     
     //MARK:- Overrides
 
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -23,6 +24,7 @@ final class GoSafariButton: UIButton {
     
     //MARK:- Initialisers
     
+    
     convenience init(title: String, isEnabled: Bool) {
         self.init(frame: .zero)
         setTitle(title, for: .normal)
@@ -32,6 +34,7 @@ final class GoSafariButton: UIButton {
     
     
     //MARK:- Configurations
+    
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false

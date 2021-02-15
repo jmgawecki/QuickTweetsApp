@@ -8,6 +8,8 @@
 import UIKit
 
 final class SearchTweetUserInfoView: UIView {
+    //MARK: - Declarations
+    
 
     enum ItemInfoType {
         case following, followers
@@ -32,6 +34,7 @@ final class SearchTweetUserInfoView: UIView {
     
     
     //MARK:- Configurations
+    
     
     private func configure() {
         addSubviews(symbolImgView, countLabel, titleLabel)
@@ -60,6 +63,7 @@ final class SearchTweetUserInfoView: UIView {
     }
     
     
+    //MARK: - Called outside
     func set(itemInfoType: ItemInfoType, with count: String) {
         switch itemInfoType {
         case .following:
@@ -73,5 +77,4 @@ final class SearchTweetUserInfoView: UIView {
             countLabel.text         = count
         }
     }
-    
 }

@@ -7,12 +7,17 @@
 
 import UIKit
 
+// MARK: - Protocols and delegates
+
+
 protocol FavoritesCollectionHeaderDelegates: class {
     func didRemoveUserFromFavorites(user: User)
 }
 
 
 class FavoritesCollectionHeader: UICollectionReusableView {
+    // MARK: - Declarations
+    
     
     static let reuseId        = "FavoritesUsersHeaderView"
         
@@ -28,7 +33,8 @@ class FavoritesCollectionHeader: UICollectionReusableView {
     var user:       User!
     
     
-    //MARK: - Overrides
+    //MARK: - Initialisers
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,16 +45,18 @@ class FavoritesCollectionHeader: UICollectionReusableView {
     }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
 
-    //MARK: - Configurations
+    //MARK: - Objectives
+    
     
     @objc private func removeFromFavoritesTapped() {
         delegate.didRemoveUserFromFavorites(user: user)
     }
+    
+    
+    // MARK: - Called outside
     
     
     func set(with user: User) {
@@ -57,6 +65,9 @@ class FavoritesCollectionHeader: UICollectionReusableView {
         usernameLabel.text          = user.screenName
         self.user                   = user
     }
+    
+    
+    // MARK: - ReusableView Configrations
     
     
     private func configure() {
@@ -72,6 +83,7 @@ class FavoritesCollectionHeader: UICollectionReusableView {
 
     //MARK: - Layout configuration
 
+    
     private func layoutUI() {
         addSubviews(removeFromFavButton, profileImgView, forenameLabel, usernameLabel)
         

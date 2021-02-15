@@ -8,6 +8,8 @@
 import UIKit
 
 final class FavoriteTweetsVC: UIViewController {
+    //MARK: - Declarations
+    
     
     enum Section {
         case main
@@ -33,7 +35,8 @@ final class FavoriteTweetsVC: UIViewController {
     }
 
 
-    //MARK: - Network Calls/ Persistence Manager
+    //MARK: - Persistence Manager functions
+    
 
     private func getFavorites() {
         PersistenceManager.retrieveFavoritesTweets { [weak self] (result) in
@@ -65,6 +68,7 @@ final class FavoriteTweetsVC: UIViewController {
     
     //MARK: - Private Functions
     
+    
     private func configureVC() {
         navigationController?.navigationBar.prefersLargeTitles = true
         title                   = "Favorite Tweets"
@@ -72,6 +76,7 @@ final class FavoriteTweetsVC: UIViewController {
     }
     
     //MARK:- CollectionView Configurations
+    
     
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, FavoriteTweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, favoriteTweet) -> UICollectionViewCell? in
@@ -94,7 +99,7 @@ final class FavoriteTweetsVC: UIViewController {
 
 
     private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: CollectionLayouts.favoriteTwitsCollectionLayout())
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: CollectionLayouts.favoriteTweetsCollectionLayout())
         view.addSubview(collectionView)
         collectionView.backgroundColor = .systemBackground
         
@@ -104,6 +109,7 @@ final class FavoriteTweetsVC: UIViewController {
 
 
 //MARK:- Extensions
+
 
 extension FavoriteTweetsVC: FavoriteTweetsCellDelegate {
     func didRemoveTweetFromFavorites(tweet: FavoriteTweet) {

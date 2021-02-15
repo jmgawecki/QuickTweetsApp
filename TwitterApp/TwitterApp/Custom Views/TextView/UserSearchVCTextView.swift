@@ -8,10 +8,9 @@
 import UIKit
 
 class UserSearchVCTextView: UITextView {
-    
-    
-    //MARK: - Overrides
+    //MARK: - Initialisers
 
+    
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         configureTextView()
@@ -25,12 +24,11 @@ class UserSearchVCTextView: UITextView {
     
     //MARK: - Configurations
 
+    
     private func configureTextView() {
-        isEditable = false
         translatesAutoresizingMaskIntoConstraints = false
-        font = UIFont.preferredFont(forTextStyle: .body)
-        backgroundColor = .secondarySystemBackground
-        
+        isEditable          = false
+        font                = UIFont.preferredFont(forTextStyle: .body)
+        backgroundColor     = .secondarySystemBackground
     }
-
 }

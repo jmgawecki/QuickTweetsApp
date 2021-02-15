@@ -10,18 +10,19 @@ import UIKit
 final class TwitInfoHeaderBodyLabel: UILabel {
 
     
-    //MARK: - Overrides
+    //MARK: - Initialisers
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    //MARK:- Initialisers
+
     
     convenience init(textAlignment: NSTextAlignment) {
         self.init(frame: .zero)
@@ -30,6 +31,7 @@ final class TwitInfoHeaderBodyLabel: UILabel {
 
 
     //MARK: - Configurations
+    
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false

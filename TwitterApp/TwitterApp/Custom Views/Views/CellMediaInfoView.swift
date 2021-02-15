@@ -8,6 +8,7 @@
 import UIKit
 
 final class CellMediaInfoView: UIView {
+    //MARK: - Declarations
 
     enum ItemInfoType {
         case shares, likes
@@ -51,10 +52,11 @@ final class CellMediaInfoView: UIView {
             countLabel.leadingAnchor.constraint       (equalTo: symbolImgView.trailingAnchor, constant: innerPadding),
             countLabel.trailingAnchor.constraint      (equalTo: self.trailingAnchor),
             countLabel.heightAnchor.constraint        (equalToConstant: 18),
-            
-         
         ])
     }
+    
+    
+    //MARK: - Called outside
     
     
     func set(itemInfoType: ItemInfoType, with count: String) {

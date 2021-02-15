@@ -10,6 +10,7 @@ import Swifter
 
 
 final class FavoritesVC: UIViewController {
+    //MARK: - Declarations
     
     let swifter             = NetworkManager.shared.swifter
     
@@ -23,6 +24,7 @@ final class FavoritesVC: UIViewController {
     
     //MARK: - Overrides
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         authoriseAPI()
@@ -33,7 +35,8 @@ final class FavoritesVC: UIViewController {
     }
     
     
-    //MARK: - @Objective functions
+    //MARK: - @Objectives
+    
     
     @objc private func toFavoritesUsersTapped(sender: UIButton) {
         self.animateButtonsView(sender)
@@ -66,11 +69,13 @@ final class FavoritesVC: UIViewController {
         }
     }
     
+    
     private func configureVC() {
         view.backgroundColor    = .systemBackground
         let isLargeScreen: Bool = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? false : true
         navigationController?.navigationBar.prefersLargeTitles = isLargeScreen
     }
+    
     
     private func configureButtons() {
         favUsersButton.addTarget(self, action: #selector(toFavoritesUsersTapped(sender:)), for: .touchUpInside)
@@ -80,14 +85,12 @@ final class FavoritesVC: UIViewController {
     
     //MARK: - Layout configuration
     
-    private func configureUIElements() {
-        logoImgView.image = Images.twitterLogo
-    }
+    
+    private func configureUIElements() { logoImgView.image = Images.twitterLogo }
     
     
     private func layoutUI() {
         view.addSubviews(favUsersButton, favTwitsButton, logoImgView)
-        
         
         NSLayoutConstraint.activate([
             logoImgView.topAnchor.constraint        (equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
@@ -106,6 +109,5 @@ final class FavoritesVC: UIViewController {
             favTwitsButton.widthAnchor.constraint   (equalToConstant: 240),
         ])
     }
-
 }
 

@@ -12,6 +12,7 @@ final class UserResultLabel: UILabel {
     
     //MARK: - Overrides
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -23,6 +24,7 @@ final class UserResultLabel: UILabel {
 
 
     //MARK: - Configurations
+    
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false

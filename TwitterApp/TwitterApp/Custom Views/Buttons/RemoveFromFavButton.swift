@@ -11,6 +11,7 @@ final class RemoveFromFavButton: UIButton {
     
     //MARK: - Overrides
 
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -22,12 +23,14 @@ final class RemoveFromFavButton: UIButton {
     
     //MARK:- Initialisers
     
+    
     convenience init(title: String) {
         self.init(frame: .zero)
         setTitle(title, for: .normal)
     }
     
     //MARK:- Configurations
+    
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false

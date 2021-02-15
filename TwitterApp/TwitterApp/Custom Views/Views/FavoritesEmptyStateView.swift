@@ -8,13 +8,18 @@
 import UIKit
 
 class FavoritesEmptyStateView: UIView {
+    //MARK: - Declarations
+    
+    
     let messageLabel        = UILabel()
     
     let twitterLogoView     = TwitImageView(frame: .zero)
     let twitterLogoViewTop  = TwitImageView(frame: .zero)
     
+    
     //MARK:- Overrides
 
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureCell()
@@ -27,7 +32,9 @@ class FavoritesEmptyStateView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     //MARK:- Initialisers
+    
     
     convenience init(with message: String) {
         self.init(frame: .zero)
@@ -35,7 +42,8 @@ class FavoritesEmptyStateView: UIView {
     }
     
     
-    //MARK:- Private functions
+    //MARK:- Animations
+    
     
     private func animate() {
         alpha = 0
@@ -43,7 +51,8 @@ class FavoritesEmptyStateView: UIView {
     }
     
     
-    //MARK:- Layout
+    //MARK:- Layout configuration
+    
     
     private func configureCell() {
         backgroundColor = .systemBackground

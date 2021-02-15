@@ -13,6 +13,7 @@ final class TwitTextField: UITextField {
     
     //MARK: - Overrides
 
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -26,11 +27,13 @@ final class TwitTextField: UITextField {
     
     //MARK:- Objectives
     
+    
     @objc private func barButtonTapped() {
         resignFirstResponder()
     }
     
     //MARK: - Configurations
+    
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false

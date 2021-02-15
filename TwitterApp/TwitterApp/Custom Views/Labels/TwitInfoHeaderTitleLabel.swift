@@ -10,7 +10,8 @@ import UIKit
 final class TwitInfoHeaderTitleLabel: UILabel {
 
     
-    //MARK: - Overrides
+    //MARK: - Initialisers
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,8 +22,6 @@ final class TwitInfoHeaderTitleLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    //MARK:- Initialisers
     
     convenience init(from textAlignment: NSTextAlignment) {
         self.init(frame: .zero)

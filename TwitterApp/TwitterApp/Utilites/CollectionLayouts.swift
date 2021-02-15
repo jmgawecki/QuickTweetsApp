@@ -37,6 +37,7 @@ struct CollectionLayouts {
         return layout
     }
     
+    
     static func favoriteUsersCollectionLayout() -> UICollectionViewLayout {
         let itemSize        = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                      heightDimension: .fractionalHeight(1.0))
@@ -68,7 +69,8 @@ struct CollectionLayouts {
         return layout
     }
     
-    static func favoriteTwitsCollectionLayout() -> UICollectionViewLayout {
+    
+    static func favoriteTweetsCollectionLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
         

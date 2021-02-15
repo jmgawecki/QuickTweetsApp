@@ -9,6 +9,8 @@ import UIKit
 import Swifter
 
 final class UserSearchVC: TwetLoadingDataVC {
+    //MARK: - Declarations
+    
     
     let logoImgView        = TwitImageView(frame: .zero)
     let searchTextField    = TwitTextField(frame: .zero)
@@ -22,6 +24,7 @@ final class UserSearchVC: TwetLoadingDataVC {
     
     //MARK: - Overrides
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
@@ -36,7 +39,8 @@ final class UserSearchVC: TwetLoadingDataVC {
     }
     
     
-    //MARK: - @Objective functions
+    //MARK: - @Objectives
+    
     
     @objc func searchButtonTapped(sender: UIView) {
         self.animateButtonsView(sender)
@@ -46,7 +50,8 @@ final class UserSearchVC: TwetLoadingDataVC {
     }
     
     
-    //MARK: - Private Functions
+    //MARK: - Network Calls
+    
     
     private func getSingleUser(username: String) {
         showLoadingView()
@@ -68,6 +73,16 @@ final class UserSearchVC: TwetLoadingDataVC {
     }
     
     
+    //MARK: - VC configuration
+    
+    
+    private func configureVC() {
+        view.backgroundColor                                    = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles  = isTitleLarge
+        navigationController?.setNavigationBarHidden(isNavigationHidden, animated: true)
+    }
+    
+    
     private func configureSearchButton() {
         searchButton.addTarget(self, action: #selector(searchButtonTapped(sender:)), for: .touchUpInside)
     }
@@ -80,21 +95,15 @@ final class UserSearchVC: TwetLoadingDataVC {
     }
     
     
-    //MARK: - Layout configuration
-    
-    private func configureVC() {
-        view.backgroundColor                                    = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles  = isTitleLarge
-        navigationController?.setNavigationBarHidden(isNavigationHidden, animated: true)
-    }
-    
-    
     private func configureUI() {
         logoImgView.image          = Images.twitterLogo
         searchTextField.delegate    = self
     }
     
     
+    //MARK: - Layout configuration
+    
+
     private func layoutUI() {
         view.addSubviews(logoImgView, searchTextField, searchButton)
         
@@ -122,6 +131,7 @@ final class UserSearchVC: TwetLoadingDataVC {
 
 
 //MARK:- Extensions
+
 
 extension UserSearchVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

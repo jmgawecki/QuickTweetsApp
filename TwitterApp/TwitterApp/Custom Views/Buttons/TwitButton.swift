@@ -12,6 +12,7 @@ final class TwitButton: UIButton {
     
     //MARK: - Overrides
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -24,6 +25,7 @@ final class TwitButton: UIButton {
     
     //MARK: - Initialisers
     
+    
     convenience init(backgroundColor: UIColor, fontSize: CGFloat, message: String) {
         self.init(frame: .zero)
         self.backgroundColor    = backgroundColor
@@ -34,6 +36,7 @@ final class TwitButton: UIButton {
     
     
     //MARK: - Configurations
+    
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints   = false

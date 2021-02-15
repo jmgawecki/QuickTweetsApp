@@ -12,6 +12,7 @@ class BackgroundPictureImageView: UIImageView {
     
     //MARK:- Overrides
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -22,7 +23,8 @@ class BackgroundPictureImageView: UIImageView {
     }
     
     
-    //MARK:- Functions called outside
+    //MARK:- Network Calls
+    
     
     func downloadImage(from URLString: String) {
         NetworkManager.shared.downloadImage(from: URLString) { [weak self] (image) in
@@ -33,6 +35,7 @@ class BackgroundPictureImageView: UIImageView {
     
     
     //MARK:- Configurations
+    
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false

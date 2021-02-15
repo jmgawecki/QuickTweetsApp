@@ -7,11 +7,16 @@
 
 import UIKit
 
+// MARK: - Protocols and Delegates
+
+
 protocol SearchTweetsCellDelegates: class {
     func didRequestSafari(with urlString: String?)
 }
 
 class SearchTweetsCell: UICollectionViewCell {
+    // MARK: - Declarations
+    
     
     static let reuseId          = "cell"
         
@@ -30,6 +35,9 @@ class SearchTweetsCell: UICollectionViewCell {
     var urlString:                    String?
     
     
+    // MARK: - Initialisers
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureCell()
@@ -40,14 +48,13 @@ class SearchTweetsCell: UICollectionViewCell {
     }
     
     
-    override func prepareForReuse() {
-        self.goSafariButton.isHidden = false
-    }
+    override func prepareForReuse() { self.goSafariButton.isHidden = false }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    
+    
+    // MARK: - Objectives
     
     
     @objc private func addToFavoritesTapped(sender: UIView) {
@@ -70,17 +77,8 @@ class SearchTweetsCell: UICollectionViewCell {
     }
     
     
-    private func fromTweetToFavoriteTweet(user: User ,tweet: Tweet) -> FavoriteTweet {
-        let favoriteTweet = FavoriteTweet(twitsId: tweet.twitsId,
-                                          name: user.name,
-                                          tweetText: tweet.tweetText,
-                                          profileImageUrl: user.profileImageUrl,
-                                          urlToExpandWithSafari: tweet.urlToExpandWithSafari,
-                                          likesCounter: tweet.likesCounter,
-                                          retweetCounter: tweet.retweetCounter,
-                                          createdAt: tweet.createdAt)
-        return favoriteTweet
-    }
+    // MARK: - Animations
+    
     
     private func animateButtonView(_ viewToAnimate: UIView) {
         UIView.animate(withDuration: 0.2, animations: {viewToAnimate.alpha = 0}) { [weak self] (true) in
@@ -96,6 +94,10 @@ class SearchTweetsCell: UICollectionViewCell {
         }
     }
     
+    
+    // MARK: - Called outside
+    
+    
     func set(with usersTweet: Tweet, user: User) {
         self.user                               = user
         tweet                                   = usersTweet
@@ -110,6 +112,21 @@ class SearchTweetsCell: UICollectionViewCell {
         self.goSafariButton.setTitle(TweetStrings.seeFull, for: .normal)
     }
     
+    
+    // MARK: - Cell Configuration
+    
+    
+    private func fromTweetToFavoriteTweet(user: User ,tweet: Tweet) -> FavoriteTweet {
+        let favoriteTweet = FavoriteTweet(twitsId: tweet.twitsId,
+                                          name: user.name,
+                                          tweetText: tweet.tweetText,
+                                          profileImageUrl: user.profileImageUrl,
+                                          urlToExpandWithSafari: tweet.urlToExpandWithSafari,
+                                          likesCounter: tweet.likesCounter,
+                                          retweetCounter: tweet.retweetCounter,
+                                          createdAt: tweet.createdAt)
+        return favoriteTweet
+    }
     
     private func configureCell() {
         backgroundColor                     = .secondarySystemBackground
@@ -139,6 +156,9 @@ class SearchTweetsCell: UICollectionViewCell {
         addToFavoritesButton.tintColor      = ColorsTwitter.twitterBlue
         addToFavoritesButton.addTarget(self, action: #selector(addToFavoritesTapped), for: .touchUpInside)
     }
+    
+    
+    // MARK: - Layout Configuration
     
     
     private func layoutUI() {

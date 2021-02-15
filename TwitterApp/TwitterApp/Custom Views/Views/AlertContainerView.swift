@@ -12,6 +12,7 @@ final class AlertContainerView: UIView {
     
     //MARK:- Overrides
 
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -23,6 +24,7 @@ final class AlertContainerView: UIView {
     
     
     //MARK:- Private functions
+    
     
     private func configure() {
         backgroundColor       = .systemBackground

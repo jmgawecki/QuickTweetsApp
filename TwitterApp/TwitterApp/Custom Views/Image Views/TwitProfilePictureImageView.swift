@@ -26,6 +26,9 @@ class TwitProfilePictureImageView: UIImageView {
     }
     
     
+    //MARK: - Network Calls
+    
+    
     func downloadImage(from URLString: String) {
         NetworkManager.shared.downloadImage(from: URLString) { [weak self] (image) in
             guard let self = self else { return }
@@ -36,12 +39,12 @@ class TwitProfilePictureImageView: UIImageView {
     
     //MARK: - Configurations
     
+    
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         
         layer.borderWidth       = 2
         layer.borderColor       = ColorsTwitter.twitterDarkGray.cgColor
-//        layer.cornerRadius      = 75
         layer.masksToBounds     = true
         
         clipsToBounds           = true

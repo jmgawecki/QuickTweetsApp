@@ -8,6 +8,8 @@
 import UIKit
 
 final class FavoriteUsersVC: TwetLoadingDataVC {
+    //MARK: - Declaration
+    
     
     enum SectionsUsers: Hashable {
         case favoriteUser(User)
@@ -24,6 +26,7 @@ final class FavoriteUsersVC: TwetLoadingDataVC {
     
     //MARK: - Overrides
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getFavorites()
@@ -34,14 +37,14 @@ final class FavoriteUsersVC: TwetLoadingDataVC {
     }
     
     
-    //MARK: - @Objective functions
-    
-    @objc private func refreshData() {
-        updateData(with: users)
-    }
+    //MARK: - @Objectives
     
     
-    //MARK: - Persistence Manager/ Network Calls
+    @objc private func refreshData() { updateData(with: users) }
+    
+    
+    //MARK: - Persistence Manager functions
+    
     
     private func deleteFavorite(user: User) {
         PersistenceManager.updateWithUsers(favoriteUser: user, persistenceAction: .remove) { (error) in
@@ -78,6 +81,7 @@ final class FavoriteUsersVC: TwetLoadingDataVC {
     
     //MARK: - Private Functions
     
+    
     private func configureVC() {
         view.backgroundColor    = .systemBackground
         title                   = TweetStrings.emptyString
@@ -89,6 +93,7 @@ final class FavoriteUsersVC: TwetLoadingDataVC {
     
     
     //MARK:- CollectionView Configurations
+    
     
     private func updateData(with users: [User]) {
         snapshot = NSDiffableDataSourceSnapshot<SectionsUsers, Tweet>()
@@ -160,6 +165,7 @@ final class FavoriteUsersVC: TwetLoadingDataVC {
 
 
     //MARK: - Extensions
+
 
 extension FavoriteUsersVC: FavoritesCollectionHeaderDelegates {
     

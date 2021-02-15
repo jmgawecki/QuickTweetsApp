@@ -8,10 +8,10 @@
 import UIKit
 
 final class SearchTweetsVC: UIViewController {
+    //MARK: - Declarations
     
-    enum Section {
-        case main
-    }
+    
+    enum Section { case main }
     
     var collectionView: UICollectionView!
     var dataSource:     UICollectionViewDiffableDataSource<Section, Tweet>!
@@ -23,6 +23,7 @@ final class SearchTweetsVC: UIViewController {
     
     //MARK: - Initialiser
     
+    
     init(user: User) {
         super.init(nibName: nil, bundle: nil)
         self.user = user
@@ -31,9 +32,7 @@ final class SearchTweetsVC: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    //MARK: - Overrides
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +48,7 @@ final class SearchTweetsVC: UIViewController {
     
     //MARK: - Objectives
     
+    
     @objc private func addUserToFavorites(with button: UIBarButtonItem) {
         addUserToFavorite(user: user)
         button.title = TweetStrings.inFavorites
@@ -57,7 +57,8 @@ final class SearchTweetsVC: UIViewController {
     }
     
     
-    //MARK: - Private Functions
+    //MARK: - Network Calls
+    
     
     private func getUsersTweets() {
         NetworkManager.shared.getSingleUsersTweets(userId: user.idStr) { [weak self] (result) in
@@ -69,6 +70,9 @@ final class SearchTweetsVC: UIViewController {
             }
         }
     }
+    
+    
+    //MARK: - Persistence Manager functions
     
     
     private func UserPersistenceCheck() -> Bool {
@@ -90,18 +94,6 @@ final class SearchTweetsVC: UIViewController {
         return isEmpty
     }
 
-    
-    private func configureVC() {
-        view.backgroundColor                                    = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles  = true
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        let title = UserPersistenceCheck() ? TweetStrings.addToFavorites : TweetStrings.inFavorites
-        let addButton = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(addUserToFavorites(with:)))
-        addButton.tintColor = UserPersistenceCheck() ? ColorsTwitter.twitterBlue : .systemGray
-        addButton.isEnabled = UserPersistenceCheck() ? true : false
-        navigationItem.rightBarButtonItem = addButton
-    }
-    
     
     private func addUserToFavorite(user: User) {
         let favorite = User(idStr:                  user.idStr,
@@ -125,7 +117,23 @@ final class SearchTweetsVC: UIViewController {
     }
     
     
+    //MARK: - VC configuration
+    
+    
+    private func configureVC() {
+        view.backgroundColor                                    = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles  = true
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        let title = UserPersistenceCheck() ? TweetStrings.addToFavorites : TweetStrings.inFavorites
+        let addButton = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(addUserToFavorites(with:)))
+        addButton.tintColor = UserPersistenceCheck() ? ColorsTwitter.twitterBlue : .systemGray
+        addButton.isEnabled = UserPersistenceCheck() ? true : false
+        navigationItem.rightBarButtonItem = addButton
+    }
+
+    
     //MARK: - CollectionView configuration
+    
     
     private func updateData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Tweet>()
@@ -167,6 +175,7 @@ final class SearchTweetsVC: UIViewController {
 }
 
     //MARK:- Extensions
+
 
 extension SearchTweetsVC: SearchTweetsCellDelegates {
     func didRequestSafari(with urlString: String?) {

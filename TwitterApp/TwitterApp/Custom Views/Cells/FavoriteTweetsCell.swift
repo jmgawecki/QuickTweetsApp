@@ -7,6 +7,9 @@
 
 import UIKit
 
+// MARK: - Protocols and Delegates
+
+
 protocol FavoriteTweetsCellDelegate: class {
     func didRemoveTweetFromFavorites(tweet: FavoriteTweet)
 }
@@ -16,6 +19,8 @@ protocol FavoriteTweetsCellSafariDelegates: class {
 }
 
 class FavoriteTweetsCell: UICollectionViewCell {
+    // MARK: - Declarations
+    
     
     static let reuseId          = "FavoriteTwitsCell"
     
@@ -38,7 +43,8 @@ class FavoriteTweetsCell: UICollectionViewCell {
     weak var delegate:          FavoriteTweetsCellDelegate!
     
     
-    //MARK: - Overrides
+    //MARK: - Initialisers
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -72,7 +78,7 @@ class FavoriteTweetsCell: UICollectionViewCell {
     }
     
     
-    //MARK: - Functions called outside
+    //MARK: - Called outside
     
     func set(with tweet: FavoriteTweet, buttonTitle: String?) {
         self.favoriteTweet            = tweet
@@ -89,7 +95,14 @@ class FavoriteTweetsCell: UICollectionViewCell {
     }
     
     
-    //MARK: - Private Functions
+    //MARK: - Configuration
+    
+    
+    private func configureCell() {
+        backgroundColor                 = .secondarySystemBackground
+        layer.cornerRadius              = 15
+    }
+    
     
     private func configureRemoveButton() {
         removeFavButton.setImage(Images.minus, for: .normal)
@@ -100,14 +113,6 @@ class FavoriteTweetsCell: UICollectionViewCell {
     
     private func configureGoSafariButton() {
         goSafariButton.addTarget(self, action: #selector(didTapGoSafariButton), for: .touchUpInside)
-    }
-    
-    
-    //MARK:- Layout
-    
-    private func configureCell() {
-        backgroundColor                 = .secondarySystemBackground
-        layer.cornerRadius              = 15
     }
     
     
@@ -122,6 +127,9 @@ class FavoriteTweetsCell: UICollectionViewCell {
         mediaStackView.addArrangedSubview(sharesView)
         mediaStackView.addArrangedSubview(likesView)
     }
+    
+    
+    //MARK:- Layout configuration
     
     
     private func layoutUI() {
@@ -157,10 +165,10 @@ class FavoriteTweetsCell: UICollectionViewCell {
             mediaStackView.widthAnchor.constraint       (equalTo: widthAnchor, multiplier: mediaWidthMltp),
             mediaStackView.heightAnchor.constraint      (equalToConstant: 60),
                 
-            goSafariButton.bottomAnchor.constraint        (equalTo: bottomAnchor, constant: -10),
-            goSafariButton.leadingAnchor.constraint       (equalTo: mediaStackView.trailingAnchor, constant: 0),
-            goSafariButton.trailingAnchor.constraint      (equalTo: trailingAnchor, constant: 0),
-            goSafariButton.heightAnchor.constraint        (equalToConstant: 60),
+            goSafariButton.bottomAnchor.constraint      (equalTo: bottomAnchor, constant: -10),
+            goSafariButton.leadingAnchor.constraint     (equalTo: mediaStackView.trailingAnchor, constant: 0),
+            goSafariButton.trailingAnchor.constraint    (equalTo: trailingAnchor, constant: 0),
+            goSafariButton.heightAnchor.constraint      (equalToConstant: 60),
             
             tweetBodyLabel.topAnchor.constraint         (equalTo: profileImgView.bottomAnchor, constant: 0),
             tweetBodyLabel.trailingAnchor.constraint    (equalTo: trailingAnchor, constant: -20),
