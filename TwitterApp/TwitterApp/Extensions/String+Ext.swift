@@ -16,6 +16,7 @@ extension String {
         return formattedDateString
     }
     
+    
     func removeHTTPSfromTweet() -> String {
         let tweet = self
         var newTweet = ""
@@ -30,5 +31,3 @@ extension String {
         return newTweet
     }
 }
-
-/// Mon Mar 05 22:08:25 +0000 2007

@@ -15,11 +15,13 @@ extension UIViewController {
         view.addSubview(emptyStateView)
     }
     
+    
     func presentSafariVC(with url: URL) {
         let safariVC = SFSafariViewController(url: url)
         safariVC.preferredControlTintColor = .systemGreen
         present(safariVC, animated: true)
     }
+    
     
     func animateButtonsView(_ viewToAnimate: UIView) {
         UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.5, options: .curveEaseIn) {
@@ -28,6 +30,7 @@ extension UIViewController {
             UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: { viewToAnimate.transform = CGAffineTransform.init(scaleX: 1, y: 1) }, completion: nil)
         }
     }
+    
     
     func presentAlertVCOnMainThread(title: String, message: String, buttonTitle: String) {
         DispatchQueue.main.async {
@@ -39,8 +42,8 @@ extension UIViewController {
         
     }
     
+    
     func tamic(_ views: UIView...) {
         for view in views { view.translatesAutoresizingMaskIntoConstraints = false }
     }
-
 }

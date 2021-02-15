@@ -21,6 +21,13 @@ enum PersistenceManager {
         static let favoriteTweets = "favoriteTweets"
     }
     
+    
+    
+    /// Uses function retreiveFavoritesUsers() to retreive an  array of object from the User Default. Then, append/remove passed object to/from the array and uses function saveUsers() to upload the updated array to User Default
+    /// - Parameters:
+    ///   - favoriteUser: Specified favorite users that is going to be added/removed to/from Favorites
+    ///   - persistenceAction: Specifies wether speicifed user is going to be added or retreived
+    ///   - completed: upon completion saves updated users array or return user readable error
     static func updateWithUsers(favoriteUser: User, persistenceAction: PersisenceAction, completed: @escaping(TwitterErrors?) -> Void) {
         retrieveFavoritesUsers { (result) in
             switch result {
@@ -47,6 +54,8 @@ enum PersistenceManager {
         }
     }
     
+    
+    /// Retreive an array of object from User Default
     static func retrieveFavoritesUsers(completed: @escaping(Result<[User],TwitterErrors>) -> Void) {
         guard let favUsersData = defaults.object(forKey: Keys.users) as? Data else {
             completed(.success([]))
@@ -61,6 +70,8 @@ enum PersistenceManager {
         }
     }
     
+    
+    /// Saves array of object to User Default
     static func saveUsers(favoriteUsers: [User]) -> TwitterErrors? {
         do {
             let encoder             = JSONEncoder()
@@ -72,6 +83,12 @@ enum PersistenceManager {
         }
     }
     
+    
+    /// Uses function retreiveFavoritesTweets() to retreive an  array of object from the User Default. Then, append/remove passed object to/from the array and uses function saveTweets() to upload the updated array to User Default
+    /// - Parameters:
+    ///   - favoriteTweet: Specified favorite Tweet that is going to be added/removed to/from Favorites
+    ///   - persistenceAction: Specifies wether speicifed tweet is going to be added or retreived
+    ///   - completed: upon completion saves updated users array or return user readable error
     static func updateWithTweets(favoriteTweet: FavoriteTweet, persistenceAction: PersisenceAction, completed: @escaping(TwitterErrors?) -> Void) {
         retrieveFavoritesTweets { (result) in
             switch result {
@@ -98,6 +115,8 @@ enum PersistenceManager {
         }
     }
     
+    
+    /// Retreive an array of object from User Default
     static func retrieveFavoritesTweets(completed: @escaping(Result<[FavoriteTweet],TwitterErrors>) -> Void) {
         guard let favTweetsData = defaults.object(forKey: Keys.favoriteTweets) as? Data else {
             completed(.success([]))
@@ -112,6 +131,8 @@ enum PersistenceManager {
         }
     }
     
+    
+    /// Saves array of object to User Default
     static func saveTweets(favoriteUsers: [FavoriteTweet]) -> TwitterErrors? {
         do {
             let encoder             = JSONEncoder()

@@ -50,7 +50,6 @@
 		EFA03C0725ACB6420024057D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA03C0625ACB6420024057D /* NetworkManager.swift */; };
 		EFC7FB5825A39F8B00E08A8E /* SearchTweetsVCCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC7FB5725A39F8B00E08A8E /* SearchTweetsVCCollectionHeader.swift */; };
 		EFC7FB5D25A3A19E00E08A8E /* SearchTweetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC7FB5C25A3A19E00E08A8E /* SearchTweetsCell.swift */; };
-		EFCB65FF25B253B600EECD0E /* TasksToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB65FE25B253B600EECD0E /* TasksToDo.swift */; };
 		EFCB660B25B263FA00EECD0E /* FavoritesEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB660A25B263FA00EECD0E /* FavoritesEmptyStateView.swift */; };
 		EFCB661125B2664400EECD0E /* ViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB661025B2664400EECD0E /* ViewController+Ext.swift */; };
 		EFD473E525A8C16E00AC9AD9 /* FavoriteUsersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD473E425A8C16E00AC9AD9 /* FavoriteUsersVC.swift */; };
@@ -145,7 +144,6 @@
 		EFA03C0625ACB6420024057D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		EFC7FB5725A39F8B00E08A8E /* SearchTweetsVCCollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTweetsVCCollectionHeader.swift; sourceTree = "<group>"; };
 		EFC7FB5C25A3A19E00E08A8E /* SearchTweetsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTweetsCell.swift; sourceTree = "<group>"; };
-		EFCB65FE25B253B600EECD0E /* TasksToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksToDo.swift; sourceTree = "<group>"; };
 		EFCB660A25B263FA00EECD0E /* FavoritesEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesEmptyStateView.swift; sourceTree = "<group>"; };
 		EFCB661025B2664400EECD0E /* ViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Ext.swift"; sourceTree = "<group>"; };
 		EFD473E425A8C16E00AC9AD9 /* FavoriteUsersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteUsersVC.swift; sourceTree = "<group>"; };
@@ -287,7 +285,6 @@
 		EF88FF73259A295300ADF27B /* TwitterApp */ = {
 			isa = PBXGroup;
 			children = (
-				EFCB65FE25B253B600EECD0E /* TasksToDo.swift */,
 				EFCB660E25B2662800EECD0E /* Extensions */,
 				EF39E53525A207AB004462DC /* Model */,
 				EF39E52C25A206B8004462DC /* Manager */,
@@ -685,7 +682,6 @@
 				EF4D7AB125AB71600096CB6A /* FavoriteTweetsVC.swift in Sources */,
 				EF294D1E25AA6F6200850E74 /* SearchTweetUserInfoView.swift in Sources */,
 				EF88FF75259A295300ADF27B /* AppDelegate.swift in Sources */,
-				EFCB65FF25B253B600EECD0E /* TasksToDo.swift in Sources */,
 				EFFBB84F25AABB86009662E2 /* FavoritesCollectionHeader.swift in Sources */,
 				EF294D1625AA652600850E74 /* TwitProfilePictureImageView.swift in Sources */,
 				EF3E7ABF25BDC3280036DAFC /* TwetLoadingDataVC.swift in Sources */,

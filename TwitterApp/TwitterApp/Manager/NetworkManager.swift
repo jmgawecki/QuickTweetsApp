@@ -17,6 +17,12 @@ struct NetworkManager {
     
     private init() {}
     
+    
+    
+    /// Network call using Swifter library to download User information such as name, screen name, etc.
+    /// - Parameters:
+    ///   - username: Search for information based on specified username
+    ///   - completed: upon completion retreive user's info or human readable error
     func getSingleUser(username: String, completed: @escaping(Result<User, Error>) -> Void) {
         swifter.showUser(UserTag.screenName(username), includeEntities: false) { (json) in
             let userJson = json
@@ -38,6 +44,10 @@ struct NetworkManager {
         }
     }
     
+    /// Network call using Swifter library to download User's tweets with details such as likes, retweet counter, creation date, text etc.
+    /// - Parameters:
+    ///   - userId: Search for user's tweets based on it's Twitter ID
+    ///   - completed: upon completion retreive user's tweets and or human readable error
     func getSingleUsersTweets(userId: String, completed: @escaping([Tweet]) -> Void) {
         swifter.getTimeline(for: UserTag.id(userId), customParam: [:], count: 40, sinceID: nil, maxID: nil, trimUser: true, excludeReplies: true, includeRetweets: true, contributorDetails: true, includeEntities: true, tweetMode: .default) { (json) in
             let result = json.array ?? []
@@ -60,6 +70,11 @@ struct NetworkManager {
         }
     }
     
+    
+    /// Downloads the image for specified user
+    /// - Parameters:
+    ///   - urlString: url retreived with getSingleUser() network call
+    ///   - completed: upon completion retreive user's profile image. Does not retreive error due to default profile image located in Project's assets.
     func downloadImage(from urlString: String, completed: @escaping(UIImage?) -> Void) {
         guard let url = URL(string: urlString) else { return }
         

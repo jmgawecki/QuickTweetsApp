@@ -10,17 +10,17 @@ import Swifter
 
 struct User: Encodable, Decodable, Hashable {
     
-    var idStr:                  String      // id
-    var name:                   String      // forename, name
+    var idStr:                  String      
+    var name:                   String      
     var screenName:             String
 
-    var profileImageUrl:        String?     // profile picture
-    var profileBackgroundUrl:   String?     // BackgroundPicture
+    var profileImageUrl:        String?     
+    var profileBackgroundUrl:   String?     
 
-    var friendsCount:           Double      // Following
-    var followersCount:         Double      // Followers
-    var followingCount:         Double      // what that is?
-    var statusesCount:          Double      // how many posts in total
+    var friendsCount:           Double      
+    var followersCount:         Double      
+    var followingCount:         Double      
+    var statusesCount:          Double      
 
     var location:               String
     var createdAt:              String
