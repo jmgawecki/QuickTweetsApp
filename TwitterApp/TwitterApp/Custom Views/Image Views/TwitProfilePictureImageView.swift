@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TwitProfilePictureImageView: UIImageView {
+final class TwitProfilePictureImageView: UIImageView {
     
     //MARK: - Overrides
     

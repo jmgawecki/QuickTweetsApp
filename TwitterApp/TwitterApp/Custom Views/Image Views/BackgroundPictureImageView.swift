@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BackgroundPictureImageView: UIImageView {
+final class BackgroundPictureImageView: UIImageView {
 
     
     //MARK:- Overrides

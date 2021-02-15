@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TwetLoadingDataVC: UIViewController {
+class TwetLoadingDataVC: UIViewController {
     
     var containerView: UIView!
     
