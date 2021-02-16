@@ -13,6 +13,8 @@ Technology used:
 - Diffable Data Source
 - Compositional Layouts
 - UI adjustment to screen sizes (including iPhone SE 1st gen. and iPhone 8 Zoomed)
-The project stores some sensitive data, therefore source code can be shared upon request:)
 - Night/Light mode UI adjustment
 
+Please follow the link to see the short video:)
+
+https://drive.google.com/file/d/1LWRaVq8DNN_Q0xDlwtVDqsiJGudWAiND/view?usp=sharing
