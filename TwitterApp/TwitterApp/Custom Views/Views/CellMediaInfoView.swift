@@ -35,7 +35,7 @@ final class CellMediaInfoView: UIView {
     
     private func configure() {
         addSubviews(symbolImgView, countLabel)
-        tamic(symbolImgView)
+        tamicToFalse(symbolImgView)
         
         symbolImgView.contentMode = .scaleAspectFill
         symbolImgView.tintColor   = ColorsTwitter.twitterBlue

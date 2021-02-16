@@ -18,10 +18,10 @@ extension String {
     
     
     func removeHTTPSfromTweet() -> String {
-        let tweet = self
-        var newTweet = ""
+        let tweet           = self
+        var newTweet        = ""
         var tweetComponents = tweet.components(separatedBy: " ")
-        let counter = Int(tweetComponents.count)
+        let counter         = Int(tweetComponents.count)
         if tweetComponents[counter - 1].contains("https") {
             tweetComponents.removeLast()
         }

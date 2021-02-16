@@ -23,24 +23,24 @@ final class TwitterTabBarController: UITabBarController {
     
     
     private func configureTabBarController() {
-        UITabBar.appearance().tintColor = ColorsTwitter.twitterBlue
-        UINavigationBar.appearance().tintColor = ColorsTwitter.twitterBlue
-        viewControllers = [configureSearchNC(), configureFavoriteNC()]
+        UITabBar.appearance().tintColor         = ColorsTwitter.twitterBlue
+        UINavigationBar.appearance().tintColor  = ColorsTwitter.twitterBlue
+        viewControllers                         = [configureSearchNC(), configureFavoriteNC()]
     }
     
     
     private func configureSearchNC() -> UINavigationController {
-        let searchVC        = UserSearchVC()
-        searchVC.title      = "Search"
-        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        let searchVC                            = UserSearchVC()
+        searchVC.title                          = "Search"
+        searchVC.tabBarItem                     = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         return UINavigationController(rootViewController: searchVC)
     }
     
     
     private func configureFavoriteNC() -> UINavigationController {
-        let favoritesVC         = FavoritesVC()
-        favoritesVC.title       = "Favorites"
-        favoritesVC.tabBarItem  = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+        let favoritesVC                         = FavoritesVC()
+        favoritesVC.title                       = "Favorites"
+        favoritesVC.tabBarItem                  = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         return UINavigationController(rootViewController: favoritesVC)
     }
 }

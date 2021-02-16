@@ -38,7 +38,7 @@ final class SearchTweetUserInfoView: UIView {
     
     private func configure() {
         addSubviews(symbolImgView, countLabel, titleLabel)
-        tamic(symbolImgView)
+        tamicToFalse(symbolImgView)
         
         symbolImgView.translatesAutoresizingMaskIntoConstraints = false
         symbolImgView.contentMode = .scaleAspectFill

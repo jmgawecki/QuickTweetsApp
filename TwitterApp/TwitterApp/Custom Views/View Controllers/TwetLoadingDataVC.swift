@@ -15,18 +15,16 @@ class TwetLoadingDataVC: UIViewController {
     func showLoadingView() {
         containerView                   = UIView(frame: view.bounds)
         view.addSubview(containerView)
-        
         containerView.backgroundColor   = .systemBackground
         containerView.alpha             = 0
         
         UIView.animate(withDuration: 0.25) { self.containerView.alpha = 0.8 }
         
-        let activityIndicator = UIActivityIndicatorView(style: .large)
+        let activityIndicator           = UIActivityIndicatorView(style: .large)
         containerView.addSubview(activityIndicator)
+        activityIndicator.color         = ColorsTwitter.twitterBlue
         
-        activityIndicator.color = ColorsTwitter.twitterBlue
-        
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        tamicToFalse(activityIndicator)
         
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),

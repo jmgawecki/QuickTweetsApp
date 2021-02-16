@@ -17,9 +17,7 @@ final class UserSearchVCTextView: UITextView {
     }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
     //MARK: - Configurations

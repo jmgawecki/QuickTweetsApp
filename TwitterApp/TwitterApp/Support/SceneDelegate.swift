@@ -23,31 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     
-    func configureTabBarController() -> UITabBarController {
-        let tabbar = UITabBarController()
-        UITabBar.appearance().tintColor = ColorsTwitter.twitterBlue
-        UINavigationBar.appearance().tintColor = ColorsTwitter.twitterBlue
-        tabbar.viewControllers = [configureSearchNC(), configureFavoriteNC()]
-        return tabbar
-    }
-    
-    
-    func configureSearchNC() -> UINavigationController {
-        let searchVC        = UserSearchVC()
-        searchVC.title      = "Search"
-        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        return UINavigationController(rootViewController: searchVC)
-    }
-    
-    
-    func configureFavoriteNC() -> UINavigationController {
-        let favoritesVC         = FavoritesVC()
-        favoritesVC.title       = "Favorites"
-        favoritesVC.tabBarItem  = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
-        return UINavigationController(rootViewController: favoritesVC)
-    }
-    
-    
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let context = URLContexts.first else { return }
         let callbackUrl = URL(string: "TwitterApp://")!

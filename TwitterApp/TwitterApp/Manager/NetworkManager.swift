@@ -10,10 +10,10 @@ import Swifter
 
 struct NetworkManager {
     
-    static let shared = NetworkManager()
+    static let shared   = NetworkManager()
    
     
-    let swifter = Swifter(consumerKey: APIConsumerKeys.keyApi, consumerSecret: APIConsumerKeys.secretKeyApi)
+    let swifter         = Swifter(consumerKey: APIConsumerKeys.keyApi, consumerSecret: APIConsumerKeys.secretKeyApi)
     
     private init() {}
     

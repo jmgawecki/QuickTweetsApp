@@ -19,18 +19,18 @@ final class FavoritesCollectionHeader: UICollectionReusableView {
     // MARK: - Declarations
     
     
-    static let reuseId        = "FavoritesUsersHeaderView"
-        
-    var removeFromFavButton   = RemoveFromFavButton(title: TweetStrings.removeFromFav)
-    var profileImgView        = TwitProfilePictureImageView(frame: .zero)
-    var forenameLabel         = TwitInfoHeaderTitleLabel()
-    var usernameLabel         = TwitInfoHeaderBodyLabel(textAlignment: .center)
+    static let reuseId          = "FavoritesUsersHeaderView"
+            
+    var removeFromFavButton     = RemoveFromFavButton(title: TweetStrings.removeFromFav)
+    var profileImgView          = TwitProfilePictureImageView(frame: .zero)
+    var forenameLabel           = TwitInfoHeaderTitleLabel()
+    var usernameLabel           = TwitInfoHeaderBodyLabel(textAlignment: .center)
     
-    var bodyLabels: [TwitInfoHeaderBodyLabel]   = []
-    var images:     [UIImageView]               = []
+    var bodyLabels:             [TwitInfoHeaderBodyLabel]   = []
+    var images:                 [UIImageView]               = []
     
-    var delegate:   FavoritesCollectionHeaderDelegates!
-    var user:       User!
+    weak var delegate:          FavoritesCollectionHeaderDelegates!
+    var user:                   User!
     
     
     //MARK: - Initialisers

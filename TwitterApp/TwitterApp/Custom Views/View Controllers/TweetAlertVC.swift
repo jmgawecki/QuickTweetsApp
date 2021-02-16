@@ -20,7 +20,7 @@ final class TweetAlertVC: UIViewController {
     var message:        String?
     var buttonTitle:    String?
     
-    let padding: CGFloat = 20
+    let padding:        CGFloat = 20
     
     
     //MARK: - Initialisers
@@ -70,25 +70,25 @@ final class TweetAlertVC: UIViewController {
         view.addSubviews(containerView, titleLabel, actionButton, messageLabel)
         
         NSLayoutConstraint.activate([
-            containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            containerView.widthAnchor.constraint(equalToConstant: 280),
-            containerView.heightAnchor.constraint(equalToConstant: 220),
+            containerView.centerYAnchor.constraint  (equalTo: view.centerYAnchor),
+            containerView.centerXAnchor.constraint  (equalTo: view.centerXAnchor),
+            containerView.widthAnchor.constraint    (equalToConstant: 280),
+            containerView.heightAnchor.constraint   (equalToConstant: 220),
             
-            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding),
-            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
-            titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
-            titleLabel.heightAnchor.constraint(equalToConstant: 28),
+            titleLabel.topAnchor.constraint         (equalTo: containerView.topAnchor, constant: padding),
+            titleLabel.leadingAnchor.constraint     (equalTo: containerView.leadingAnchor, constant: padding),
+            titleLabel.trailingAnchor.constraint    (equalTo: containerView.trailingAnchor, constant: -padding),
+            titleLabel.heightAnchor.constraint      (equalToConstant: 28),
             
-            actionButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -padding),
-            actionButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
-            actionButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
-            actionButton.heightAnchor.constraint(equalToConstant: 44),
+            actionButton.bottomAnchor.constraint    (equalTo: containerView.bottomAnchor, constant: -padding),
+            actionButton.leadingAnchor.constraint   (equalTo: containerView.leadingAnchor, constant: padding),
+            actionButton.trailingAnchor.constraint  (equalTo: containerView.trailingAnchor, constant: -padding),
+            actionButton.heightAnchor.constraint    (equalToConstant: 44),
             
-            messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            messageLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
-            messageLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
-            messageLabel.bottomAnchor.constraint(equalTo: actionButton.topAnchor, constant: -12)
+            messageLabel.topAnchor.constraint       (equalTo: titleLabel.bottomAnchor, constant: 8),
+            messageLabel.leadingAnchor.constraint   (equalTo: containerView.leadingAnchor, constant: padding),
+            messageLabel.trailingAnchor.constraint  (equalTo: containerView.trailingAnchor, constant: -padding),
+            messageLabel.bottomAnchor.constraint    (equalTo: actionButton.topAnchor, constant: -12)
         ])
     }
 }

@@ -62,8 +62,9 @@ enum PersistenceManager {
             return
         }
         do {
-            let decoder = JSONDecoder()
-            let favoriteUsers = try decoder.decode([User].self, from: favUsersData)
+            let decoder         = JSONDecoder()
+            let favoriteUsers   = try decoder.decode([User].self, from: favUsersData)
+            
             completed(.success(favoriteUsers))
         } catch {
             completed(.failure(.retrieveUserPM))
@@ -123,8 +124,9 @@ enum PersistenceManager {
             return
         }
         do {
-            let decoder = JSONDecoder()
-            let favoriteTweets = try decoder.decode([FavoriteTweet].self, from: favTweetsData)
+            let decoder         = JSONDecoder()
+            let favoriteTweets  = try decoder.decode([FavoriteTweet].self, from: favTweetsData)
+            
             completed(.success(favoriteTweets))
         } catch {
             completed(.failure(.retrieveTweetPM))

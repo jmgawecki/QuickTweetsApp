@@ -108,7 +108,7 @@ final class FavoriteUsersCell: UICollectionViewCell {
     
     private func layoutUI() {
         addSubviews(timeDateLabel, tweetBodyLabel, mediaStackView, goSafariButton)
-        tamic(mediaStackView, timeDateLabel)
+        tamicToFalse(mediaStackView, timeDateLabel)
         
         let mediaLeadingPadding: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 10 : 30
         let mediaWidthMltp: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 0.55 : 0.5

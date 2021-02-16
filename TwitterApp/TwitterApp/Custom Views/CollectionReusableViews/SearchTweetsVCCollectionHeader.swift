@@ -11,7 +11,7 @@ final class SearchTweetsVCCollectionHeader: UICollectionReusableView {
     // MARK: - Declarations
     
     
-    static let reuseId  = "UserTwitsHeaderView"
+    static let reuseId      = "UserTwitsHeaderView"
         
     var backgroundImageView = BackgroundPictureImageView(frame: .zero)
     var avatarImageView     = TwitProfilePictureImageView(frame: .zero)

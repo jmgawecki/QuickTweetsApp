@@ -43,7 +43,8 @@ extension UIViewController {
     }
     
     
-    func tamic(_ views: UIView...) {
+    /// Sets translatesAutoresizingMaskIntoConstraints = false for the array of UIViews specified in a function
+    func tamicToFalse(_ views: UIView...) {
         for view in views { view.translatesAutoresizingMaskIntoConstraints = false }
     }
 }

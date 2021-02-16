@@ -71,21 +71,20 @@ struct CollectionLayouts {
     
     
     static func favoriteTweetsCollectionLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .fractionalHeight(1.0))
+        let itemSize        = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                     heightDimension: .fractionalHeight(1.0))
         
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
+        let item            = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets  = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .estimated(330))
+        let groupSize       = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                     heightDimension: .estimated(330))
         
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let group           = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
-        let section = NSCollectionLayoutSection(group: group)
-//        section.orthogonalScrollingBehavior = .groupPagingCentered
+        let section         = NSCollectionLayoutSection(group: group)
      
-        let layout = UICollectionViewCompositionalLayout(section: section)
+        let layout          = UICollectionViewCompositionalLayout(section: section)
         
         return layout
     }

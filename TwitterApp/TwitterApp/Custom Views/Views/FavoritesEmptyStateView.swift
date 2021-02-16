@@ -71,7 +71,7 @@ class FavoritesEmptyStateView: UIView {
     
     private func layoutUI() {
         addSubviews(messageLabel, twitterLogoView, twitterLogoViewTop)
-        tamic(messageLabel)
+        tamicToFalse(messageLabel)
         
         NSLayoutConstraint.activate([
             twitterLogoViewTop.centerXAnchor.constraint (equalTo: centerXAnchor, constant: 0),

@@ -24,12 +24,12 @@ final class FavoriteTweetsCell: UICollectionViewCell {
     
     static let reuseId          = "FavoriteTwitsCell"
     
-    var removeFavButton    = UIButton()
+    var removeFavButton         = UIButton()
     
-    var profileImgView         = TwitProfilePictureImageView(frame: .zero)
-    var nameLabel           = TwitInfoHeaderTitleLabel(from: .left)
+    var profileImgView          = TwitProfilePictureImageView(frame: .zero)
+    var nameLabel               = TwitInfoHeaderTitleLabel(from: .left)
         
-    let dateLabel           = UILabel()
+    let dateLabel               = UILabel()
     let tweetBodyLabel          = UserSearchVCTextView()
     
     let mediaStackView          = UIStackView()
@@ -134,12 +134,12 @@ final class FavoriteTweetsCell: UICollectionViewCell {
     
     private func layoutUI() {
         addSubviews(removeFavButton, profileImgView, nameLabel, dateLabel, tweetBodyLabel, mediaStackView, goSafariButton)
-        tamic(mediaStackView, dateLabel, removeFavButton)
+        tamicToFalse(mediaStackView, dateLabel, removeFavButton)
         
         let mediaLeadingPadding: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 10 : 30
         let mediaWidthMltp: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 0.55 : 0.5
         
-        NSLayoutConstraint.activate([ //85 + 156 + 70
+        NSLayoutConstraint.activate([ 
             removeFavButton.topAnchor.constraint        (equalTo: topAnchor, constant: 5),
             removeFavButton.trailingAnchor.constraint   (equalTo: trailingAnchor, constant: -5),
             removeFavButton.heightAnchor.constraint     (equalToConstant: 25),
