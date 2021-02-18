@@ -287,7 +287,6 @@
 		EF88FF73259A295300ADF27B /* TwitterApp */ = {
 			isa = PBXGroup;
 			children = (
-				EFCB660E25B2662800EECD0E /* Extensions */,
 				EF39E53525A207AB004462DC /* Model */,
 				EF39E52C25A206B8004462DC /* Manager */,
 				EF88FFDE259A402D00ADF27B /* Utilites */,
@@ -389,6 +388,7 @@
 		EF88FFDE259A402D00ADF27B /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
+				EFCB660E25B2662800EECD0E /* Extensions */,
 				EF88FFDF259A404600ADF27B /* Marks.swift */,
 				EF294D2D25AA713C00850E74 /* Constants.swift */,
 				EFD4743F25AA503C00AC9AD9 /* CollectionLayouts.swift */,
