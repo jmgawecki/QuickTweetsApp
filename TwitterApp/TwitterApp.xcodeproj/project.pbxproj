@@ -345,15 +345,15 @@
 			isa = PBXGroup;
 			children = (
 				EFCA742625DADE73007E461A /* Tabbar */,
-				EF3E7ABD25BDC3190036DAFC /* View Controllers */,
-				EF4D7ACE25AB91690096CB6A /* TextView */,
 				EFC7FB5625A39F5800E08A8E /* CollectionReusableViews */,
 				EF79C6F9259A786E004013BF /* Cells */,
-				EF88FFC7259A33E800ADF27B /* Image Views */,
-				EF294D1C25AA6F5100850E74 /* Views */,
+				EF4D7ACE25AB91690096CB6A /* TextView */,
 				EF88FFD0259A3BF200ADF27B /* Text Fields */,
-				EF88FFB9259A2D2500ADF27B /* Buttons */,
+				EF88FFC7259A33E800ADF27B /* Image Views */,
 				EF79C6FF259A78D7004013BF /* Labels */,
+				EF88FFB9259A2D2500ADF27B /* Buttons */,
+				EF294D1C25AA6F5100850E74 /* Views */,
+				EF3E7ABD25BDC3190036DAFC /* View Controllers */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
