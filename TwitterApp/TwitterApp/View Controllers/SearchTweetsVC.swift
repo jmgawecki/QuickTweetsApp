@@ -144,14 +144,16 @@ final class SearchTweetsVC: UIViewController {
     
     
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweet) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchTweetsCell.reuseId, for: indexPath) as! SearchTweetsCell
-            
+        let cellRegistration = UICollectionView.CellRegistration<SearchTweetsCell, Tweet>{ (cell, indexPath, tweet) in
             cell.set(with: tweet, user: self.user)
             cell.delegateSafari = self
-            
-            return cell
+        }
+        
+        
+        dataSource = UICollectionViewDiffableDataSource<Section, Tweet>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweet) -> UICollectionViewCell? in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: tweet)
         })
+        
         
         dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchTweetsVCCollectionHeader.reuseId, for: indexPath) as! SearchTweetsVCCollectionHeader

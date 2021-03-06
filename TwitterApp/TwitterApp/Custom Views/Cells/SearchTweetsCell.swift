@@ -47,6 +47,11 @@ final class SearchTweetsCell: UICollectionViewCell {
         configureGoSafariButton()
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
+    
     
     override func prepareForReuse() { self.goSafariButton.isHidden = false }
     
